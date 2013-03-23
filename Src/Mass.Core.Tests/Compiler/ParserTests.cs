@@ -151,7 +151,7 @@
         public void ParseDivideTwoIntegers()
         {
             Parser parser = new Parser("3/2");
-            var expected = new DivideExpression(new ConstantExpression(3), new ConstantExpression(2));
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(3), new ConstantExpression(2), ArithmeticOperator.Divide);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -164,7 +164,7 @@
         public void ParseSubtractAndDivideIntegers()
         {
             Parser parser = new Parser("1-3/2");
-            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new DivideExpression(new ConstantExpression(3), new ConstantExpression(2)), ArithmeticOperator.Subtract);
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new BinaryArithmeticExpression(new ConstantExpression(3), new ConstantExpression(2), ArithmeticOperator.Divide), ArithmeticOperator.Subtract);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);

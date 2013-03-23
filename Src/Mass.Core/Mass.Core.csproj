@@ -66,7 +66,6 @@
     <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Expressions\ArithmeticOperator.cs" />
     <Compile Include="Expressions\BinaryArithmeticExpression.cs" />
-    <Compile Include="Expressions\DivideExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="Expressions\NameExpression.cs" />
     <Compile Include="Functions\DefinedFunction.cs" />

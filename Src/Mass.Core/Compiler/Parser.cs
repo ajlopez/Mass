@@ -202,7 +202,7 @@
                 if (token.Value == "*")
                     expr = new BinaryArithmeticExpression(expr, this.ParseBinaryExpression(level + 1), ArithmeticOperator.Multiply);
                 if (token.Value == "/")
-                    expr = new DivideExpression(expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryArithmeticExpression(expr, this.ParseBinaryExpression(level + 1), ArithmeticOperator.Divide);
                 if (token.Value == "==")
                     expr = new CompareExpression(expr, this.ParseBinaryExpression(level + 1), CompareOperator.Equal);
                 if (token.Value == "!=")
