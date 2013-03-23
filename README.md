@@ -1,6 +1,6 @@
 # Mass
 
-Simple language interpreter written in C#.
+Simple language, interpreter written in C#.
 
 Work in Progress
 
@@ -9,7 +9,7 @@ Work in Progress
 Mass takes few key ideas from different languages.
 
 - Interpreted Language
-- No types
+- No typed variables
 - Ruby syntax, but with explicit use of parentheses to call functions
 - 'define' for function definition
 - 'function' for anonymous functions
