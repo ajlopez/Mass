@@ -10,6 +10,7 @@
     {
         private static IDictionary<ArithmeticOperator, Func<object, object, object>> functions = new Dictionary<ArithmeticOperator, Func<object, object, object>>();
         private ArithmeticOperator @operator;
+        private Func<object, object, object> function;
 
         static BinaryArithmeticExpression()
         {
@@ -23,11 +24,12 @@
             : base(left, right)
         {
             this.@operator = @operator;
+            this.function = functions[@operator];
         }
 
         public override object Apply(object leftvalue, object rightvalue)
         {
-            return functions[this.@operator](leftvalue, rightvalue);
+            return this.function(leftvalue, rightvalue);
         }
 
         public override bool Equals(object obj)
