@@ -125,7 +125,7 @@
         public void ParseMultiplyTwoIntegers()
         {
             Parser parser = new Parser("3*2");
-            var expected = new MultiplyExpression(new ConstantExpression(3), new ConstantExpression(2));
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(3), new ConstantExpression(2), ArithmeticOperator.Multiply);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -138,7 +138,7 @@
         public void ParseAddAndMultiplyIntegers()
         {
             Parser parser = new Parser("1+3*2");
-            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new MultiplyExpression(new ConstantExpression(3), new ConstantExpression(2)), ArithmeticOperator.Add);
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new BinaryArithmeticExpression(new ConstantExpression(3), new ConstantExpression(2), ArithmeticOperator.Multiply), ArithmeticOperator.Add);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
