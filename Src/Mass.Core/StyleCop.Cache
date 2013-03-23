@@ -1,0 +1,51 @@
+<stylecopresultscache>
+  <version>10</version>
+  <sourcecode name="Token.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/23/2013 15:53:43</timestamp>
+    <milliseconds>899</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="SyntaxError.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/23/2013 15:54:20</timestamp>
+    <milliseconds>193</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TokenType.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/23/2013 15:56:41</timestamp>
+    <milliseconds>399</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="AssemblyInfo.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/23/2013 15:49:26</timestamp>
+    <milliseconds>858</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="71648008">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Lexer.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/23/2013 16:00:42</timestamp>
+    <milliseconds>984</milliseconds>
+    <violations />
+  </sourcecode>
+</stylecopresultscache>
