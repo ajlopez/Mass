@@ -32,7 +32,7 @@
         {
             Context context = new Context();
 
-            DefinedFunction function = new DefinedFunction(new ExpressionCommand(new AddExpression(new NameExpression("a"), new NameExpression("b"))), new string[] { "a", "b" }, context);
+            DefinedFunction function = new DefinedFunction(new ExpressionCommand(new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("b"), ArithmeticOperator.Add)), new string[] { "a", "b" }, context);
 
             var result = function.Apply(new object[] { 1, 2 });
 

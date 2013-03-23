@@ -57,7 +57,7 @@
         public void ParseAddTwoIntegers()
         {
             Parser parser = new Parser("1+2");
-            var expected = new AddExpression(new ConstantExpression(1), new ConstantExpression(2));
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -70,7 +70,7 @@
         public void ParseAddTwoIntegersInParentheses()
         {
             Parser parser = new Parser("(1+2)");
-            var expected = new AddExpression(new ConstantExpression(1), new ConstantExpression(2));
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -138,7 +138,7 @@
         public void ParseAddAndMultiplyIntegers()
         {
             Parser parser = new Parser("1+3*2");
-            var expected = new AddExpression(new ConstantExpression(1), new MultiplyExpression(new ConstantExpression(3), new ConstantExpression(2)));
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new MultiplyExpression(new ConstantExpression(3), new ConstantExpression(2)), ArithmeticOperator.Add);
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -242,7 +242,7 @@
         public void ParseExpressionCommand()
         {
             Parser parser = new Parser("1+2");
-            var expected = new ExpressionCommand(new AddExpression(new ConstantExpression(1), new ConstantExpression(2)));
+            var expected = new ExpressionCommand(new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add));
             var result = parser.ParseCommand();
 
             Assert.IsNotNull(result);
@@ -329,7 +329,7 @@
         public void ParseDefineCommandWithParametersInParentheses()
         {
             Parser parser = new Parser("define foo(a, b)\na+b\nend");
-            var expected = new DefineCommand("foo", new string[] { "a", "b" }, new ExpressionCommand(new AddExpression(new NameExpression("a"), new NameExpression("b"))));
+            var expected = new DefineCommand("foo", new string[] { "a", "b" }, new ExpressionCommand(new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("b"), ArithmeticOperator.Add)));
             var result = parser.ParseCommand();
 
             Assert.IsNotNull(result);

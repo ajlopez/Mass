@@ -8,12 +8,12 @@
     using Mass.Core.Expressions;
 
     [TestClass]
-    public class AddExpressionTests
+    public class BinaryArithmeticExpressionTests
     {
         [TestMethod]
         public void AddTwoIntegers()
         {
-            AddExpression expr = new AddExpression(new ConstantExpression(1), new ConstantExpression(2));
+            BinaryArithmeticExpression expr = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
 
             Assert.AreEqual(3, expr.Evaluate(null));
         }
@@ -21,10 +21,10 @@
         [TestMethod]
         public void Equals()
         {
-            AddExpression expr1 = new AddExpression(new ConstantExpression(1), new ConstantExpression(2));
-            AddExpression expr2 = new AddExpression(new ConstantExpression(1), new ConstantExpression(3));
-            AddExpression expr3 = new AddExpression(new ConstantExpression(1), new ConstantExpression(2));
-            AddExpression expr4 = new AddExpression(new ConstantExpression(2), new ConstantExpression(2));
+            BinaryArithmeticExpression expr1 = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
+            BinaryArithmeticExpression expr2 = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(3), ArithmeticOperator.Add);
+            BinaryArithmeticExpression expr3 = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
+            BinaryArithmeticExpression expr4 = new BinaryArithmeticExpression(new ConstantExpression(2), new ConstantExpression(2), ArithmeticOperator.Add);
 
             Assert.IsTrue(expr1.Equals(expr3));
             Assert.IsTrue(expr3.Equals(expr1));

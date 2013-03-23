@@ -196,7 +196,7 @@
             for (token = this.lexer.NextToken(); token != null && this.IsBinaryOperator(level, token); token = this.lexer.NextToken())
             {
                 if (token.Value == "+")
-                    expr = new AddExpression(expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryArithmeticExpression(expr, this.ParseBinaryExpression(level + 1), ArithmeticOperator.Add);
                 if (token.Value == "-")
                     expr = new SubtractExpression(expr, this.ParseBinaryExpression(level + 1));
                 if (token.Value == "*")

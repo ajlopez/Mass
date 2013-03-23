@@ -59,7 +59,6 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\SyntaxError.cs" />
-    <Compile Include="Expressions\AddExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
     <Compile Include="Expressions\CallExpression.cs" />
     <Compile Include="Expressions\CompareExpression.cs" />
