@@ -198,7 +198,7 @@
                 if (token.Value == "+")
                     expr = new BinaryArithmeticExpression(expr, this.ParseBinaryExpression(level + 1), ArithmeticOperator.Add);
                 if (token.Value == "-")
-                    expr = new SubtractExpression(expr, this.ParseBinaryExpression(level + 1));
+                    expr = new BinaryArithmeticExpression(expr, this.ParseBinaryExpression(level + 1), ArithmeticOperator.Subtract);
                 if (token.Value == "*")
                     expr = new MultiplyExpression(expr, this.ParseBinaryExpression(level + 1));
                 if (token.Value == "/")
