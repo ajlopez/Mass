@@ -5,16 +5,11 @@
     using System.Linq;
     using System.Text;
 
-    public class AddExpression : BinaryExpression
+    public class AddExpression : BinaryArithmeticExpression
     {
         public AddExpression(IExpression left, IExpression right)
-            : base(left, right)
+            : base(left, right, ArithmeticOperator.Add)
         {
-        }
-
-        public override object Apply(object leftvalue, object rightvalue)
-        {
-            return (int)leftvalue + (int)rightvalue;
         }
     }
 }

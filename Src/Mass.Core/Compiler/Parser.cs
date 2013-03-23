@@ -314,18 +314,6 @@
             return null;
         }
 
-        private bool TryParseEndOfLine()
-        {
-            Token token = this.lexer.NextToken();
-
-            if (token != null && token.Type == TokenType.EndOfLine && token.Value == "\n")
-                return true;
-
-            this.lexer.PushToken(token);
-
-            return false;
-        }
-
         private bool IsBinaryOperator(int level, Token token)
         {
             return token.Type == TokenType.Operator && binaryoperators[level].Contains(token.Value);

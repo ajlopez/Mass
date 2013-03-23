@@ -19,6 +19,14 @@
         }
 
         [TestMethod]
+        public void DivideTwoIntegersAsReal()
+        {
+            DivideExpression expr = new DivideExpression(new ConstantExpression(5), new ConstantExpression(2));
+
+            Assert.AreEqual(2.5, expr.Evaluate(null));
+        }
+
+        [TestMethod]
         public void Equals()
         {
             DivideExpression expr1 = new DivideExpression(new ConstantExpression(1), new ConstantExpression(2));
