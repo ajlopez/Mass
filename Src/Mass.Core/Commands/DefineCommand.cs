@@ -23,7 +23,12 @@
         {
             var result = new DefinedFunction(this.command, this.parameters, context);
 
-            context.SetValue(this.name, result);
+            var dclass = context.Class;
+
+            if (dclass != null)
+                dclass.SetInstanceMethod(this.name, (IFunction)result);
+            else
+                context.SetValue(this.name, result);
 
             return null;
         }

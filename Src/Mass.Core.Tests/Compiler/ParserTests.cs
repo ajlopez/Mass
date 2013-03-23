@@ -427,5 +427,19 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ParseEmptyClass()
+        {
+            Parser parser = new Parser("class Dog\nend");
+            ICommand expected = new ClassCommand("Dog", new CompositeCommand(new ICommand[] { }));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }

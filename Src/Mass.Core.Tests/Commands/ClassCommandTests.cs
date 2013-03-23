@@ -10,6 +10,7 @@
     using Mass.Core.Expressions;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Mass.Core.Compiler;
 
     [TestClass]
     public class ClassCommandTests
@@ -28,8 +29,26 @@
 
             var value = context.GetValue("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
-            Assert.AreEqual(value, context.GetValue("Dog"));
             Assert.AreEqual("123\r\n", writer.ToString());
+        }
+
+        [TestMethod]
+        public void DefineSimpleClassWithMethod()
+        {
+            Context context = new Context();
+            Parser parser = new Parser("define foo(a,b)\na+b\nend");
+            ClassCommand cmd = new ClassCommand("Dog", parser.ParseCommand());
+
+            var result = cmd.Execute(context);
+
+            Assert.IsNull(result);
+
+            var value = context.GetValue("Dog");
+            Assert.IsInstanceOfType(value, typeof(DefinedClass));
+
+            var dclass = (DefinedClass)value;
+
+            Assert.IsNotNull(dclass.GetInstanceMethod("foo"));
         }
 
         [TestMethod]
