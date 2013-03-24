@@ -483,5 +483,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseCallDotExpression()
+        {
+            Parser parser = new Parser("rectangle.area()");
+            IExpression expected = new CallDotExpression(new DotExpression(new NameExpression("rectangle"), "area"), new IExpression[] { });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
