@@ -469,5 +469,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseDoubleDotExpression()
+        {
+            Parser parser = new Parser("customer.address.street");
+            IExpression expected = new DotExpression(new DotExpression(new NameExpression("customer"), "address"), "street");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

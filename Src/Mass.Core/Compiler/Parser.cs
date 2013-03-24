@@ -263,8 +263,8 @@
             if (this.PeekToken(TokenType.Separator, "("))
                 return new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
 
-            if (this.TryParseToken(TokenType.Separator, "."))
-                return new DotExpression(expr, this.ParseName());
+            while (this.TryParseToken(TokenType.Separator, "."))
+                expr = new DotExpression(expr, this.ParseName());
 
             return expr;
         }
