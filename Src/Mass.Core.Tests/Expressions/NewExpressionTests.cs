@@ -50,5 +50,29 @@
             Assert.AreSame(dclass, obj.Class);
             Assert.AreEqual("1\r\n2\r\n", writer.ToString());
         }
+
+        [TestMethod]
+        public void Equals()
+        {
+            NewExpression expr1 = new NewExpression(new NameExpression("Dog"), new IExpression[] { new ConstantExpression(1) });
+            NewExpression expr2 = new NewExpression(new NameExpression("Animal"), new IExpression[] { new ConstantExpression(1) });
+            NewExpression expr3 = new NewExpression(new NameExpression("Dog"), new IExpression[] { new ConstantExpression(2) });
+            NewExpression expr4 = new NewExpression(new NameExpression("Dog"), new IExpression[] { new ConstantExpression(2), new ConstantExpression(3) });
+            NewExpression expr5 = new NewExpression(new NameExpression("Dog"), new IExpression[] { new ConstantExpression(1) });
+
+            Assert.IsTrue(expr1.Equals(expr5));
+            Assert.IsTrue(expr5.Equals(expr1));
+            Assert.AreEqual(expr1.GetHashCode(), expr5.GetHashCode());
+
+            Assert.IsFalse(expr1.Equals(null));
+            Assert.IsFalse(expr1.Equals(123));
+
+            Assert.IsFalse(expr1.Equals(expr2));
+            Assert.IsFalse(expr2.Equals(expr1));
+            Assert.IsFalse(expr1.Equals(expr3));
+            Assert.IsFalse(expr3.Equals(expr1));
+            Assert.IsFalse(expr1.Equals(expr4));
+            Assert.IsFalse(expr4.Equals(expr1));
+        }
     }
 }
