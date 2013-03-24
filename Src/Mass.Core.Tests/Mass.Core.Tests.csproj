@@ -52,6 +52,7 @@
     <Compile Include="Expressions\CallExpressionTests.cs" />
     <Compile Include="Expressions\CompareExpressionTests.cs" />
     <Compile Include="Expressions\ConstantExpressionTests.cs" />
+    <Compile Include="Expressions\CallDotExpressionTests.cs" />
     <Compile Include="Expressions\DotExpressionTests.cs" />
     <Compile Include="Expressions\NameExpressionTests.cs" />
     <Compile Include="Expressions\NewExpressionTests.cs" />

@@ -455,5 +455,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseDotExpression()
+        {
+            Parser parser = new Parser("nero.name");
+            IExpression expected = new DotExpression(new NameExpression("nero"), "name");
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

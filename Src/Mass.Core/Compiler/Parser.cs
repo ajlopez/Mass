@@ -260,10 +260,13 @@
             if (!(expr is NameExpression))
                 return expr;
 
-            if (!this.PeekToken(TokenType.Separator, "("))
-                return expr;
+            if (this.PeekToken(TokenType.Separator, "("))
+                return new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
 
-            return new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
+            if (this.TryParseToken(TokenType.Separator, "."))
+                return new DotExpression(expr, this.ParseName());
+
+            return expr;
         }
 
         private IExpression ParseSimpleTerm()
