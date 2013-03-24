@@ -21,14 +21,20 @@
 
         public object Execute(Context context)
         {
-            var result = new DefinedFunction(this.command, this.parameters, context);
-
             var dclass = context.Class;
 
             if (dclass != null)
+            {
+                var selfparameters = new List<string>(this.parameters);
+                selfparameters.Insert(0, "self");
+                var result = new DefinedFunction(this.command, selfparameters, context);
                 dclass.SetInstanceMethod(this.name, (IFunction)result);
+            }
             else
+            {
+                var result = new DefinedFunction(this.command, this.parameters, context);
                 context.SetValue(this.name, result);
+            }
 
             return null;
         }

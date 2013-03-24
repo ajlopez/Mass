@@ -107,7 +107,6 @@
             IList<string> parameters = this.ParseParameterList();
             this.ParseEndOfCommand();
             ICommand body = this.ParseCommandList();
-            this.ParseEndOfCommand();
             return new DefineCommand(name, parameters, body);
         }
 

@@ -21,7 +21,23 @@
         public object Evaluate(Context context)
         {
             DefinedClass dclass = (DefinedClass)this.expression.Evaluate(context);
-            return dclass.CreateInstance();
+            IList<object> values = new List<object>();
+
+
+            foreach (var argument in this.arguments)
+                values.Add(argument.Evaluate(context));
+
+            var obj = dclass.CreateInstance();
+
+            var initialize = obj.GetValue("initialize") as IFunction;
+
+            if (initialize != null)
+            {
+                values.Insert(0, obj);
+                initialize.Apply(values);
+            }
+
+            return obj;
         }
     }
 }

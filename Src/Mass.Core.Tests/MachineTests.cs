@@ -37,5 +37,38 @@
             Assert.AreEqual(1, machine.RootContext.GetValue("a"));
             Assert.AreEqual(2, machine.RootContext.GetValue("b"));
         }
+
+        [TestMethod]
+        public void DefineEmptyClass()
+        {
+            Machine machine = new Machine();
+            machine.ExecuteText("class Dog\nend");
+
+            var result = machine.RootContext.GetValue("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DefinedClass));
+
+            var dclass = (DefinedClass)result;
+
+            Assert.AreEqual("Dog", dclass.Name);
+        }
+
+        [TestMethod]
+        public void DefineClassWithEmptyMethod()
+        {
+            Machine machine = new Machine();
+            machine.ExecuteText("class Dog\ndefine foo()\nend\nend");
+
+            var result = machine.RootContext.GetValue("Dog");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DefinedClass));
+
+            var dclass = (DefinedClass)result;
+
+            Assert.AreEqual("Dog", dclass.Name);
+            Assert.IsNotNull(dclass.GetInstanceMethod("foo"));
+        }
     }
 }
