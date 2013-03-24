@@ -257,14 +257,22 @@
             if (expr == null)
                 return expr;
 
-            if (!(expr is NameExpression))
-                return expr;
+            while (true)
+            {
+                var original = expr;
 
-            if (this.PeekToken(TokenType.Separator, "("))
-                return new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
+                if (expr is NameExpression && this.PeekToken(TokenType.Separator, "("))
+                    expr = new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
 
-            while (this.TryParseToken(TokenType.Separator, "."))
-                expr = new DotExpression(expr, this.ParseName());
+                if (expr is DotExpression && this.PeekToken(TokenType.Separator, "("))
+                    expr = new CallDotExpression((DotExpression)expr, this.ParseExpressionList());
+
+                while (this.TryParseToken(TokenType.Separator, "."))
+                    expr = new DotExpression(expr, this.ParseName());
+
+                if (original == expr)
+                    break;
+            }
 
             return expr;
         }
