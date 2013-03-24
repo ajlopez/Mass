@@ -441,5 +441,19 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ParseNewObject()
+        {
+            Parser parser = new Parser("new Dog(\"Nero\")");
+            IExpression expected = new NewExpression(new NameExpression("Dog"), new IExpression[] { new ConstantExpression("Nero") });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

@@ -21,6 +21,16 @@
 
         public IExpression ParseExpression()
         {
+            Token token = this.lexer.NextToken();
+
+            if (token == null)
+                return null;
+
+            if (token.Type == TokenType.Name && token.Value == "new")
+                return this.ParseNewExpression();
+
+            this.lexer.PushToken(token);
+
             return this.ParseBinaryExpression(0);
         }
 
@@ -81,6 +91,12 @@
             this.ParseEndOfCommand();
 
             return cmd;
+        }
+
+        private NewExpression ParseNewExpression()
+        {
+            string name = this.ParseName();
+            return new NewExpression(new NameExpression(name), this.ParseExpressionList());
         }
 
         private IfCommand ParseIfCommand()
