@@ -497,5 +497,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseAssignDotCommand()
+        {
+            Parser parser = new Parser("obj.age = 800");
+            ICommand expected = new AssignDotCommand(new DotExpression(new NameExpression("obj"), "age"), new ConstantExpression(800));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

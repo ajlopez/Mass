@@ -62,5 +62,25 @@
             Assert.AreEqual(null, this.machine.ExecuteFile("MachineFiles\\SimpleWhile.ms"));
             Assert.AreEqual("6\r\n", writer.ToString());
         }
+
+        [TestMethod]
+        public void ExecuteRectangleFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\Rectangle.ms");
+
+            var rect = this.machine.RootContext.GetValue("rect");
+
+            Assert.IsNotNull(rect);
+            Assert.IsInstanceOfType(rect, typeof(DynamicObject));
+
+            var dobj = (DynamicObject)rect;
+
+            Assert.IsNotNull(dobj.Class);
+            Assert.AreEqual("Rectangle", dobj.Class.Name);
+            Assert.AreEqual(4, dobj.GetValue("width"));
+            Assert.AreEqual(6, dobj.GetValue("height"));
+            Assert.AreEqual(6, this.machine.RootContext.GetValue("area"));
+            Assert.AreEqual(24, this.machine.RootContext.GetValue("area2"));
+        }
     }
 }

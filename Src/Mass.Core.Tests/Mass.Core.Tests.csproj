@@ -41,6 +41,7 @@
     <Compile Include="Commands\AssignCommandTests.cs" />
     <Compile Include="Commands\ClassCommandTests.cs" />
     <Compile Include="Commands\CompositeCommandTests.cs" />
+    <Compile Include="Commands\AssignDotCommandTests.cs" />
     <Compile Include="Commands\DefineCommandTests.cs" />
     <Compile Include="Commands\ExpressionCommandTests.cs" />
     <Compile Include="Commands\IfCommandTests.cs" />
@@ -86,6 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MachineFiles\SimpleWhile.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MachineFiles\Rectangle.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
