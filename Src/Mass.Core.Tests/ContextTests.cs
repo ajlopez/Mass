@@ -53,5 +53,23 @@
             Assert.IsTrue(result.Contains("two"));
             Assert.IsTrue(result.Contains("three"));
         }
+
+        [TestMethod]
+        public void HasReturn()
+        {
+            Context context = new Context();
+
+            Assert.IsFalse(context.HasReturn());
+        }
+
+        [TestMethod]
+        public void SetAndGetReturn()
+        {
+            Context context = new Context();
+
+            context.SetReturn(1);
+            Assert.IsTrue(context.HasReturn());
+            Assert.AreEqual(1, context.GetReturn());
+        }
     }
 }

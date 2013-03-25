@@ -11,6 +11,8 @@
         private Context parent;
         private DefinedClass @class;
         private IDictionary<string, object> values = new Dictionary<string, object>();
+        private object returnvalue;
+        private bool hasreturn;
 
         public Context()
             : this(null)
@@ -29,6 +31,22 @@
         }
 
         public DefinedClass Class { get { return this.@class; } }
+
+        public bool HasReturn()
+        {
+            return this.hasreturn;
+        }
+
+        public object GetReturn()
+        {
+            return this.returnvalue;
+        }
+
+        public void SetReturn(object returnvalue)
+        {
+            this.returnvalue = returnvalue;
+            this.hasreturn = true;
+        }
 
         public void SetValue(string name, object value)
         {
