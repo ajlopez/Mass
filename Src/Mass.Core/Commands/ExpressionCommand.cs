@@ -15,8 +15,6 @@
             this.expression = expression;
         }
 
-        public IExpression Expression { get { return this.expression; } }
-
         public object Execute(Context context)
         {
             return this.expression.Evaluate(context);
@@ -31,7 +29,7 @@
             {
                 var expr = (ExpressionCommand)obj;
 
-                return this.Expression.Equals(expr.Expression);
+                return this.expression.Equals(expr.expression);
             }
 
             return false;
@@ -39,7 +37,7 @@
 
         public override int GetHashCode()
         {
-            return this.Expression.GetHashCode();
+            return this.expression.GetHashCode();
         }
     }
 }
