@@ -49,7 +49,8 @@
         {
             var result = Operators.DivideObject(left, right);
 
-            if (result is double) {
+            if (result is double) 
+            {
                 double value = (double)result;
                 double floor = Math.Floor(value);
                 if (floor == value)

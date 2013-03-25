@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mass.Core.Expressions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class BinaryArithmeticExpressionTests
@@ -94,6 +94,7 @@
             Assert.IsFalse(expr1.Equals(expr4));
             Assert.IsFalse(expr4.Equals(expr1));
         }
+
         [TestMethod]
         public void DivideTwoIntegers()
         {

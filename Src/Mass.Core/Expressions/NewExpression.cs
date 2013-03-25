@@ -23,7 +23,6 @@
             DefinedClass dclass = (DefinedClass)this.expression.Evaluate(context);
             IList<object> values = new List<object>();
 
-
             foreach (var argument in this.arguments)
                 values.Add(argument.Evaluate(context));
 

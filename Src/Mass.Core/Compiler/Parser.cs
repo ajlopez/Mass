@@ -255,7 +255,7 @@
 
         private IExpression ParseTerm()
         {
-            IExpression expr =  this.ParseSimpleTerm();
+            IExpression expr = this.ParseSimpleTerm();
 
             if (expr == null)
                 return expr;

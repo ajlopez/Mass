@@ -5,9 +5,9 @@
     using System.IO;
     using System.Linq;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     [DeploymentItem("MachineFiles", "MachineFiles")]

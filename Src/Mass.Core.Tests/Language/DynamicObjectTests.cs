@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Mass.Core.Language;
     using Mass.Core.Functions;
+    using Mass.Core.Language;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class DynamicObjectTests
