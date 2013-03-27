@@ -42,6 +42,7 @@
     <Compile Include="Commands\ClassCommandTests.cs" />
     <Compile Include="Commands\CompositeCommandTests.cs" />
     <Compile Include="Commands\AssignDotCommandTests.cs" />
+    <Compile Include="Commands\ReturnCommandTests.cs" />
     <Compile Include="Commands\DefineCommandTests.cs" />
     <Compile Include="Commands\ExpressionCommandTests.cs" />
     <Compile Include="Commands\IfCommandTests.cs" />
