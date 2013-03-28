@@ -71,6 +71,7 @@
     <Compile Include="Expressions\ArithmeticOperator.cs" />
     <Compile Include="Expressions\BinaryArithmeticExpression.cs" />
     <Compile Include="Expressions\CallDotExpression.cs" />
+    <Compile Include="Expressions\ArrayExpression.cs" />
     <Compile Include="Expressions\DotExpression.cs" />
     <Compile Include="Expressions\NewExpression.cs" />
     <Compile Include="Expressions\IExpression.cs" />

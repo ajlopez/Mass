@@ -60,6 +60,9 @@
 
                 if (token.Value == "return")
                     return this.ParseReturnCommand();
+
+                if (token.Value == "for")
+                    return this.ParseForEachCommand();
             }
 
             this.lexer.PushToken(token);
@@ -111,6 +114,16 @@
             this.ParseEndOfCommand();
             ICommand thencommand = this.ParseCommandList();
             return new IfCommand(condition, thencommand);
+        }
+
+        private ForEachCommand ParseForEachCommand()
+        {
+            string name = this.ParseName();
+            this.ParseName("in");
+            IExpression expression = this.ParseExpression();
+            this.ParseEndOfCommand();
+            ICommand command = this.ParseCommandList();
+            return new ForEachCommand(name, expression, command);
         }
 
         private ReturnCommand ParseReturnCommand()
