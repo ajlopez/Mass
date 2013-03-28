@@ -63,6 +63,7 @@
     <Compile Include="Compiler\TokenType.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Exceptions\SyntaxError.cs" />
+    <Compile Include="Exceptions\ValueError.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
     <Compile Include="Expressions\CallExpression.cs" />
     <Compile Include="Expressions\CompareExpression.cs" />
@@ -84,7 +85,9 @@
     <Compile Include="Language\DefinedClass.cs" />
     <Compile Include="Language\DynamicObject.cs" />
     <Compile Include="Machine.cs" />
+    <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\TypeUtilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -36,8 +36,12 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Calculator.cs" />
+    <Compile Include="Classes\Person.cs" />
     <Compile Include="Commands\AssignCommandTests.cs" />
     <Compile Include="Commands\ClassCommandTests.cs" />
     <Compile Include="Commands\CompositeCommandTests.cs" />
@@ -69,6 +73,8 @@
     <Compile Include="MachineFileTests.cs" />
     <Compile Include="MachineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ObjectUtilitiesTests.cs" />
+    <Compile Include="Utilities\TypeUtilitiesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mass.Core\Mass.Core.csproj">

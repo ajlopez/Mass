@@ -7,12 +7,13 @@
     using Mass.Core.Expressions;
     using Mass.Core.Language;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Mass.Core.Tests.Classes;
 
     [TestClass]
     public class DotExpressionTests
     {
         [TestMethod]
-        public void EvaluateObjectProperty()
+        public void EvaluateDynamicObjectProperty()
         {
             var myobj = new DynamicObject();
             myobj.SetValue("age", 800);
@@ -23,6 +24,19 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(800, result);
+        }
+
+        [TestMethod]
+        public void EvaluateNativeObjectProperty()
+        {
+            var person = new Person() { FirstName = "Adam" };
+
+            DotExpression expression = new DotExpression(new ConstantExpression(person), "FirstName");
+
+            var result = expression.Evaluate(null);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Adam", result);
         }
 
         [TestMethod]

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using Mass.Core.Language;
+    using Mass.Core.Utilities;
 
     public class DotExpression : IExpression
     {
@@ -24,9 +25,14 @@
 
         public object Evaluate(Context context)
         {
-            var obj = (DynamicObject)this.expression.Evaluate(context);
+            var obj = this.expression.Evaluate(context);
 
-            return obj.GetValue(this.name);
+            var dobj = obj as DynamicObject;
+
+            if (dobj != null)
+                return dobj.GetValue(this.name);
+
+            return ObjectUtilities.GetValue(obj, this.name);
         }
 
         public override bool Equals(object obj)
