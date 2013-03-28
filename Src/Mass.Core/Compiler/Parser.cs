@@ -178,9 +178,14 @@
 
         private IList<IExpression> ParseExpressionList()
         {
+            return this.ParseExpressionList("(", ")");
+        }
+
+        private IList<IExpression> ParseExpressionList(string open, string close)
+        {
             IList<IExpression> expressions = new List<IExpression>();
 
-            this.ParseToken(TokenType.Separator, "(");
+            this.ParseToken(TokenType.Separator, open);
 
             for (IExpression expression = this.ParseExpression(); expression != null; expression = this.ParseExpression())
             {
@@ -189,7 +194,7 @@
                     break;
             }
 
-            this.ParseToken(TokenType.Separator, ")");
+            this.ParseToken(TokenType.Separator, close);
 
             return expressions;
         }
@@ -321,6 +326,12 @@
                 IExpression expr = this.ParseExpression();
                 this.ParseToken(TokenType.Separator, ")");
                 return expr;
+            }
+
+            if (token.Type == TokenType.Separator && token.Value == "[")
+            {
+                this.lexer.PushToken(token);
+                return new ArrayExpression(this.ParseExpressionList("[", "]"));
             }
 
             this.lexer.PushToken(token);
