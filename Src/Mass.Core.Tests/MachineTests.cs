@@ -97,5 +97,21 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
         }
+
+        [TestMethod]
+        public void EvaluateDynamicObject()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("{a=1, b=2, c=3}");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DynamicObject));
+
+            var obj = (DynamicObject)result;
+
+            Assert.AreEqual(1, obj.GetValue("a"));
+            Assert.AreEqual(2, obj.GetValue("b"));
+            Assert.AreEqual(3, obj.GetValue("c"));
+        }
     }
 }

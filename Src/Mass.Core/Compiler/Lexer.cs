@@ -12,7 +12,7 @@
         private const char StartComment = '#';
         private const char EndOfLine = '\n';
 
-        private const string Separators = "(),.[]";
+        private const string Separators = "(),.[]{}";
 
         private static string[] operators = new string[] { "+", "-", "*", "/", "=", "<", ">", "!", "==", "<=", ">=", "!=" };
 
@@ -35,6 +35,13 @@
 
             this.lasttoken = token;
 
+            return token;
+        }
+
+        public Token PeekToken()
+        {
+            var token = this.NextToken();
+            this.PushToken(token);
             return token;
         }
 

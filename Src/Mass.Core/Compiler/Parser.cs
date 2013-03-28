@@ -334,9 +334,43 @@
                 return new ArrayExpression(this.ParseExpressionList("[", "]"));
             }
 
+            if (token.Type == TokenType.Separator && token.Value == "{")
+            {
+                this.lexer.PushToken(token);
+                return this.ParseDynamicObjectExpression();
+            }
+
             this.lexer.PushToken(token);
 
             return null;
+        }
+
+        private DynamicObjectExpression ParseDynamicObjectExpression()
+        {
+            IList<AssignCommand> commands = new List<AssignCommand>();
+
+            this.ParseToken(TokenType.Separator, "{");
+
+            while (true)
+            {
+                Token token = this.lexer.PeekToken();
+
+                if (token != null && token.Type == TokenType.Separator && token.Value == "}")
+                    break;
+
+                string name = this.ParseName();
+                this.ParseToken(TokenType.Operator, "=");
+                IExpression expression = this.ParseExpression();
+                
+                commands.Add(new AssignCommand(name, expression));
+
+                if (!this.TryParseToken(TokenType.Separator, ","))
+                    break;
+            }
+
+            this.ParseToken(TokenType.Separator, "}");
+
+            return new DynamicObjectExpression(commands);
         }
 
         private void ParseName(string name)
