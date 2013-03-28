@@ -6,6 +6,7 @@
     using System.Text;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Mass.Core.Utilities;
 
     public class CallDotExpression : IExpression
     {
@@ -20,16 +21,23 @@
 
         public object Evaluate(Context context)
         {
-            var obj = (DynamicObject)this.expression.Expression.Evaluate(context);
-            var method = (IFunction)obj.GetValue(this.expression.Name);
-            
+            var obj = this.expression.Expression.Evaluate(context);
             IList<object> values = new List<object>();
-            values.Add(obj);
 
             foreach (var argument in this.arguments)
                 values.Add(argument.Evaluate(context));
 
-            return method.Apply(values);
+            var dobj = obj as DynamicObject;
+
+            if (dobj != null)
+            {
+                values.Insert(0, dobj);
+                var method = (IFunction)dobj.GetValue(this.expression.Name);
+
+                return method.Apply(values);
+            }
+
+            return ObjectUtilities.GetValue(obj, this.expression.Name, values);
         }
 
         public override bool Equals(object obj)

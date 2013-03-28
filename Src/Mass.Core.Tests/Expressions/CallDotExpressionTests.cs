@@ -11,12 +11,13 @@
     using Mass.Core.Functions;
     using Mass.Core.Language;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mass.Core.Tests.Classes;
 
     [TestClass]
     public class CallDotExpressionTests
     {
         [TestMethod]
-        public void CallObjectMethod()
+        public void CallDynamicObjectMethod()
         {
             DynamicObject obj = new DynamicObject();
             obj.SetValue("width", 100);
@@ -33,6 +34,19 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1000, result);
+        }
+
+        [TestMethod]
+        public void CallNativeObjectMethod()
+        {
+            Person person = new Person() { FirstName = "Adam", LastName = "TheFirst" };
+
+            CallDotExpression expr = new CallDotExpression(new DotExpression(new ConstantExpression(person), "GetName"), new IExpression[] { });
+
+            var result = expr.Evaluate(null);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("TheFirst, Adam", result);
         }
 
         [TestMethod]
