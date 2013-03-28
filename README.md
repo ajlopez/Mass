@@ -134,8 +134,8 @@ end
 - Object definition
 - Real numbers
 - Characters
-- require(<modulename>)
-- for <name> = <expr> to <expr> [step <expr>]
+- `require(<modulename>)`
+- `for <name> = <expr> to <expr> [step <expr>]`
 
 ## Origin of Name
 
