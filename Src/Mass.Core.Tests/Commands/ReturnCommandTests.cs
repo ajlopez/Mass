@@ -18,8 +18,8 @@
             ReturnCommand cmd = new ReturnCommand(new ConstantExpression(1));
 
             Assert.AreEqual(1, cmd.Execute(context));
-            Assert.IsTrue(context.HasReturn());
-            Assert.AreEqual(1, context.GetReturn());
+            Assert.IsTrue(context.HasReturnValue());
+            Assert.AreEqual(1, context.GetReturnValue());
         }
 
         [TestMethod]

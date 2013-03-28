@@ -59,7 +59,7 @@
         {
             Context context = new Context();
 
-            Assert.IsFalse(context.HasReturn());
+            Assert.IsFalse(context.HasReturnValue());
         }
 
         [TestMethod]
@@ -67,9 +67,9 @@
         {
             Context context = new Context();
 
-            context.SetReturn(1);
-            Assert.IsTrue(context.HasReturn());
-            Assert.AreEqual(1, context.GetReturn());
+            context.SetReturnValue(1);
+            Assert.IsTrue(context.HasReturnValue());
+            Assert.AreEqual(1, context.GetReturnValue());
         }
     }
 }

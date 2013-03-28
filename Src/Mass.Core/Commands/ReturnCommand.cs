@@ -20,7 +20,7 @@
         public object Execute(Context context)
         {
             object value = this.expression.Evaluate(context);
-            context.SetReturn(value);
+            context.SetReturnValue(value);
             return value;
         }
 

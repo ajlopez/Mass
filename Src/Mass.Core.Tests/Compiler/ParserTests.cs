@@ -511,5 +511,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseReturnCommand()
+        {
+            Parser parser = new Parser("return 1");
+            ICommand expected = new ReturnCommand(new ConstantExpression(1));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }

@@ -57,6 +57,9 @@
 
                 if (token.Value == "class")
                     return this.ParseClassCommand();
+
+                if (token.Value == "return")
+                    return this.ParseReturnCommand();
             }
 
             this.lexer.PushToken(token);
@@ -109,6 +112,13 @@
             ICommand thencommand = this.ParseCommandList();
             this.ParseEndOfCommand();
             return new IfCommand(condition, thencommand);
+        }
+
+        private ReturnCommand ParseReturnCommand()
+        {
+            IExpression expression = this.ParseExpression();
+            this.ParseEndOfCommand();
+            return new ReturnCommand(expression);
         }
 
         private WhileCommand ParseWhileCommand()

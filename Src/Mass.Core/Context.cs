@@ -12,7 +12,7 @@
         private DefinedClass @class;
         private IDictionary<string, object> values = new Dictionary<string, object>();
         private object returnvalue;
-        private bool hasreturn;
+        private bool hasreturnvalue;
 
         public Context()
             : this(null)
@@ -32,20 +32,20 @@
 
         public DefinedClass Class { get { return this.@class; } }
 
-        public bool HasReturn()
+        public bool HasReturnValue()
         {
-            return this.hasreturn;
+            return this.hasreturnvalue;
         }
 
-        public object GetReturn()
+        public object GetReturnValue()
         {
             return this.returnvalue;
         }
 
-        public void SetReturn(object returnvalue)
+        public void SetReturnValue(object returnvalue)
         {
             this.returnvalue = returnvalue;
-            this.hasreturn = true;
+            this.hasreturnvalue = true;
         }
 
         public void SetValue(string name, object value)
