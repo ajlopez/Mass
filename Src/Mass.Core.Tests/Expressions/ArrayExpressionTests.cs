@@ -13,7 +13,7 @@
     public class ArrayExpressionTests
     {
         [TestMethod]
-        public void CallPrintlnInteger()
+        public void EvaluateArrayExpression()
         {
             ArrayExpression expr = new ArrayExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2), new ConstantExpression(3) });
 
