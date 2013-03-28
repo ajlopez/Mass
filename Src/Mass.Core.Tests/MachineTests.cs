@@ -27,6 +27,10 @@
             var result = machine.RootContext.GetValue("println");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
+
+            result = machine.RootContext.GetValue("print");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IFunction));
         }
 
         [TestMethod]
@@ -82,6 +86,16 @@
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result);
             Assert.IsTrue(string.IsNullOrEmpty(writer.ToString()));
+        }
+
+        [TestMethod]
+        public void ExecuteSimpleForEach()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("a=0\nfor k in [1,2,3]\n a = k + a\nend\na");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
         }
     }
 }

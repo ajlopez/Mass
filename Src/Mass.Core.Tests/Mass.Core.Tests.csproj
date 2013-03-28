@@ -60,6 +60,7 @@
     <Compile Include="Expressions\DotExpressionTests.cs" />
     <Compile Include="Expressions\NameExpressionTests.cs" />
     <Compile Include="Expressions\NewExpressionTests.cs" />
+    <Compile Include="Functions\PrintFunctionTests.cs" />
     <Compile Include="Functions\DefinedFunctionTests.cs" />
     <Compile Include="Functions\PrintlnFunctionTests.cs" />
     <Compile Include="Language\DefinedClassTests.cs" />

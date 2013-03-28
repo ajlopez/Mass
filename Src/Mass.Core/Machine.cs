@@ -13,6 +13,7 @@
 
         public Machine()
         {
+            this.rootcontext.SetValue("print", new PrintFunction(System.Console.Out));
             this.rootcontext.SetValue("println", new PrintlnFunction(System.Console.Out));
         }
 
