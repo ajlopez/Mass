@@ -110,7 +110,6 @@
             IExpression condition = this.ParseExpression();
             this.ParseEndOfCommand();
             ICommand thencommand = this.ParseCommandList();
-            this.ParseEndOfCommand();
             return new IfCommand(condition, thencommand);
         }
 

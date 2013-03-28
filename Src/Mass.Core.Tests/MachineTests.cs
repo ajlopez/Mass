@@ -70,5 +70,18 @@
             Assert.AreEqual("Dog", dclass.Name);
             Assert.IsNotNull(dclass.GetInstanceMethod("foo"));
         }
+
+        [TestMethod]
+        public void ExecuteReturnInCompositeCommand()
+        {
+            Machine machine = new Machine();
+            StringWriter writer = new StringWriter();
+            machine.RootContext.SetValue("println", new PrintlnFunction(writer));
+            var result = machine.ExecuteText("define foo(a)\nif a\nreturn a\nend\nprintln(a)\nend\nfoo(1)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+            Assert.IsTrue(string.IsNullOrEmpty(writer.ToString()));
+        }
     }
 }

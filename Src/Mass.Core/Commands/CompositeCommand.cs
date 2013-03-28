@@ -19,7 +19,11 @@
             object result = null;
 
             foreach (var command in this.commands)
+            {
                 result = command.Execute(context);
+                if (context.HasReturnValue())
+                    return context.GetReturnValue();
+            }
 
             return result;
         }
