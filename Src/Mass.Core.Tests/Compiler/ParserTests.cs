@@ -67,9 +67,35 @@
         }
 
         [TestMethod]
+        public void ParseAddTwoIntegersWithOfLineAfterOperator()
+        {
+            Parser parser = new Parser("1+\n2");
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAddTwoIntegersInParentheses()
         {
             Parser parser = new Parser("(1+2)");
+            var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseAddTwoIntegersInParenthesesWithEndOfLineAfterOpenParenthesis()
+        {
+            Parser parser = new Parser("(\n1+2)");
             var expected = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
             var result = parser.ParseExpression();
 
@@ -544,6 +570,34 @@
         public void ParseArrayExpression()
         {
             Parser parser = new Parser("[1,2,3]");
+            IExpression expected = new ArrayExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2), new ConstantExpression(3) });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseArrayExpressionWithEndOfLinesAfterCommas()
+        {
+            Parser parser = new Parser("[1,\n2,\n3]");
+            IExpression expected = new ArrayExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2), new ConstantExpression(3) });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseArrayExpressionWithEndOfLinesAfterOpenSquareBracket()
+        {
+            Parser parser = new Parser("[\n1,\n2,\n3]");
             IExpression expected = new ArrayExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2), new ConstantExpression(3) });
 
             var result = parser.ParseExpression();

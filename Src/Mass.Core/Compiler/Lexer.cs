@@ -18,6 +18,7 @@
 
         private string text;
         private int position = 0;
+        private Token lasttoken;
         private Stack<Token> tokens = new Stack<Token>();
 
         public Lexer(string text)
@@ -26,6 +27,23 @@
         }
 
         public Token NextToken()
+        {
+            var token = this.InternalNextToken();
+
+            while (this.lasttoken != null && token != null && token.Type == TokenType.EndOfLine && this.IsContinueToken(this.lasttoken))
+                token = this.InternalNextToken();
+
+            this.lasttoken = token;
+
+            return token;
+        }
+
+        public void PushToken(Token token)
+        {
+            this.tokens.Push(token);
+        }
+
+        private Token InternalNextToken()
         {
             if (this.tokens.Count > 0)
                 return this.tokens.Pop();
@@ -70,11 +88,6 @@
                 return this.NextName(ch);
 
             throw new SyntaxError(string.Format("unexpected '{0}'", ch));
-        }
-
-        public void PushToken(Token token)
-        {
-            this.tokens.Push(token);
         }
 
         private Token NextName(char ch)
@@ -154,6 +167,18 @@
         {
             if (this.position <= this.text.Length)
                 this.position--;
+        }
+
+        private bool IsContinueToken(Token token)
+        {
+            if (token.Type == TokenType.Operator)
+                return true;
+
+            if (token.Type == TokenType.Separator)
+                if (token.Value == "," || token.Value == "[" || token.Value == "(")
+                    return true;
+
+            return false;
         }
     }
 }
