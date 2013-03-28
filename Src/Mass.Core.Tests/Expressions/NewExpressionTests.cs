@@ -8,13 +8,14 @@
     using Mass.Core.Expressions;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Mass.Core.Tests.Classes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class NewExpressionTests
     {
         [TestMethod]
-        public void EvaluateNewExpression()
+        public void EvaluateNewExpressionWithDefinedClass()
         {
             DefinedClass dclass = new DefinedClass("Dog");
             NewExpression expr = new NewExpression(new ConstantExpression(dclass), new IExpression[] { });
@@ -27,6 +28,17 @@
             var obj = (DynamicObject)result;
 
             Assert.AreSame(dclass, obj.Class);
+        }
+
+        [TestMethod]
+        public void EvaluateNewExpressionWithNativeType()
+        {
+            NewExpression expr = new NewExpression(new ConstantExpression(typeof(Person)), new IExpression[] { });
+
+            var result = expr.Evaluate(null);
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(Person));
         }
 
         [TestMethod]

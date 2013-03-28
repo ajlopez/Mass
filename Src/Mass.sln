@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Mass.vsmdi = Mass.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Console", "Mass.Console\Mass.Console.csproj", "{0662A464-A23C-46E8-9B28-ABFD8BA7976E}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Mass.vsmdi
@@ -28,6 +30,10 @@ Global
 		{A25B7A35-AAB4-463C-B980-89D43F75A996}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25B7A35-AAB4-463C-B980-89D43F75A996}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A25B7A35-AAB4-463C-B980-89D43F75A996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0662A464-A23C-46E8-9B28-ABFD8BA7976E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0662A464-A23C-46E8-9B28-ABFD8BA7976E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0662A464-A23C-46E8-9B28-ABFD8BA7976E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0662A464-A23C-46E8-9B28-ABFD8BA7976E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

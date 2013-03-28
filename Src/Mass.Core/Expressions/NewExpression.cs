@@ -6,6 +6,7 @@
     using System.Text;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Mass.Core.Utilities;
 
     public class NewExpression : IExpression
     {
@@ -20,11 +21,17 @@
 
         public object Evaluate(Context context)
         {
-            DefinedClass dclass = (DefinedClass)this.expression.Evaluate(context);
+            object result = this.expression.Evaluate(context);
+
             IList<object> values = new List<object>();
 
             foreach (var argument in this.arguments)
                 values.Add(argument.Evaluate(context));
+
+            if (result is Type)
+                return Activator.CreateInstance((Type)result, values.ToArray());
+
+            DefinedClass dclass = (DefinedClass)result;
 
             var obj = dclass.CreateInstance();
 

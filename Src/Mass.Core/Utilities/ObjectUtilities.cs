@@ -49,11 +49,12 @@
                 DynamicObject dobj = (DynamicObject)obj;
 
                 if (arguments == null)
-                    return (dobj).GetValue(name);
+                    return dobj.GetValue(name);
 
                 var method = dobj.GetValue(name) as IFunction;
 
-                if (method != null) {
+                if (method != null) 
+                {
                     var args = new List<object>(arguments);
                     args.Insert(0, dobj);
                     return method.Apply(args);

@@ -4,23 +4,22 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Mass.Core.Utilities;
 
-    public class NameExpression : IExpression
+    public class QualifiedNameExpression : IExpression
     {
-        private static int hashcode = typeof(NameExpression).GetHashCode();
+        private static int hashcode = typeof(QualifiedNameExpression).GetHashCode();
         private static IList<object> emptyvalues = new object[] { };
         private string name;
 
-        public NameExpression(string name)
+        public QualifiedNameExpression(string name)
         {
             this.name = name;
         }
 
-        public string Name { get { return this.name; } }
-
         public object Evaluate(Context context)
         {
-            return context.GetValue(this.name);
+            return TypeUtilities.GetType(this.name);
         }
 
         public override bool Equals(object obj)
@@ -28,9 +27,9 @@
             if (obj == null)
                 return false;
 
-            if (obj is NameExpression) 
+            if (obj is QualifiedNameExpression) 
             {
-                var expr = (NameExpression)obj;
+                var expr = (QualifiedNameExpression)obj;
 
                 return this.name.Equals(expr.name);
             }
