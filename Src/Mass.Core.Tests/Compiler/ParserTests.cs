@@ -483,6 +483,20 @@
         }
 
         [TestMethod]
+        public void ParseNewObjectWithQualifiedName()
+        {
+            Parser parser = new Parser("new System.IO.DirectoryInfo(\".\")");
+            IExpression expected = new NewExpression(new QualifiedNameExpression("System.IO.DirectoryInfo"), new IExpression[] { new ConstantExpression(".") });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseDotExpression()
         {
             Parser parser = new Parser("nero.name");

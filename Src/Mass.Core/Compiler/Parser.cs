@@ -105,6 +105,13 @@
         private NewExpression ParseNewExpression()
         {
             string name = this.ParseName();
+
+            while (this.TryParseToken(TokenType.Separator, "."))
+                name += "." + this.ParseName();
+
+            if (name.Contains('.'))
+                return new NewExpression(new QualifiedNameExpression(name), this.ParseExpressionList());
+
             return new NewExpression(new NameExpression(name), this.ParseExpressionList());
         }
 
