@@ -127,6 +127,13 @@ for fileinfo in dirinfo.GetFiles()
 end
 ```
 
+## Run
+
+The executable mass.exe is the interpreter (compiled in Mass.Console project)
+```
+mass <file> [<file> ... ]
+```
+
 ## To be done
 
 - Exceptions with try/catch
@@ -135,10 +142,10 @@ end
 - Real numbers
 - Characters
 - `require(<modulename>)`
+- `continue` and `break` in loops
 - `for <name> = <expr> to <expr> [step <expr>]`
+- REPL
 
 ## Origin of Name
 
 Mass language is dedicated to [@MArtinSaliaS](http://twitter.com/martinsalias)
-
-
