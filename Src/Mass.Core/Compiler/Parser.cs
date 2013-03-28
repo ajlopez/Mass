@@ -125,7 +125,6 @@
             IExpression condition = this.ParseExpression();
             this.ParseEndOfCommand();
             ICommand command = this.ParseCommandList();
-            this.ParseEndOfCommand();
             return new WhileCommand(condition, command);
         }
 
@@ -143,7 +142,6 @@
             string name = this.ParseName();
             this.ParseEndOfCommand();
             ICommand body = this.ParseCommandList();
-            this.ParseEndOfCommand();
             return new ClassCommand(name, body);
         }
 
