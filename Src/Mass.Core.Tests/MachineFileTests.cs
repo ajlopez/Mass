@@ -82,5 +82,27 @@
             Assert.AreEqual(6, this.machine.RootContext.GetValue("area"));
             Assert.AreEqual(24, this.machine.RootContext.GetValue("area2"));
         }
+
+        [TestMethod]
+        public void ExecuteForFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\For.ms");
+
+            var result = this.machine.RootContext.GetValue("total");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void ExecuteForEachFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\ForEach.ms");
+
+            var result = this.machine.RootContext.GetValue("total");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
     }
 }
