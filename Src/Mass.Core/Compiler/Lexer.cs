@@ -182,7 +182,7 @@
                 return true;
 
             if (token.Type == TokenType.Separator)
-                if (token.Value == "," || token.Value == "[" || token.Value == "(")
+                if (token.Value == "," || token.Value == "[" || token.Value == "(" || token.Value == "{")
                     return true;
 
             return false;

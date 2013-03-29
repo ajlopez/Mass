@@ -623,6 +623,20 @@
         }
 
         [TestMethod]
+        public void ParseEmptyArrayExpression()
+        {
+            Parser parser = new Parser("[]");
+            IExpression expected = new ArrayExpression(new IExpression[] { });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseArrayExpressionWithEndOfLinesAfterCommas()
         {
             Parser parser = new Parser("[1,\n2,\n3]");
@@ -655,6 +669,34 @@
         {
             Parser parser = new Parser("{a=1,b=2,c=3}");
             IExpression expected = new DynamicObjectExpression(new AssignCommand[] { new AssignCommand("a", new ConstantExpression(1)), new AssignCommand("b", new ConstantExpression(2)), new AssignCommand("c", new ConstantExpression(3)) });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseEmptyDynamicObjectExpression()
+        {
+            Parser parser = new Parser("{}");
+            IExpression expected = new DynamicObjectExpression(new AssignCommand[] { });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseEmptyDynamicObjectExpressionWithEndOfLine()
+        {
+            Parser parser = new Parser("{\n}");
+            IExpression expected = new DynamicObjectExpression(new AssignCommand[] { });
 
             var result = parser.ParseExpression();
 
