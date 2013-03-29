@@ -55,6 +55,30 @@
         }
 
         [TestMethod]
+        public void Break()
+        {
+            Context context = new Context();
+
+            Assert.IsFalse(context.HasBreak());
+            context.SetBreak();
+            Assert.IsTrue(context.HasBreak());
+            context.ClearBreak();
+            Assert.IsFalse(context.HasBreak());
+        }
+
+        [TestMethod]
+        public void Continue()
+        {
+            Context context = new Context();
+
+            Assert.IsFalse(context.HasContinue());
+            context.SetContinue();
+            Assert.IsTrue(context.HasContinue());
+            context.ClearContinue();
+            Assert.IsFalse(context.HasContinue());
+        }
+
+        [TestMethod]
         public void HasReturn()
         {
             Context context = new Context();

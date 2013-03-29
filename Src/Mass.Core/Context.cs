@@ -13,6 +13,8 @@
         private IDictionary<string, object> values = new Dictionary<string, object>();
         private object returnvalue;
         private bool hasreturnvalue;
+        private bool hasbreak;
+        private bool hascontinue;
 
         public Context()
             : this(null)
@@ -67,6 +69,36 @@
         public IList<string> GetLocalNames()
         {
             return this.values.Keys.ToList();
+        }
+
+        public bool HasBreak()
+        {
+            return this.hasbreak;
+        }
+
+        public void ClearBreak()
+        {
+            this.hasbreak = false;
+        }
+
+        public void SetBreak()
+        {
+            this.hasbreak = true;
+        }
+
+        public bool HasContinue()
+        {
+            return this.hascontinue;
+        }
+
+        public void ClearContinue()
+        {
+            this.hascontinue = false;
+        }
+
+        public void SetContinue()
+        {
+            this.hascontinue = true;
         }
     }
 }
