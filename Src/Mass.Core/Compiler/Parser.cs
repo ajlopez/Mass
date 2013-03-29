@@ -324,6 +324,12 @@
                 while (this.TryParseToken(TokenType.Separator, "."))
                     expr = new DotExpression(expr, this.ParseName());
 
+                while (this.TryParseToken(TokenType.Separator, "["))
+                {
+                    expr = new IndexedExpression(expr, new IExpression[] { this.ParseExpression() });
+                    this.ParseToken(TokenType.Separator, "]");
+                }
+
                 if (original == expr)
                     break;
             }

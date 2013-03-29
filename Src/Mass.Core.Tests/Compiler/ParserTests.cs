@@ -705,5 +705,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseIndexedExpression()
+        {
+            Parser parser = new Parser("a[b]");
+            IExpression expected = new IndexedExpression(new NameExpression("a"), new List<IExpression>() { new NameExpression("b") });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

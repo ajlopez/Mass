@@ -133,5 +133,25 @@
             Assert.AreEqual(2, obj.GetValue("b"));
             Assert.AreEqual(3, obj.GetValue("c"));
         }
+
+        [TestMethod]
+        public void EvaluateIndexedExpression()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("a = [1,2,3]\na[2]");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void EvaluateIndexedDynamicObject()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("a = { name = \"Adam\" }\na[\"name\"]");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Adam", result);
+        }
     }
 }
