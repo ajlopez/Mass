@@ -31,6 +31,32 @@ Constants
 123
 ```
 
+Dynamic object
+```
+adam = { name = "Adam", age = 800 }
+empty = {}
+```
+
+Array
+```
+numbers = [ 1, 2, 3 ]
+empty = []
+```
+
+The expression can be continued in other line, after `[`, `{`, `,`
+```
+numbers = [ 
+	1,
+	2,
+	3
+	]
+	
+adam = {
+	name = "Adam",
+	age = 800
+}
+```
+
 Simple arithmetic
 ```
 a+b
@@ -74,6 +100,14 @@ for <name> in <expr>
 end
 ```
 
+for
+```
+for <name> = <expr> to <expr> [step <expr>]
+	<command>
+	...
+end
+```
+
 class and new
 ```
 class Dog
@@ -99,6 +133,17 @@ println("Hello, world")
 For each
 ```
 for k in [1,2,3,4,5,6]
+	println(k)
+end
+```
+
+For
+```
+for k = 1 to 6
+	println(k)
+end
+
+for k = 1 to 6 step 2
 	println(k)
 end
 ```
@@ -143,8 +188,8 @@ mass <file> [<file> ... ]
 - Characters
 - `require(<modulename>)`
 - `continue` and `break` in loops
-- `for <name> = <expr> to <expr> [step <expr>]`
 - REPL
+- Assign to indexed left value
 
 ## Origin of Name
 
