@@ -74,6 +74,7 @@
     <Compile Include="Functions\PrintFunctionTests.cs" />
     <Compile Include="Functions\DefinedFunctionTests.cs" />
     <Compile Include="Functions\PrintlnFunctionTests.cs" />
+    <Compile Include="Functions\RequireFunctionTests.cs" />
     <Compile Include="Language\DefinedClassTests.cs" />
     <Compile Include="Language\DynamicObjectTests.cs" />
     <Compile Include="MachineFileTests.cs" />
@@ -134,6 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MachineFiles\Break.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MachineFiles\SimpleModule.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -234,7 +234,10 @@
             {
                 expressions.Add(expression);
                 if (!this.TryParseToken(TokenType.Separator, ","))
+                {
+                    this.TryParseToken(TokenType.EndOfLine, "\n");
                     break;
+                }
             }
 
             this.ParseToken(TokenType.Separator, close);
@@ -414,7 +417,10 @@
                 commands.Add(new AssignCommand(name, expression));
 
                 if (!this.TryParseToken(TokenType.Separator, ","))
+                {
+                    this.TryParseToken(TokenType.EndOfLine, "\n");
                     break;
+                }
             }
 
             this.ParseToken(TokenType.Separator, "}");

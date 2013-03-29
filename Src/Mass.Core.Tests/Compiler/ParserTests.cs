@@ -653,7 +653,7 @@
         [TestMethod]
         public void ParseArrayExpressionWithEndOfLinesAfterOpenSquareBracket()
         {
-            Parser parser = new Parser("[\n1,\n2,\n3]");
+            Parser parser = new Parser("[\n1,\n2,\n3\n]");
             IExpression expected = new ArrayExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2), new ConstantExpression(3) });
 
             var result = parser.ParseExpression();
@@ -668,6 +668,20 @@
         public void ParseDynamicObjectExpression()
         {
             Parser parser = new Parser("{a=1,b=2,c=3}");
+            IExpression expected = new DynamicObjectExpression(new AssignCommand[] { new AssignCommand("a", new ConstantExpression(1)), new AssignCommand("b", new ConstantExpression(2)), new AssignCommand("c", new ConstantExpression(3)) });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseDynamicObjectExpressionWithEndOfLines()
+        {
+            Parser parser = new Parser("{\na=1,\nb=2,\nc=3\n}");
             IExpression expected = new DynamicObjectExpression(new AssignCommand[] { new AssignCommand("a", new ConstantExpression(1)), new AssignCommand("b", new ConstantExpression(2)), new AssignCommand("c", new ConstantExpression(3)) });
 
             var result = parser.ParseExpression();
