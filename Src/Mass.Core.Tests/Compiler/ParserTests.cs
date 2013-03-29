@@ -581,6 +581,34 @@
         }
 
         [TestMethod]
+        public void ParseForCommand()
+        {
+            Parser parser = new Parser("for k = 1 to 6\n a=a+k\nend");
+            ICommand expected = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(6), new ConstantExpression(1), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ParseForCommandWithStep()
+        {
+            Parser parser = new Parser("for k = 1 to 6 step 2\n a=a+k\nend");
+            ICommand expected = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(6), new ConstantExpression(2), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
         public void ParseArrayExpression()
         {
             Parser parser = new Parser("[1,2,3]");

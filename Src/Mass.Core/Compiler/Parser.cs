@@ -62,7 +62,7 @@
                     return this.ParseReturnCommand();
 
                 if (token.Value == "for")
-                    return this.ParseForEachCommand();
+                    return this.ParseForCommand();
             }
 
             this.lexer.PushToken(token);
@@ -123,13 +123,32 @@
             return new IfCommand(condition, thencommand);
         }
 
-        private ForEachCommand ParseForEachCommand()
+        private ICommand ParseForCommand()
         {
             string name = this.ParseName();
+            ICommand command;
+
+            if (this.TryParseToken(TokenType.Operator, "="))
+            {
+                IExpression fromexpression = this.ParseExpression();
+                this.ParseToken(TokenType.Name, "to");
+                IExpression toexpression = this.ParseExpression();
+                IExpression stepexpression;
+
+                if (this.TryParseToken(TokenType.Name, "step"))
+                    stepexpression = this.ParseExpression();
+                else
+                    stepexpression = new ConstantExpression(1);
+
+                command = this.ParseCommandList();
+
+                return new ForCommand(name, fromexpression, toexpression, stepexpression, command);
+            }
+
             this.ParseName("in");
             IExpression expression = this.ParseExpression();
             this.ParseEndOfCommand();
-            ICommand command = this.ParseCommandList();
+            command = this.ParseCommandList();
             return new ForEachCommand(name, expression, command);
         }
 
