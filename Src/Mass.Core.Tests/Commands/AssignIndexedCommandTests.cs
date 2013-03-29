@@ -22,7 +22,8 @@
 
             var result = cmd.Execute(context);
 
-            Assert.IsNull(result);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(800, result);
             Assert.AreEqual(800, obj.GetValue("age"));
         }
 
@@ -36,7 +37,8 @@
 
             var result = cmd.Execute(context);
 
-            Assert.IsNull(result);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
             Assert.AreEqual(1, array[0]);
         }
 

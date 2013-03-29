@@ -69,7 +69,7 @@
 
             IExpression expr = this.ParseExpression();
 
-            if (!(expr is NameExpression) && !(expr is DotExpression))
+            if (!(expr is NameExpression) && !(expr is DotExpression) && !(expr is IndexedExpression))
             {
                 this.ParseEndOfCommand();
                 return new ExpressionCommand(expr);
@@ -94,8 +94,10 @@
 
             if (expr is NameExpression)
                 cmd = new AssignCommand(((NameExpression)expr).Name, this.ParseExpression());
-            else
+            else if (expr is DotExpression)
                 cmd = new AssignDotCommand((DotExpression)expr, this.ParseExpression());
+            else
+                cmd = new AssignIndexedCommand((IndexedExpression)expr, this.ParseExpression());
 
             this.ParseEndOfCommand();
 

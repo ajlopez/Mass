@@ -153,5 +153,18 @@
             Assert.IsNotNull(result);
             Assert.AreEqual("Adam", result);
         }
+
+        [TestMethod]
+        public void ExecuteAssignIndexedCommandOnDynamicObject()
+        {
+            Machine machine = new Machine();
+            DynamicObject a = new DynamicObject();
+            machine.RootContext.SetValue("a", a);
+            var result = machine.ExecuteText("a[\"name\"] = \"Adam\"");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Adam", result);
+            Assert.AreEqual("Adam", a.GetValue("name"));
+        }
     }
 }

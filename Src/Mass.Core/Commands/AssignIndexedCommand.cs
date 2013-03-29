@@ -32,7 +32,7 @@
             else
                 ObjectUtilities.SetIndexedValue(obj, new object[] { index }, value);
 
-            return null;
+            return value;
         }
 
         public override bool Equals(object obj)

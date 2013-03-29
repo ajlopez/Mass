@@ -719,5 +719,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseAssignIndexedCommand()
+        {
+            Parser parser = new Parser("a[b] = 1");
+            ICommand expected = new AssignIndexedCommand(new IndexedExpression(new NameExpression("a"), new IExpression[] { new NameExpression("b") }), new ConstantExpression(1));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }
