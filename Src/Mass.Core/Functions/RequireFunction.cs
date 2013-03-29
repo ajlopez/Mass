@@ -19,7 +19,13 @@
         public object Apply(IList<object> values)
         {
             string name = (string)values[0];
-            return machine.ExecuteFile(name + ".ms");
+
+            FileInfo info = new FileInfo(name);
+
+            if (string.IsNullOrEmpty(info.Extension))
+                name += ".ms";
+
+            return machine.ExecuteFile(name);
         }
     }
 }
