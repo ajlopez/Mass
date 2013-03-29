@@ -178,13 +178,13 @@
                     return array.GetValue((int)indexes[0], (int)indexes[1], (int)indexes[2]);
             }
 
-            throw new InvalidOperationException("invalid number of subindices");
+            throw new InvalidOperationException("invalid number of indexes");
         }
 
         private static object GetIndexedValue(IList list, IList<object> indexes)
         {
             if (indexes.Count != 1)
-                throw new InvalidOperationException("invalid number of subindices");
+                throw new InvalidOperationException("invalid number of indexes");
 
             return list[(int)indexes[0]];
         }
@@ -192,7 +192,7 @@
         private static object GetIndexedValue(IDictionary dictionary, IList<object> indexes)
         {
             if (indexes.Count != 1)
-                throw new InvalidOperationException("Invalid number of subindices");
+                throw new InvalidOperationException("invalid number of indexes");
 
             return dictionary[indexes[0]];
         }

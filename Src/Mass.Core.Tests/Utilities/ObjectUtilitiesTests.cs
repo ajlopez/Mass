@@ -86,6 +86,57 @@
         }
 
         [TestMethod]
+        public void InvalidNumberOfIndexForDictionary()
+        {
+            Dictionary<string, int> numbers = new Dictionary<string, int>();
+
+            try
+            {
+                ObjectUtilities.GetIndexedValue(numbers, new object[] { "one", "two" });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("invalid number of indexes", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void InvalidNumberOfIndexForList()
+        {
+            IList<object> numbers = new List<object>() { 1, 2, 3 };
+
+            try
+            {
+                ObjectUtilities.GetIndexedValue(numbers, new object[] { "one", "two" });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("invalid number of indexes", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void InvalidNumberOfIndexForArray()
+        {
+            int[] numbers = new int[] { 1, 2, 3 };
+
+            try
+            {
+                ObjectUtilities.GetIndexedValue(numbers, new object[] { 1, 1, 1, 1 });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("invalid number of indexes", ex.Message);
+            }
+        }
+
+        [TestMethod]
         public void GetIndexedValuesFromDynamicObject()
         {
             DynamicObject obj = new DynamicObject(null);
