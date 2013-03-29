@@ -50,6 +50,7 @@
     <Compile Include="Commands\ClassCommand.cs" />
     <Compile Include="Commands\CompositeCommand.cs" />
     <Compile Include="Commands\AssignDotCommand.cs" />
+    <Compile Include="Commands\AssignIndexedCommand.cs" />
     <Compile Include="Commands\ForCommand.cs" />
     <Compile Include="Commands\ForEachCommand.cs" />
     <Compile Include="Commands\ReturnCommand.cs" />

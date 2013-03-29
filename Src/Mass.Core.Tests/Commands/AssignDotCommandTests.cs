@@ -25,5 +25,25 @@
             Assert.AreEqual(1, result);
             Assert.AreEqual(1, obj.GetValue("age"));
         }
+
+        [TestMethod]
+        public void Equals()
+        {
+            AssignDotCommand cmd1 = new AssignDotCommand(new DotExpression(new NameExpression("a"), "b"), new ConstantExpression(1));
+            AssignDotCommand cmd2 = new AssignDotCommand(new DotExpression(new NameExpression("a"), "b"), new ConstantExpression(2));
+            AssignDotCommand cmd3 = new AssignDotCommand(new DotExpression(new NameExpression("a"), "c"), new ConstantExpression(1));
+            AssignDotCommand cmd4 = new AssignDotCommand(new DotExpression(new NameExpression("a"), "b"), new ConstantExpression(1));
+
+            Assert.IsTrue(cmd1.Equals(cmd4));
+            Assert.IsTrue(cmd4.Equals(cmd1));
+            Assert.AreEqual(cmd1.GetHashCode(), cmd4.GetHashCode());
+
+            Assert.IsFalse(cmd1.Equals(null));
+            Assert.IsFalse(cmd1.Equals(123));
+            Assert.IsFalse(cmd1.Equals(cmd2));
+            Assert.IsFalse(cmd2.Equals(cmd1));
+            Assert.IsFalse(cmd1.Equals(cmd3));
+            Assert.IsFalse(cmd3.Equals(cmd1));
+        }
     }
 }
