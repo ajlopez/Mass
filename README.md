@@ -86,14 +86,6 @@ if <expr>
 end
 ```
 
-while
-```
-while <expr>
-	<command>
-	...
-end
-```
-
 define
 ```
 define <name>([<name>, ... ])
@@ -114,6 +106,29 @@ for
 ```
 for <name> = <expr> to <expr> [step <expr>]
 	<command>
+	...
+end
+```
+
+while
+```
+while <expr>
+	<command>
+	...
+end
+```
+
+continue and break for `for` and `while`
+```
+while <expr>
+	...
+	continue
+	...
+end
+
+for ...
+	...
+	break
 	...
 end
 ```
@@ -197,7 +212,6 @@ mass <file> [<file> ... ]
 - Real numbers
 - Characters
 - `require(<modulename>)`
-- `continue` and `break` in loops
 - REPL
 
 ## Origin of Name
