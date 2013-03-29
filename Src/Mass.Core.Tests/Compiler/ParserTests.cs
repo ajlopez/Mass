@@ -733,5 +733,33 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ParseBreakCommand()
+        {
+            Parser parser = new Parser("break");
+            ICommand expected = new BreakCommand();
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
+        public void ParseContinueCommand()
+        {
+            Parser parser = new Parser("continue");
+            ICommand expected = new ContinueCommand();
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }

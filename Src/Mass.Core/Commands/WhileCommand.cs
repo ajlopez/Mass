@@ -22,7 +22,16 @@
         public object Execute(Context context)
         {
             for (object value = this.condition.Evaluate(context); value != null && !false.Equals(value); value = this.condition.Evaluate(context))
+            {
                 this.command.Execute(context);
+                if (context.HasContinue())
+                    context.ClearContinue();
+                if (context.HasBreak())
+                {
+                    context.ClearBreak();
+                    break;
+                }
+            }
 
             return null;
         }

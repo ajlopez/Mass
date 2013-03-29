@@ -30,6 +30,13 @@
             {
                 context.SetValue(this.name, value);
                 this.command.Execute(context);
+                if (context.HasContinue())
+                    context.ClearContinue();
+                if (context.HasBreak())
+                {
+                    context.ClearBreak();
+                    break;
+                }
             }
 
             return null;

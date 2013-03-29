@@ -43,10 +43,12 @@
     <Compile Include="Classes\Calculator.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Commands\AssignCommandTests.cs" />
+    <Compile Include="Commands\BreakCommandTests.cs" />
     <Compile Include="Commands\ClassCommandTests.cs" />
     <Compile Include="Commands\CompositeCommandTests.cs" />
     <Compile Include="Commands\AssignDotCommandTests.cs" />
     <Compile Include="Commands\AssignIndexedCommandTests.cs" />
+    <Compile Include="Commands\ContinueCommandTests.cs" />
     <Compile Include="Commands\ForCommandTests.cs" />
     <Compile Include="Commands\ForEachCommandTests.cs" />
     <Compile Include="Commands\ReturnCommandTests.cs" />
@@ -117,6 +119,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MachineFiles\For.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MachineFiles\Continue.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MachineFiles\ForIf.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MachineFiles\Break.ms">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

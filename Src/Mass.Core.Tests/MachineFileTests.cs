@@ -95,6 +95,17 @@
         }
 
         [TestMethod]
+        public void ExecuteForIfFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\ForIf.ms");
+
+            var result = this.machine.RootContext.GetValue("total");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(4, result);
+        }
+
+        [TestMethod]
         public void ExecuteForEachFile()
         {
             this.machine.ExecuteFile("MachineFiles\\ForEach.ms");
@@ -103,6 +114,48 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void ExecuteContinueFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\Continue.ms");
+
+            var result = this.machine.RootContext.GetValue("total");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(4, result);
+
+            var result2 = this.machine.RootContext.GetValue("total2");
+
+            Assert.IsNotNull(result2);
+            Assert.AreEqual(4, result2);
+
+            var result3 = this.machine.RootContext.GetValue("total3");
+
+            Assert.IsNotNull(result3);
+            Assert.AreEqual(4, result3);
+        }
+
+        [TestMethod]
+        public void ExecuteBreakFile()
+        {
+            this.machine.ExecuteFile("MachineFiles\\Break.ms");
+
+            var result = this.machine.RootContext.GetValue("total");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+
+            var result2 = this.machine.RootContext.GetValue("total2");
+
+            Assert.IsNotNull(result2);
+            Assert.AreEqual(1, result2);
+
+            var result3 = this.machine.RootContext.GetValue("total3");
+
+            Assert.IsNotNull(result3);
+            Assert.AreEqual(1, result3);
         }
     }
 }

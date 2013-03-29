@@ -12,6 +12,9 @@
     public class Parser
     {
         private static string[][] binaryoperators = new string[][] { new string[] { "==", "!=", "<", ">", "<=", ">=" }, new string[] { "+", "-" }, new string[] { "*", "/" } };
+        private static ICommand breakcmd = new BreakCommand();
+        private static ICommand continuecmd = new ContinueCommand();
+
         private Lexer lexer;
 
         public Parser(string text)
@@ -63,6 +66,18 @@
 
                 if (token.Value == "for")
                     return this.ParseForCommand();
+
+                if (token.Value == "break")
+                {
+                    this.ParseEndOfCommand();
+                    return breakcmd;
+                }
+
+                if (token.Value == "continue")
+                {
+                    this.ParseEndOfCommand();
+                    return continuecmd;
+                }
             }
 
             this.lexer.PushToken(token);

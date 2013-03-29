@@ -23,6 +23,8 @@
                 result = command.Execute(context);
                 if (context.HasReturnValue())
                     return context.GetReturnValue();
+                if (context.HasBreak() || context.HasContinue())
+                    return null;
             }
 
             return result;
