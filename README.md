@@ -68,6 +68,16 @@ The operators `+`, `-`, `*`, `/` are supported.
 
 ## Commands
 
+assignment
+```
+a = 123
+b = "foo"
+dog = {}
+dog["name"] = "Nero"
+numbers = [1, 2, 3]
+numbers[0] = 0
+```
+
 if
 ```
 if <expr>
@@ -189,7 +199,6 @@ mass <file> [<file> ... ]
 - `require(<modulename>)`
 - `continue` and `break` in loops
 - REPL
-- Assign to indexed left value
 
 ## Origin of Name
 
