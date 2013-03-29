@@ -21,18 +21,28 @@
 
         public object ExecuteText(string text)
         {
+            return this.ExecuteText(text, this.rootcontext);
+        }
+
+        public object ExecuteText(string text, Context context)
+        {
             Parser parser = new Parser(text);
             object result = null;
 
             for (var command = parser.ParseCommand(); command != null; command = parser.ParseCommand())
-                result = command.Execute(this.rootcontext);
+                result = command.Execute(context);
 
             return result;
         }
 
         public object ExecuteFile(string filename)
         {
-            return this.ExecuteText(System.IO.File.ReadAllText(filename));
+            return this.ExecuteFile(filename, this.rootcontext);
+        }
+
+        public object ExecuteFile(string filename, Context context)
+        {
+            return this.ExecuteText(System.IO.File.ReadAllText(filename), context);
         }
     }
 }
