@@ -91,7 +91,7 @@
         }
 
         // TODO implement a method with only one index
-        public static object GetIndexedValue(object obj, object[] indexes)
+        public static object GetIndexedValue(object obj, IList<object> indexes)
         {
             if (obj is System.Array)
                 return GetIndexedValue((System.Array)obj, indexes);
@@ -102,14 +102,14 @@
             if (obj is IDictionary)
                 return GetIndexedValue((IDictionary)obj, indexes);
 
-            if (obj is DynamicObject && indexes != null && indexes.Length == 1)
+            if (obj is DynamicObject && indexes != null && indexes.Count == 1)
                 return ((DynamicObject)obj).GetValue((string)indexes[0]);
 
             return GetValue(obj, string.Empty, indexes); 
         }
 
         // TODO implement a method with only one index
-        public static void SetIndexedValue(object obj, object[] indexes, object value)
+        public static void SetIndexedValue(object obj, IList<object> indexes, object value)
         {
             if (obj is System.Array)
             {
@@ -119,7 +119,7 @@
 
             if (obj is IList)
             {
-                if (indexes.Length != 1)
+                if (indexes.Count != 1)
                     throw new InvalidOperationException("Invalid number of subindices");
 
                 int index = (int)indexes[0];
@@ -136,7 +136,7 @@
 
             if (obj is IDictionary)
             {
-                if (indexes.Length != 1)
+                if (indexes.Count != 1)
                     throw new InvalidOperationException("Invalid number of subindices");
 
                 ((IDictionary)obj)[indexes[0]] = value;
@@ -148,9 +148,9 @@
             throw new InvalidOperationException(string.Format("Not indexed value of type {0}", obj.GetType().ToString()));
         }
 
-        public static void SetIndexedValue(System.Array array, object[] indexes, object value)
+        public static void SetIndexedValue(System.Array array, IList<object> indexes, object value)
         {
-            switch (indexes.Length)
+            switch (indexes.Count)
             {
                 case 1:
                     array.SetValue(value, (int)indexes[0]);
@@ -166,9 +166,9 @@
             throw new InvalidOperationException("Invalid number of subindices");
         }
 
-        private static object GetIndexedValue(System.Array array, object[] indexes)
+        private static object GetIndexedValue(System.Array array, IList<object> indexes)
         {
-            switch (indexes.Length)
+            switch (indexes.Count)
             {
                 case 1:
                     return array.GetValue((int)indexes[0]);
@@ -181,17 +181,17 @@
             throw new InvalidOperationException("Invalid number of subindices");
         }
 
-        private static object GetIndexedValue(IList list, object[] indexes)
+        private static object GetIndexedValue(IList list, IList<object> indexes)
         {
-            if (indexes.Length != 1)
+            if (indexes.Count != 1)
                 throw new InvalidOperationException("Invalid number of subindices");
 
             return list[(int)indexes[0]];
         }
 
-        private static object GetIndexedValue(IDictionary dictionary, object[] indexes)
+        private static object GetIndexedValue(IDictionary dictionary, IList<object> indexes)
         {
-            if (indexes.Length != 1)
+            if (indexes.Count != 1)
                 throw new InvalidOperationException("Invalid number of subindices");
 
             return dictionary[indexes[0]];

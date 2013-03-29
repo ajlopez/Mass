@@ -99,6 +99,26 @@
         }
 
         [TestMethod]
+        public void ExecuteSimpleFor()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("a=0\nfor k = 1 to 3\n a = k + a\nend\na");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        public void ExecuteSimpleForWithStep()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("a=0\nfor k = 1 to 3 step 2\n a = k + a\nend\na");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(4, result);
+        }
+
+        [TestMethod]
         public void EvaluateDynamicObject()
         {
             Machine machine = new Machine();
