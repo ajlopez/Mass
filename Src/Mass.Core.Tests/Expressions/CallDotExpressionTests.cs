@@ -50,6 +50,36 @@ using Mass.Core.Tests.Classes;
         }
 
         [TestMethod]
+        public void CallNativeListAddMethod()
+        {
+            IList<object> list = new List<object>();
+
+            CallDotExpression expr = new CallDotExpression(new DotExpression(new ConstantExpression(list), "Add"), new IExpression[] { new ConstantExpression(1) });
+
+            var result = expr.Evaluate(null);
+
+            Assert.IsNull(result);
+
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(1, list[0]);
+        }
+
+        [TestMethod]
+        public void CallNativeListAddMethodInLowerCase()
+        {
+            IList<object> list = new List<object>();
+
+            CallDotExpression expr = new CallDotExpression(new DotExpression(new ConstantExpression(list), "add"), new IExpression[] { new ConstantExpression(1) });
+
+            var result = expr.Evaluate(null);
+
+            Assert.IsNull(result);
+
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(1, list[0]);
+        }
+
+        [TestMethod]
         public void Equals()
         {
             CallDotExpression expr1 = new CallDotExpression(new DotExpression(new NameExpression("obj"), "println"), new IExpression[] { new ConstantExpression(1) });
