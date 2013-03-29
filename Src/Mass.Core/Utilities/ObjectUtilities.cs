@@ -120,7 +120,7 @@
             if (obj is IList)
             {
                 if (indexes.Count != 1)
-                    throw new InvalidOperationException("Invalid number of subindices");
+                    throw new InvalidOperationException("invalid number of subindices");
 
                 int index = (int)indexes[0];
 
@@ -137,7 +137,7 @@
             if (obj is IDictionary)
             {
                 if (indexes.Count != 1)
-                    throw new InvalidOperationException("Invalid number of subindices");
+                    throw new InvalidOperationException("invalid number of subindices");
 
                 ((IDictionary)obj)[indexes[0]] = value;
 
@@ -145,7 +145,7 @@
             }
 
             // TODO as in GetIndexedValue, consider Default member
-            throw new InvalidOperationException(string.Format("Not indexed value of type {0}", obj.GetType().ToString()));
+            throw new InvalidOperationException(string.Format("not indexed value of type {0}", obj.GetType().ToString()));
         }
 
         public static void SetIndexedValue(System.Array array, IList<object> indexes, object value)
@@ -163,7 +163,7 @@
                     return;
             }
 
-            throw new InvalidOperationException("Invalid number of subindices");
+            throw new InvalidOperationException("invalid number of subindices");
         }
 
         private static object GetIndexedValue(System.Array array, IList<object> indexes)
@@ -178,13 +178,13 @@
                     return array.GetValue((int)indexes[0], (int)indexes[1], (int)indexes[2]);
             }
 
-            throw new InvalidOperationException("Invalid number of subindices");
+            throw new InvalidOperationException("invalid number of subindices");
         }
 
         private static object GetIndexedValue(IList list, IList<object> indexes)
         {
             if (indexes.Count != 1)
-                throw new InvalidOperationException("Invalid number of subindices");
+                throw new InvalidOperationException("invalid number of subindices");
 
             return list[(int)indexes[0]];
         }
