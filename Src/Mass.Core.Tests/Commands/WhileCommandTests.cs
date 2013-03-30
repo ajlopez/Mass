@@ -21,13 +21,13 @@
             IExpression expr = exprparser.ParseExpression();
 
             Context context = new Context();
-            context.SetValue("a", 1);
+            context.Set("a", 1);
 
             WhileCommand cmd = new WhileCommand(expr, body);
 
             Assert.IsNull(cmd.Execute(context));
 
-            Assert.AreEqual(6, context.GetValue("a"));
+            Assert.AreEqual(6, context.Find("a"));
         }
 
         [TestMethod]

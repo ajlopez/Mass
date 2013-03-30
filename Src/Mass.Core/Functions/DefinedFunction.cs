@@ -29,7 +29,7 @@
 
             foreach (var parameter in this.parameters) 
             {
-                newcontext.SetValue(parameter, values[k]);
+                newcontext.Set(parameter, values[k]);
                 k++;
             }
 

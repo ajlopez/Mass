@@ -28,7 +28,7 @@
             object value = this.expression.Evaluate(context);
 
             if (obj is DynamicObject)
-                ((DynamicObject)obj).SetValue(index.ToString(), value);
+                ((DynamicObject)obj).Set(index.ToString(), value);
             else
                 ObjectUtilities.SetIndexedValue(obj, new object[] { index }, value);
 

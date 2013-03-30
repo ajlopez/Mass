@@ -19,7 +19,7 @@
             Machine machine = new Machine();
             StringWriter writer = new StringWriter();
             PrintlnFunction puts = new PrintlnFunction(writer);
-            machine.RootContext.SetValue("puts", puts);
+            machine.RootContext.Set("puts", puts);
 
             DefinedFunction function = new DefinedFunction(new ExpressionCommand(new CallExpression("puts", new IExpression[] { new ConstantExpression(123) })), new string[] { }, machine.RootContext);
 

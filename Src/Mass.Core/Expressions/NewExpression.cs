@@ -35,7 +35,7 @@
 
             var obj = dclass.CreateInstance();
 
-            var initialize = obj.GetValue("initialize") as IFunction;
+            var initialize = obj.Get("initialize") as IFunction;
 
             if (initialize != null)
             {

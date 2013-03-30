@@ -15,7 +15,7 @@
         {
             if (obj is DynamicObject)
             {
-                ((DynamicObject)obj).SetValue(name, value);
+                ((DynamicObject)obj).Set(name, value);
 
                 return;
             }
@@ -28,7 +28,7 @@
         public static object GetValue(object obj, string name)
         {
             if (obj is DynamicObject)
-                return ((DynamicObject)obj).GetValue(name);
+                return ((DynamicObject)obj).Get(name);
 
             Type type = obj.GetType();
 
@@ -49,9 +49,9 @@
                 DynamicObject dobj = (DynamicObject)obj;
 
                 if (arguments == null)
-                    return dobj.GetValue(name);
+                    return dobj.Get(name);
 
-                var method = dobj.GetValue(name) as IFunction;
+                var method = dobj.Get(name) as IFunction;
 
                 if (method != null) 
                 {
@@ -62,7 +62,7 @@
             }
 
             if (obj is DynamicObject && (arguments == null || arguments.Count == 0))
-                return ((DynamicObject)obj).GetValue(name);
+                return ((DynamicObject)obj).Get(name);
 
             return GetNativeValue(obj, name, arguments);
         }
@@ -103,7 +103,7 @@
                 return GetIndexedValue((IDictionary)obj, indexes);
 
             if (obj is DynamicObject && indexes != null && indexes.Count == 1)
-                return ((DynamicObject)obj).GetValue((string)indexes[0]);
+                return ((DynamicObject)obj).Get((string)indexes[0]);
 
             return GetValue(obj, string.Empty, indexes); 
         }

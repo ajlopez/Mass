@@ -17,7 +17,7 @@
             ForCommand cmd = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(3), new ConstantExpression(1), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));
             Context context = new Context();
             Assert.IsNull(cmd.Execute(context));
-            Assert.AreEqual(6, context.GetValue("a"));
+            Assert.AreEqual(6, context.Find("a"));
         }
 
         [TestMethod]

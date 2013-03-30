@@ -32,7 +32,7 @@
                 indexes.Add(indexexpression.Evaluate(context));
 
             if (obj is DynamicObject && indexes.Count == 1)
-                return ((DynamicObject)obj).GetValue(indexes[0].ToString());
+                return ((DynamicObject)obj).Get(indexes[0].ToString());
 
             return ObjectUtilities.GetIndexedValue(obj, indexes);
         }

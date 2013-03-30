@@ -20,7 +20,7 @@
 
         public object Evaluate(Context context)
         {
-            return context.GetValue(this.name);
+            return context.Get(this.name);
         }
 
         public override bool Equals(object obj)

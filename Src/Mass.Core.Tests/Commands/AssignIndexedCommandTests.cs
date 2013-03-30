@@ -18,13 +18,13 @@
             AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("age") }), new ConstantExpression(800));
             Context context = new Context();
             DynamicObject obj = new DynamicObject();
-            context.SetValue("obj", obj);
+            context.Set("obj", obj);
 
             var result = cmd.Execute(context);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(800, result);
-            Assert.AreEqual(800, obj.GetValue("age"));
+            Assert.AreEqual(800, obj.Get("age"));
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@
             AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("array"), new IExpression[] { new ConstantExpression(0) }), new ConstantExpression(1));
             Context context = new Context();
             var array = new int[1];
-            context.SetValue("array", array);
+            context.Set("array", array);
 
             var result = cmd.Execute(context);
 

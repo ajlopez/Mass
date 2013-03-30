@@ -91,6 +91,7 @@
     <Compile Include="Functions\PrintlnFunction.cs" />
     <Compile Include="Language\DefinedClass.cs" />
     <Compile Include="Language\DynamicObject.cs" />
+    <Compile Include="Language\IValues.cs" />
     <Compile Include="Machine.cs" />
     <Compile Include="Utilities\ObjectUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

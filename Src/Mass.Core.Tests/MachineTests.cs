@@ -24,15 +24,15 @@
         {
             Machine machine = new Machine();
 
-            var result = machine.RootContext.GetValue("println");
+            var result = machine.RootContext.Find("println");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
 
-            result = machine.RootContext.GetValue("print");
+            result = machine.RootContext.Find("print");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
 
-            result = machine.RootContext.GetValue("require");
+            result = machine.RootContext.Find("require");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
         }
@@ -42,8 +42,8 @@
         {
             Machine machine = new Machine();
             Assert.AreEqual(2, machine.ExecuteText("a=1\nb=2"));
-            Assert.AreEqual(1, machine.RootContext.GetValue("a"));
-            Assert.AreEqual(2, machine.RootContext.GetValue("b"));
+            Assert.AreEqual(1, machine.RootContext.Find("a"));
+            Assert.AreEqual(2, machine.RootContext.Find("b"));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@
             Machine machine = new Machine();
             machine.ExecuteText("class Dog\nend");
 
-            var result = machine.RootContext.GetValue("Dog");
+            var result = machine.RootContext.Find("Dog");
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DefinedClass));
@@ -68,7 +68,7 @@
             Machine machine = new Machine();
             machine.ExecuteText("class Dog\ndefine foo()\nend\nend");
 
-            var result = machine.RootContext.GetValue("Dog");
+            var result = machine.RootContext.Find("Dog");
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DefinedClass));
@@ -84,7 +84,7 @@
         {
             Machine machine = new Machine();
             StringWriter writer = new StringWriter();
-            machine.RootContext.SetValue("println", new PrintlnFunction(writer));
+            machine.RootContext.Set("println", new PrintlnFunction(writer));
             var result = machine.ExecuteText("define foo(a)\nif a\nreturn a\nend\nprintln(a)\nend\nfoo(1)");
 
             Assert.IsNotNull(result);
@@ -133,9 +133,9 @@
 
             var obj = (DynamicObject)result;
 
-            Assert.AreEqual(1, obj.GetValue("a"));
-            Assert.AreEqual(2, obj.GetValue("b"));
-            Assert.AreEqual(3, obj.GetValue("c"));
+            Assert.AreEqual(1, obj.Get("a"));
+            Assert.AreEqual(2, obj.Get("b"));
+            Assert.AreEqual(3, obj.Get("c"));
         }
 
         [TestMethod]
@@ -163,12 +163,12 @@
         {
             Machine machine = new Machine();
             DynamicObject a = new DynamicObject();
-            machine.RootContext.SetValue("a", a);
+            machine.RootContext.Set("a", a);
             var result = machine.ExecuteText("a[\"name\"] = \"Adam\"");
 
             Assert.IsNotNull(result);
             Assert.AreEqual("Adam", result);
-            Assert.AreEqual("Adam", a.GetValue("name"));
+            Assert.AreEqual("Adam", a.Get("name"));
         }
 
         [TestMethod]
@@ -179,7 +179,7 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);
-            Assert.AreEqual(2, machine.RootContext.GetValue("two"));
+            Assert.AreEqual(2, machine.RootContext.Find("two"));
         }
 
         [TestMethod]
@@ -190,8 +190,8 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);
-            Assert.AreEqual(2, machine.RootContext.GetValue("two"));
-            Assert.IsNull(machine.RootContext.GetValue("one"));
+            Assert.AreEqual(2, machine.RootContext.Find("two"));
+            Assert.IsNull(machine.RootContext.Find("one"));
         }
     }
 }

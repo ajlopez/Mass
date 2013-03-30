@@ -27,10 +27,10 @@
         {
             var obj = this.expression.Evaluate(context);
 
-            var dobj = obj as DynamicObject;
+            var values = obj as IValues;
 
-            if (dobj != null)
-                return dobj.GetValue(this.name);
+            if (values != null)
+                return values.Get(this.name);
 
             return ObjectUtilities.GetValue(obj, this.name);
         }

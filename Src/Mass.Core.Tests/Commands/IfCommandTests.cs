@@ -17,7 +17,7 @@
             IfCommand cmd = new IfCommand(new ConstantExpression(true), new AssignCommand("one", new ConstantExpression(1)));
             Context context = new Context();
             Assert.AreEqual(1, cmd.Execute(context));
-            Assert.AreEqual(1, context.GetValue("one"));
+            Assert.AreEqual(1, context.Find("one"));
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@
             IfCommand cmd = new IfCommand(new ConstantExpression(false), new AssignCommand("one", new ConstantExpression(1)));
             Context context = new Context();
             Assert.IsNull(cmd.Execute(context));
-            Assert.IsNull(context.GetValue("one"));
+            Assert.IsNull(context.Find("one"));
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@
             IfCommand cmd = new IfCommand(new ConstantExpression(null), new AssignCommand("one", new ConstantExpression(1)));
             Context context = new Context();
             Assert.IsNull(cmd.Execute(context));
-            Assert.IsNull(context.GetValue("one"));
+            Assert.IsNull(context.Find("one"));
         }
 
         [TestMethod]
@@ -44,8 +44,8 @@
             IfCommand cmd = new IfCommand(new ConstantExpression(null), new AssignCommand("one", new ConstantExpression(1)), new AssignCommand("two", new ConstantExpression(2)));
             Context context = new Context();
             Assert.IsNotNull(cmd.Execute(context));
-            Assert.IsNull(context.GetValue("one"));
-            Assert.AreEqual(2, context.GetValue("two"));
+            Assert.IsNull(context.Find("one"));
+            Assert.AreEqual(2, context.Find("two"));
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@
             IfCommand cmd = new IfCommand(new ConstantExpression(0), new AssignCommand("one", new ConstantExpression(1)));
             Context context = new Context();
             Assert.AreEqual(1, cmd.Execute(context));
-            Assert.AreEqual(1, context.GetValue("one"));
+            Assert.AreEqual(1, context.Find("one"));
         }
 
         [TestMethod]

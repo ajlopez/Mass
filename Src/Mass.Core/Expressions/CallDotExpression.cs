@@ -27,12 +27,12 @@
             foreach (var argument in this.arguments)
                 values.Add(argument.Evaluate(context));
 
-            var dobj = obj as DynamicObject;
+            var vals = obj as IValues;
 
-            if (dobj != null)
+            if (vals != null)
             {
-                values.Insert(0, dobj);
-                var method = (IFunction)dobj.GetValue(this.expression.Name);
+                values.Insert(0, vals);
+                var method = (IFunction)vals.Get(this.expression.Name);
 
                 return method.Apply(values);
             }

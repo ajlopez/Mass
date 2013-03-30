@@ -16,7 +16,7 @@
         {
             DynamicObject obj = new DynamicObject();
 
-            Assert.IsNull(obj.GetValue("name"));
+            Assert.IsNull(obj.Get("name"));
         }
 
         [TestMethod]
@@ -24,9 +24,9 @@
         {
             DynamicObject obj = new DynamicObject();
 
-            obj.SetValue("name", "Nero");
+            obj.Set("name", "Nero");
 
-            Assert.AreEqual("Nero", obj.GetValue("name"));
+            Assert.AreEqual("Nero", obj.Get("name"));
         }
     }
 }

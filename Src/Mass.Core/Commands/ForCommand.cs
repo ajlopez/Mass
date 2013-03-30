@@ -34,7 +34,7 @@
 
             for (int k = from; k <= to; k += step)
             {
-                context.SetValue(this.name, k);
+                context.Set(this.name, k);
                 this.command.Execute(context);
                 if (context.HasContinue())
                     context.ClearContinue();

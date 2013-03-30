@@ -20,13 +20,13 @@ using Mass.Core.Tests.Classes;
         public void CallDynamicObjectMethod()
         {
             DynamicObject obj = new DynamicObject();
-            obj.SetValue("width", 100);
-            obj.SetValue("height", 10);
+            obj.Set("width", 100);
+            obj.Set("height", 10);
             ICommand body = (new Parser("self.width * self.height")).ParseCommand();
             Context context = new Context();
-            context.SetValue("obj", obj);
+            context.Set("obj", obj);
 
-            obj.SetValue("area", new DefinedFunction(body, new string[] { "self" }, null));
+            obj.Set("area", new DefinedFunction(body, new string[] { "self" }, null));
 
             CallDotExpression expr = new CallDotExpression(new DotExpression(new NameExpression("obj"), "area"), new IExpression[] { });
 

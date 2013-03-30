@@ -15,7 +15,7 @@
 
         public static Type GetType(Context context, string name)
         {
-            object obj = context.GetValue(name);
+            object obj = context.Find(name);
 
             if (obj != null && obj is Type)
                 return (Type)obj;

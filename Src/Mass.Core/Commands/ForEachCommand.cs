@@ -28,7 +28,7 @@
 
             foreach (var value in values)
             {
-                context.SetValue(this.name, value);
+                context.Set(this.name, value);
                 this.command.Execute(context);
                 if (context.HasContinue())
                     context.ClearContinue();

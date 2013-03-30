@@ -24,7 +24,7 @@
         {
             var obj = (DynamicObject)this.leftvalue.Expression.Evaluate(context);
             object value = this.expression.Evaluate(context);
-            obj.SetValue(this.leftvalue.Name, value);
+            obj.Set(this.leftvalue.Name, value);
             return value;
         }
 

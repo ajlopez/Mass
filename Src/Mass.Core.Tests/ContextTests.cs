@@ -14,7 +14,7 @@
         {
             Context context = new Context();
 
-            Assert.IsNull(context.GetValue("foo"));
+            Assert.IsNull(context.Get("foo"));
         }
 
         [TestMethod]
@@ -22,31 +22,31 @@
         {
             Context context = new Context();
 
-            context.SetValue("one", 1);
-            Assert.AreEqual(1, context.GetValue("one"));
+            context.Set("one", 1);
+            Assert.AreEqual(1, context.Get("one"));
         }
 
         [TestMethod]
-        public void SetValueAtParentGetValue()
+        public void FindValueAtParent()
         {
             Context parent = new Context();
             Context context = new Context(parent);
 
-            parent.SetValue("one", 1);
-            Assert.AreEqual(1, context.GetValue("one"));
+            parent.Set("one", 1);
+            Assert.AreEqual(1, context.Find("one"));
         }
 
         [TestMethod]
-        public void GetLocalNames()
+        public void GetNames()
         {
             Context parent = new Context();
             Context context = new Context(parent);
 
-            parent.SetValue("one", 1);
-            context.SetValue("two", 2);
-            context.SetValue("three", 3);
+            parent.Set("one", 1);
+            context.Set("two", 2);
+            context.Set("three", 3);
 
-            var result = context.GetLocalNames();
+            var result = context.GetNames();
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);

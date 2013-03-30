@@ -116,13 +116,13 @@
 
             var dobj = (DynamicObject)result;
 
-            Assert.AreEqual(1, dobj.GetValue("one"));
-            Assert.AreEqual(2, dobj.GetValue("two"));
-            Assert.AreEqual(3, dobj.GetValue("three"));
+            Assert.AreEqual(1, dobj.Get("one"));
+            Assert.AreEqual(2, dobj.Get("two"));
+            Assert.AreEqual(3, dobj.Get("three"));
 
-            Assert.IsNull(dobj.GetValue("add"));
+            Assert.IsNull(dobj.Get("add"));
 
-            var foo = dobj.GetValue("foo");
+            var foo = dobj.Get("foo");
 
             Assert.IsNotNull(foo);
             Assert.IsInstanceOfType(foo, typeof(IFunction));

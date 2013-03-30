@@ -29,7 +29,7 @@
         public void GetValueFromDynamicObject()
         {
             DynamicObject dynobj = new DynamicObject(null);
-            dynobj.SetValue("FirstName", "Adam");
+            dynobj.Set("FirstName", "Adam");
 
             Assert.AreEqual("Adam", ObjectUtilities.GetValue(dynobj, "FirstName"));
         }
@@ -140,8 +140,8 @@
         public void GetIndexedValuesFromDynamicObject()
         {
             DynamicObject obj = new DynamicObject(null);
-            obj.SetValue("name", "Adam");
-            obj.SetValue("get_age", new DefinedFunction(null, new string[] { }, null));
+            obj.Set("name", "Adam");
+            obj.Set("get_age", new DefinedFunction(null, new string[] { }, null));
 
             Assert.AreEqual("Adam", ObjectUtilities.GetIndexedValue(obj, new object[] { "name" }));
             
@@ -208,7 +208,7 @@
 
             ObjectUtilities.SetValue(obj, "FirstName", "Adam");
 
-            Assert.AreEqual("Adam", obj.GetValue("FirstName"));
+            Assert.AreEqual("Adam", obj.Get("FirstName"));
         }
 
         [TestMethod]

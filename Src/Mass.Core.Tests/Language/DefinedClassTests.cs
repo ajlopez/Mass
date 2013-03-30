@@ -40,7 +40,7 @@
 
             Assert.IsNotNull(result);
             Assert.AreSame(dclass, result.Class);
-            Assert.AreSame(foo, result.GetValue("foo"));
+            Assert.AreSame(foo, result.Get("foo"));
         }
     }
 }

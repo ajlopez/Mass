@@ -6,7 +6,7 @@
     using System.Text;
     using Mass.Core.Language;
 
-    public class Context
+    public class Context : IValues
     {
         private Context parent;
         private DefinedClass @class;
@@ -50,23 +50,31 @@
             this.hasreturnvalue = true;
         }
 
-        public void SetValue(string name, object value)
+        public void Set(string name, object value)
         {
             this.values[name] = value;
         }
 
-        public object GetValue(string name)
+        public object Get(string name)
+        {
+            if (this.values.ContainsKey(name))
+                return this.values[name];
+
+            return null;
+        }
+
+        public object Find(string name)
         {
             if (this.values.ContainsKey(name))
                 return this.values[name];
 
             if (this.parent != null)
-                return this.parent.GetValue(name);
+                return this.parent.Find(name);
 
             return null;
         }
 
-        public IList<string> GetLocalNames()
+        public IList<string> GetNames()
         {
             return this.values.Keys.ToList();
         }

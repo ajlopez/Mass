@@ -47,9 +47,9 @@
             Machine machine = new Machine();
             StringWriter writer = new StringWriter();
             PrintlnFunction function = new PrintlnFunction(writer);
-            machine.RootContext.SetValue("println", function);
+            machine.RootContext.Set("println", function);
             machine.ExecuteText("class Dog\ndefine initialize(a, b)\nprintln(a)\nprintln(b)\nend\nend\n");
-            DefinedClass dclass = (DefinedClass)machine.RootContext.GetValue("Dog");
+            DefinedClass dclass = (DefinedClass)machine.RootContext.Find("Dog");
             NewExpression expr = new NewExpression(new ConstantExpression(dclass), new IExpression[] { new ConstantExpression(1), new ConstantExpression(2) });
 
             var result = expr.Evaluate(null);

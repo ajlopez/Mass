@@ -16,7 +16,7 @@
         public void EvaluateDynamicObjectProperty()
         {
             var myobj = new DynamicObject();
-            myobj.SetValue("age", 800);
+            myobj.Set("age", 800);
 
             DotExpression expression = new DotExpression(new ConstantExpression(myobj), "age");
 

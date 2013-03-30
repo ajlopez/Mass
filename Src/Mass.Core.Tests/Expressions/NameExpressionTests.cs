@@ -26,7 +26,7 @@
         {
             NameExpression expr = new NameExpression("one");
             Context context = new Context();
-            context.SetValue("one", 1);
+            context.Set("one", 1);
 
             Assert.AreEqual(1, expr.Evaluate(context));
         }

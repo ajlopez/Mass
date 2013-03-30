@@ -24,7 +24,7 @@
             DynamicObject obj = new DynamicObject();
 
             foreach (var command in this.commands)
-                obj.SetValue(command.Name, command.Expression.Evaluate(context));
+                obj.Set(command.Name, command.Expression.Evaluate(context));
 
             return obj;
         }

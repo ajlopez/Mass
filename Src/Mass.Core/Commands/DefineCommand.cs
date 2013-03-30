@@ -33,7 +33,7 @@
             else
             {
                 var result = new DefinedFunction(this.command, this.parameters, context);
-                context.SetValue(this.name, result);
+                context.Set(this.name, result);
             }
 
             return null;

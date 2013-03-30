@@ -18,12 +18,12 @@
             AssignDotCommand cmd = new AssignDotCommand(new DotExpression(new NameExpression("obj"), "age"), new ConstantExpression(1));
             Context context = new Context();
             DynamicObject obj = new DynamicObject();
-            context.SetValue("obj", obj);
+            context.Set("obj", obj);
 
             var result = cmd.Execute(context);
 
             Assert.AreEqual(1, result);
-            Assert.AreEqual(1, obj.GetValue("age"));
+            Assert.AreEqual(1, obj.Get("age"));
         }
 
         [TestMethod]

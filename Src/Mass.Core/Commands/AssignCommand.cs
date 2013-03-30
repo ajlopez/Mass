@@ -26,7 +26,7 @@
         public object Execute(Context context)
         {
             object value = this.expression.Evaluate(context);
-            context.SetValue(this.name, value);
+            context.Set(this.name, value);
             return value;
         }
 

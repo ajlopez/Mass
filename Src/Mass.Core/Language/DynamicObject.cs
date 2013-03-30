@@ -6,7 +6,7 @@
     using System.Text;
     using Mass.Core.Functions;
 
-    public class DynamicObject
+    public class DynamicObject : Mass.Core.Language.IValues
     {
         private DefinedClass @class;
         private IDictionary<string, object> values = new Dictionary<string, object>();
@@ -23,12 +23,12 @@
 
         public DefinedClass Class { get { return this.@class; } }
 
-        public void SetValue(string name, object value)
+        public void Set(string name, object value)
         {
             this.values[name] = value;
         }
 
-        public object GetValue(string name)
+        public object Get(string name)
         {
             if (this.values.ContainsKey(name))
                 return this.values[name];

@@ -21,12 +21,12 @@
 
         public object Execute(Context context)
         {
-            var value = context.GetValue(this.name);
+            var value = context.Find(this.name);
 
             if (value == null || !(value is DefinedClass))
             {
                 var newclass = new DefinedClass(this.name);
-                context.SetValue(this.name, newclass);
+                context.Set(this.name, newclass);
                 value = newclass;
             }
 

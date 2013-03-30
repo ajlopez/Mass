@@ -41,7 +41,7 @@
         public void EvaluateDynamicObjectElement()
         {
             DynamicObject dobj = new DynamicObject();
-            dobj.SetValue("one", 1);
+            dobj.Set("one", 1);
             IndexedExpression expr = new IndexedExpression(new ConstantExpression(dobj), new IExpression[] { new ConstantExpression("one") });
             Context context = new Context();
 

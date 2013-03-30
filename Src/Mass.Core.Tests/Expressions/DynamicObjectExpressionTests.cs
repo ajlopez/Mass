@@ -26,8 +26,8 @@
 
             var obj = (DynamicObject)result;
 
-            Assert.AreEqual(1, obj.GetValue("one"));
-            Assert.AreEqual(2, obj.GetValue("two"));
+            Assert.AreEqual(1, obj.Get("one"));
+            Assert.AreEqual(2, obj.Get("two"));
         }
 
         [TestMethod]

@@ -15,9 +15,9 @@
 
         public Machine()
         {
-            this.rootcontext.SetValue("print", new PrintFunction(System.Console.Out));
-            this.rootcontext.SetValue("println", new PrintlnFunction(System.Console.Out));
-            this.rootcontext.SetValue("require", new RequireFunction(this));
+            this.rootcontext.Set("print", new PrintFunction(System.Console.Out));
+            this.rootcontext.Set("println", new PrintlnFunction(System.Console.Out));
+            this.rootcontext.Set("require", new RequireFunction(this));
         }
 
         public Context RootContext { get { return this.rootcontext; } }
@@ -48,7 +48,7 @@
             FileInfo fileinfo = new FileInfo(filename);
             string path = fileinfo.DirectoryName;
             Context newcontext = new Context(this.rootcontext);
-            newcontext.SetValue("require", new RequireFunction(this, path));
+            newcontext.Set("require", new RequireFunction(this, path));
             return this.ExecuteFile(filename, newcontext, usecache);
         }
 

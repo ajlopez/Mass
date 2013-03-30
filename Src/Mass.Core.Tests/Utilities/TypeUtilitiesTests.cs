@@ -30,7 +30,7 @@
         {
             Context context = new Context();
 
-            context.SetValue("int", typeof(int));
+            context.Set("int", typeof(int));
 
             Type type = TypeUtilities.GetType(context, "int");
 

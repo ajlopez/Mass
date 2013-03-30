@@ -20,14 +20,14 @@
         {
             Context context = new Context();
             StringWriter writer = new StringWriter();
-            context.SetValue("println", new PrintlnFunction(writer));
+            context.Set("println", new PrintlnFunction(writer));
             ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression("println", new IExpression[] { new ConstantExpression(123) })));
 
             var result = cmd.Execute(context);
 
             Assert.IsNull(result);
 
-            var value = context.GetValue("Dog");
+            var value = context.Find("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
             Assert.AreEqual("123\r\n", writer.ToString());
         }
@@ -43,7 +43,7 @@
 
             Assert.IsNull(result);
 
-            var value = context.GetValue("Dog");
+            var value = context.Find("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
 
             var dclass = (DefinedClass)value;
@@ -56,20 +56,20 @@
         {
             Context context = new Context();
             StringWriter writer = new StringWriter();
-            context.SetValue("println", new PrintlnFunction(writer));
+            context.Set("println", new PrintlnFunction(writer));
             ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression("println", new IExpression[] { new ConstantExpression(123) })));
 
             cmd.Execute(context);
 
-            var initial = context.GetValue("Dog");
+            var initial = context.Find("Dog");
 
             var result = cmd.Execute(context);
 
             Assert.IsNull(result);
 
-            var value = context.GetValue("Dog");
+            var value = context.Find("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
-            Assert.AreEqual(value, context.GetValue("Dog"));
+            Assert.AreEqual(value, context.Find("Dog"));
             Assert.AreSame(initial, value);
             Assert.AreEqual("123\r\n123\r\n", writer.ToString());
         }
