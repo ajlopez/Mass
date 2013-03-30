@@ -27,7 +27,7 @@
         {
             string name = (string)values[0];
 
-            string filename = this.GetFilename(name);
+            string filename = this.GetFilename(this.path, name);
 
             if (filename == null)
                 throw new InvalidOperationException(string.Format("cannot find module '{0}'", name));
@@ -35,7 +35,7 @@
             return machine.ExecuteFile(filename);
         }
 
-        private string GetFilename(string name)
+        private string GetFilename(string path, string name)
         {
             string filename = name;
             FileInfo fileinfo = new FileInfo(filename);
@@ -43,8 +43,8 @@
             if (string.IsNullOrEmpty(fileinfo.Extension))
                 filename += ".ms";
 
-            if (!string.IsNullOrEmpty(this.path))
-                filename = Path.Combine(this.path, filename);
+            if (!string.IsNullOrEmpty(path))
+                filename = Path.Combine(path, filename);
 
             if (File.Exists(filename))
                 return filename;
@@ -52,7 +52,7 @@
             if (Path.IsPathRooted(name))
                 return null;
 
-            return this.GetFilename(this.path, "modules", name);
+            return this.GetFilename(path, "modules", name);
         }
 
         private string GetFilename(string path, string moduledirectory, string name)
