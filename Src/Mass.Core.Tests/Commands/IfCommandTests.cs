@@ -63,16 +63,22 @@
             IfCommand cmd1 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)));
             IfCommand cmd2 = new IfCommand(new ConstantExpression(2), new AssignCommand("one", new ConstantExpression(1)));
             IfCommand cmd3 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(2)));
-            IfCommand cmd4 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)));
+            IfCommand cmd4 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)), new AssignCommand("two", new ConstantExpression(2)));
+            IfCommand cmd5 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)));
 
-            Assert.IsTrue(cmd1.Equals(cmd4));
-            Assert.IsTrue(cmd4.Equals(cmd1));
-            Assert.AreEqual(cmd1.GetHashCode(), cmd4.GetHashCode());
+            Assert.IsTrue(cmd1.Equals(cmd5));
+            Assert.IsTrue(cmd5.Equals(cmd1));
+            Assert.AreEqual(cmd1.GetHashCode(), cmd5.GetHashCode());
+            Assert.AreNotEqual(cmd1.GetHashCode(), cmd4.GetHashCode());
 
             Assert.IsFalse(cmd1.Equals(null));
             Assert.IsFalse(cmd1.Equals(123));
             Assert.IsFalse(cmd1.Equals(cmd2));
+            Assert.IsFalse(cmd2.Equals(cmd1));
             Assert.IsFalse(cmd1.Equals(cmd3));
+            Assert.IsFalse(cmd3.Equals(cmd1));
+            Assert.IsFalse(cmd1.Equals(cmd4));
+            Assert.IsFalse(cmd4.Equals(cmd1));
         }
     }
 }

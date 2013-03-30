@@ -49,6 +49,14 @@
             {
                 var cmd = (IfCommand)obj;
 
+                if (this.elsecommand == null)
+                {
+                    if (cmd.elsecommand != null)
+                        return false;
+                }
+                else if (!this.elsecommand.Equals(cmd.elsecommand))
+                    return false;
+
                 return this.condition.Equals(cmd.condition) && this.thencommand.Equals(cmd.thencommand);
             }
 
@@ -57,7 +65,12 @@
 
         public override int GetHashCode()
         {
-            return this.condition.GetHashCode() + this.thencommand.GetHashCode() + hashcode;
+            int result = this.condition.GetHashCode() + this.thencommand.GetHashCode() + hashcode;
+
+            if (this.elsecommand != null)
+                result += this.elsecommand.GetHashCode();
+
+            return result;
         }
     }
 }
