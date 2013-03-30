@@ -30,6 +30,9 @@
             string filename = this.GetFilename(this.path, name);
 
             if (filename == null)
+                filename = this.GetFilename((new FileInfo(System.Reflection.Assembly.GetExecutingAssembly().FullName)).DirectoryName, name);
+
+            if (filename == null)
                 throw new InvalidOperationException(string.Format("cannot find module '{0}'", name));
 
             return machine.ExecuteFile(filename);
@@ -49,10 +52,15 @@
             if (File.Exists(filename))
                 return filename;
             
-            if (Path.IsPathRooted(name))
+            if (Path.IsPathRooted(name) || name[0] == '.')
                 return null;
 
-            return this.GetFilename(path, "modules", name);
+            filename = this.GetFilename(path, "modules", name);
+
+            if (filename == null)
+                filename = this.GetFilename(path, "node_modules", name);
+
+            return filename;
         }
 
         private string GetFilename(string path, string moduledirectory, string name)

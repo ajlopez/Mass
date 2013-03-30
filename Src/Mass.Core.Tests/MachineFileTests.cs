@@ -224,6 +224,16 @@
             AssertModule(context.GetValue("module"));
         }
 
+        [TestMethod]
+        public void ExecuteRequireModule5File()
+        {
+            Context context = new Context(this.machine.RootContext);
+            context.SetValue("require", new RequireFunction(this.machine, "MachineFiles"));
+            this.machine.ExecuteFile("MachineFiles\\RequireModule5.ms", context);
+
+            AssertModule(context.GetValue("module"));
+        }
+
         private static void AssertModule(object result)
         {
             Assert.IsNotNull(result);

@@ -43,6 +43,60 @@
             AssertModule(require.Apply(new object[] { "./SimpleModule" }));
         }
 
+        [TestMethod]
+        public void RequireUnknownModule()
+        {
+            Machine machine = new Machine();
+            RequireFunction require = new RequireFunction(machine);
+
+            try
+            {
+                require.Apply(new object[] { "unknown" });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("cannot find module 'unknown'", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void RequireUnknownLocalModule()
+        {
+            Machine machine = new Machine();
+            RequireFunction require = new RequireFunction(machine);
+
+            try
+            {
+                require.Apply(new object[] { "./unknown" });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("cannot find module './unknown'", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void RequireUnknownAbsoluteModule()
+        {
+            Machine machine = new Machine();
+            RequireFunction require = new RequireFunction(machine);
+
+            try
+            {
+                require.Apply(new object[] { "/unknown" });
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
+                Assert.AreEqual("cannot find module '/unknown'", ex.Message);
+            }
+        }
+
         private static void AssertModule(object result)
         {
             Assert.IsNotNull(result);
