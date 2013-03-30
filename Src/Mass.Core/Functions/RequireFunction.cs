@@ -46,7 +46,9 @@
 
                 filename = Path.Combine(modules, name);
 
-                if (string.IsNullOrEmpty(info.Extension))
+                if (Directory.Exists(filename))
+                    filename = Path.Combine(filename, "init.ms");                
+                else if (string.IsNullOrEmpty(info.Extension))
                     filename += ".ms";
             }
 
