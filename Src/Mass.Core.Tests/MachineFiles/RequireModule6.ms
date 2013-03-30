@@ -1,0 +1,3 @@
+﻿
+module = require("module6")
+

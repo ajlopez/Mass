@@ -39,6 +39,16 @@
         }
 
         [TestMethod]
+        public void ExecuteSimpleIfWithElseWhenConditionIsNull()
+        {
+            IfCommand cmd = new IfCommand(new ConstantExpression(null), new AssignCommand("one", new ConstantExpression(1)), new AssignCommand("two", new ConstantExpression(2)));
+            Context context = new Context();
+            Assert.IsNotNull(cmd.Execute(context));
+            Assert.IsNull(context.GetValue("one"));
+            Assert.AreEqual(2, context.GetValue("two"));
+        }
+
+        [TestMethod]
         public void ExecuteSimpleIfWhenConditionIsZero()
         {
             IfCommand cmd = new IfCommand(new ConstantExpression(0), new AssignCommand("one", new ConstantExpression(1)));
