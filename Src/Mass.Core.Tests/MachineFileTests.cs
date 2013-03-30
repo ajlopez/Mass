@@ -24,14 +24,14 @@
         [TestMethod]
         public void ExecuteSimpleAssignFile()
         {
-            Assert.AreEqual(1, this.machine.ExecuteFile("MachineFiles\\SimpleAssign.ms"));
+            Assert.AreEqual(1, this.machine.ExecuteFile("MachineFiles\\SimpleAssign.ms", this.machine.RootContext));
             Assert.AreEqual(1, this.machine.RootContext.GetValue("a"));
         }
 
         [TestMethod]
         public void ExecuteSimpleAssignsFile()
         {
-            Assert.AreEqual(2, this.machine.ExecuteFile("MachineFiles\\SimpleAssigns.ms"));
+            Assert.AreEqual(2, this.machine.ExecuteFile("MachineFiles\\SimpleAssigns.ms", this.machine.RootContext));
             Assert.AreEqual(1, this.machine.RootContext.GetValue("a"));
             Assert.AreEqual(2, this.machine.RootContext.GetValue("b"));
         }
@@ -66,7 +66,7 @@
         [TestMethod]
         public void ExecuteRectangleFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\Rectangle.ms");
+            this.machine.ExecuteFile("MachineFiles\\Rectangle.ms", this.machine.RootContext);
 
             var rect = this.machine.RootContext.GetValue("rect");
 
@@ -86,7 +86,7 @@
         [TestMethod]
         public void ExecuteForFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\For.ms");
+            this.machine.ExecuteFile("MachineFiles\\For.ms", this.machine.RootContext);
 
             var result = this.machine.RootContext.GetValue("total");
 
@@ -97,7 +97,7 @@
         [TestMethod]
         public void ExecuteForIfFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\ForIf.ms");
+            this.machine.ExecuteFile("MachineFiles\\ForIf.ms", this.machine.RootContext);
 
             var result = this.machine.RootContext.GetValue("total");
 
@@ -108,7 +108,7 @@
         [TestMethod]
         public void ExecuteForEachFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\ForEach.ms");
+            this.machine.ExecuteFile("MachineFiles\\ForEach.ms", this.machine.RootContext);
 
             var result = this.machine.RootContext.GetValue("total");
 
@@ -119,7 +119,7 @@
         [TestMethod]
         public void ExecuteContinueFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\Continue.ms");
+            this.machine.ExecuteFile("MachineFiles\\Continue.ms", this.machine.RootContext);
 
             var result = this.machine.RootContext.GetValue("total");
 
@@ -140,7 +140,7 @@
         [TestMethod]
         public void ExecuteBreakFile()
         {
-            this.machine.ExecuteFile("MachineFiles\\Break.ms");
+            this.machine.ExecuteFile("MachineFiles\\Break.ms", this.machine.RootContext);
 
             var result = this.machine.RootContext.GetValue("total");
 
@@ -156,6 +156,32 @@
 
             Assert.IsNotNull(result3);
             Assert.AreEqual(1, result3);
+        }
+
+        [TestMethod]
+        public void ExecuteRequireFile()
+        {
+            Context context = new Context(this.machine.RootContext);
+            context.SetValue("require", new RequireFunction(this.machine, "MachineFiles"));
+            this.machine.ExecuteFile("MachineFiles\\Require.ms", context);
+
+            var result = context.GetValue("module");
+
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(DynamicObject));
+
+            var dobj = (DynamicObject)result;
+
+            Assert.AreEqual(1, dobj.GetValue("one"));
+            Assert.AreEqual(2, dobj.GetValue("two"));
+            Assert.AreEqual(3, dobj.GetValue("three"));
+
+            Assert.IsNull(dobj.GetValue("add"));
+
+            var foo = dobj.GetValue("foo");
+
+            Assert.IsNotNull(foo);
+            Assert.IsInstanceOfType(foo, typeof(IFunction));
         }
     }
 }

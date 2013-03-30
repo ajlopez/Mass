@@ -31,6 +31,10 @@
             result = machine.RootContext.GetValue("print");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
+
+            result = machine.RootContext.GetValue("require");
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(IFunction));
         }
 
         [TestMethod]

@@ -10,10 +10,17 @@
     public class RequireFunction : IFunction
     {
         private Machine machine;
+        private string path;
 
         public RequireFunction(Machine machine)
+            : this(machine, null)
+        {
+        }
+
+        public RequireFunction(Machine machine, string path)
         {
             this.machine = machine;
+            this.path = path;
         }
 
         public object Apply(IList<object> values)
@@ -22,10 +29,15 @@
 
             FileInfo info = new FileInfo(name);
 
-            if (string.IsNullOrEmpty(info.Extension))
-                name += ".ms";
+            string filename = name;
 
-            return machine.ExecuteFile(name);
+            if (string.IsNullOrEmpty(info.Extension))
+                filename += ".ms";
+
+            if (!string.IsNullOrEmpty(this.path))
+                filename = Path.Combine(this.path, filename);
+
+            return machine.ExecuteFile(filename);
         }
     }
 }

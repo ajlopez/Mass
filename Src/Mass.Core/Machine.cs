@@ -6,6 +6,7 @@
     using System.Text;
     using Mass.Core.Compiler;
     using Mass.Core.Functions;
+    using System.IO;
 
     public class Machine
     {
@@ -15,6 +16,7 @@
         {
             this.rootcontext.SetValue("print", new PrintFunction(System.Console.Out));
             this.rootcontext.SetValue("println", new PrintlnFunction(System.Console.Out));
+            this.rootcontext.SetValue("require", new RequireFunction(this));
         }
 
         public Context RootContext { get { return this.rootcontext; } }
@@ -37,7 +39,11 @@
 
         public object ExecuteFile(string filename)
         {
-            return this.ExecuteFile(filename, this.rootcontext);
+            FileInfo fileinfo = new FileInfo(filename);
+            string path = fileinfo.DirectoryName;
+            Context newcontext = new Context(this.rootcontext);
+            newcontext.SetValue("require", new RequireFunction(this, path));
+            return this.ExecuteFile(filename, newcontext);
         }
 
         public object ExecuteFile(string filename, Context context)
