@@ -37,6 +37,19 @@
             if (!string.IsNullOrEmpty(this.path))
                 filename = Path.Combine(this.path, filename);
 
+            if (!Path.IsPathRooted(name) && !File.Exists(filename))
+            {
+                string modules = "modules";
+
+                if (!string.IsNullOrEmpty(this.path))
+                    modules = Path.Combine(this.path, modules);
+
+                filename = Path.Combine(modules, name);
+
+                if (string.IsNullOrEmpty(info.Extension))
+                    filename += ".ms";
+            }
+
             return machine.ExecuteFile(filename);
         }
     }
