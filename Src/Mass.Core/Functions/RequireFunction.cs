@@ -27,32 +27,55 @@
         {
             string name = (string)values[0];
 
-            FileInfo info = new FileInfo(name);
+            string filename = this.GetFilename(name);
 
+            if (filename == null)
+                throw new InvalidOperationException(string.Format("cannot find module '{0}'", name));
+
+            return machine.ExecuteFile(filename);
+        }
+
+        private string GetFilename(string name)
+        {
             string filename = name;
+            FileInfo fileinfo = new FileInfo(filename);
 
-            if (string.IsNullOrEmpty(info.Extension))
+            if (string.IsNullOrEmpty(fileinfo.Extension))
                 filename += ".ms";
 
             if (!string.IsNullOrEmpty(this.path))
                 filename = Path.Combine(this.path, filename);
 
-            if (!Path.IsPathRooted(name) && !File.Exists(filename))
-            {
-                string modules = "modules";
+            if (File.Exists(filename))
+                return filename;
+            
+            if (Path.IsPathRooted(name))
+                return null;
 
-                if (!string.IsNullOrEmpty(this.path))
-                    modules = Path.Combine(this.path, modules);
+            return this.GetFilename(this.path, "modules", name);
+        }
 
-                filename = Path.Combine(modules, name);
+        private string GetFilename(string path, string moduledirectory, string name)
+        {
+            string directoryname;
 
-                if (Directory.Exists(filename))
-                    filename = Path.Combine(filename, "init.ms");                
-                else if (string.IsNullOrEmpty(info.Extension))
-                    filename += ".ms";
-            }
+            if (string.IsNullOrEmpty(path))
+                directoryname = moduledirectory;
+            else
+                directoryname = Path.Combine(path, moduledirectory);
 
-            return machine.ExecuteFile(filename);
+            string filename = Path.Combine(directoryname, name);
+            FileInfo fileinfo = new FileInfo(filename);
+
+            if (Directory.Exists(filename))
+                filename = Path.Combine(filename, "init.ms");
+            else if (string.IsNullOrEmpty(fileinfo.Extension))
+                filename += ".ms";
+
+            if (File.Exists(filename))
+                return filename;
+
+            return null;
         }
     }
 }
