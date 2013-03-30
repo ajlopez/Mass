@@ -83,6 +83,22 @@
             if (File.Exists(filename))
                 return filename;
 
+            DirectoryInfo dirinfo;
+
+            if (string.IsNullOrEmpty(path))
+                dirinfo = new DirectoryInfo(".");
+            else
+                dirinfo = new DirectoryInfo(path);
+
+            try
+            {
+                if (dirinfo.Parent != null)
+                    return this.GetFilename(dirinfo.Parent.FullName, moduledirectory, name);
+            }
+            catch
+            {
+            }
+
             return null;
         }
     }
