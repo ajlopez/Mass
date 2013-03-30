@@ -244,6 +244,18 @@
             AssertModule(context.GetValue("module"));
         }
 
+        [TestMethod]
+        public void ExecuteRequireModuleFileUsingCache()
+        {
+            Context context = new Context(this.machine.RootContext);
+            context.SetValue("require", new RequireFunction(this.machine, "MachineFiles"));
+            var original = this.machine.ExecuteFile("MachineFiles\\RequireModule1.ms", context);
+            var result = this.machine.ExecuteFile("MachineFiles\\RequireModule1.ms", context, true);
+
+            Assert.IsNotNull(result);
+            Assert.AreSame(original, result);
+        }
+
         private static void AssertModule(object result)
         {
             Assert.IsNotNull(result);

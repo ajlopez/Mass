@@ -18,9 +18,21 @@
             Machine machine = new Machine();
             RequireFunction require = new RequireFunction(machine);
 
+            AssertModule(require.Apply(new object[] { "SimpleModule.ms" }));
+        }
+
+        [TestMethod]
+        [DeploymentItem("MachineFiles\\SimpleModule.ms")]
+        public void RequireLocalFileTwice()
+        {
+            Machine machine = new Machine();
+            RequireFunction require = new RequireFunction(machine);
+
+            var original = require.Apply(new object[] { "SimpleModule" });
             var result = require.Apply(new object[] { "SimpleModule" });
 
-            AssertModule(require.Apply(new object[] { "SimpleModule.ms" }));
+            AssertModule(result);
+            Assert.AreSame(original, result);
         }
 
         [TestMethod]

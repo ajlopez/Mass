@@ -16,7 +16,7 @@ Mass takes few key ideas from different languages.
 - End of line as command separation
 - Explicit 'end' to close block statements
 - Functions as first class citizens
-- require('module') a la Node.js (WIP)
+- require('module') a la Node.js
 - Dynamic objects, as in Javascript or Python. You can assign any property at any time
 - No ; to separate commands nor { } to group statements
 - No access to global variables inside a function (WIP)

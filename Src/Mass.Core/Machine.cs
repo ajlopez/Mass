@@ -11,6 +11,7 @@
     public class Machine
     {
         private Context rootcontext = new Context();
+        private IDictionary<string, object> filecache = new Dictionary<string, object>();
 
         public Machine()
         {
@@ -39,16 +40,35 @@
 
         public object ExecuteFile(string filename)
         {
+            return this.ExecuteFile(filename, false);
+        }
+
+        public object ExecuteFile(string filename, bool usecache)
+        {
             FileInfo fileinfo = new FileInfo(filename);
             string path = fileinfo.DirectoryName;
             Context newcontext = new Context(this.rootcontext);
             newcontext.SetValue("require", new RequireFunction(this, path));
-            return this.ExecuteFile(filename, newcontext);
+            return this.ExecuteFile(filename, newcontext, usecache);
         }
 
         public object ExecuteFile(string filename, Context context)
         {
-            return this.ExecuteText(System.IO.File.ReadAllText(filename), context);
+            return this.ExecuteFile(filename, context, false);
+        }
+
+        public object ExecuteFile(string filename, Context context, bool usecache)
+        {
+            string fullname = (new FileInfo(filename)).FullName;
+
+            if (usecache && this.filecache.ContainsKey(fullname))
+                return this.filecache[fullname];
+            
+            object value = this.ExecuteText(System.IO.File.ReadAllText(filename), context);
+
+            this.filecache[fullname] = value;
+
+            return value;
         }
     }
 }
