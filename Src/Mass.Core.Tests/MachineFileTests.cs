@@ -191,23 +191,7 @@
             context.SetValue("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule1.ms", context);
 
-            var result = context.GetValue("module");
-
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(DynamicObject));
-
-            var dobj = (DynamicObject)result;
-
-            Assert.AreEqual(1, dobj.GetValue("one"));
-            Assert.AreEqual(2, dobj.GetValue("two"));
-            Assert.AreEqual(3, dobj.GetValue("three"));
-
-            Assert.IsNull(dobj.GetValue("add"));
-
-            var foo = dobj.GetValue("foo");
-
-            Assert.IsNotNull(foo);
-            Assert.IsInstanceOfType(foo, typeof(IFunction));
+            AssertModule(context.GetValue("module"));
         }
 
         [TestMethod]
@@ -217,8 +201,11 @@
             context.SetValue("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule2.ms", context);
 
-            var result = context.GetValue("module");
+            AssertModule(context.GetValue("module"));
+        }
 
+        private static void AssertModule(object result)
+        {
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DynamicObject));
 
