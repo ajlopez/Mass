@@ -13,13 +13,6 @@
     {
         public static void SetValue(object obj, string name, object value)
         {
-            if (obj is DynamicObject)
-            {
-                ((DynamicObject)obj).Set(name, value);
-
-                return;
-            }
-
             Type type = obj.GetType();
 
             type.InvokeMember(name, System.Reflection.BindingFlags.SetProperty | System.Reflection.BindingFlags.SetField | System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance, null, obj, new object[] { value });
@@ -27,9 +20,6 @@
 
         public static object GetValue(object obj, string name)
         {
-            if (obj is DynamicObject)
-                return ((DynamicObject)obj).Get(name);
-
             Type type = obj.GetType();
 
             try
@@ -44,26 +34,6 @@
 
         public static object GetValue(object obj, string name, IList<object> arguments)
         {
-            if (obj is DynamicObject)
-            {
-                DynamicObject dobj = (DynamicObject)obj;
-
-                if (arguments == null)
-                    return dobj.Get(name);
-
-                var method = dobj.Get(name) as IFunction;
-
-                if (method != null) 
-                {
-                    var args = new List<object>(arguments);
-                    args.Insert(0, dobj);
-                    return method.Apply(args);
-                }
-            }
-
-            if (obj is DynamicObject && (arguments == null || arguments.Count == 0))
-                return ((DynamicObject)obj).Get(name);
-
             return GetNativeValue(obj, name, arguments);
         }
 

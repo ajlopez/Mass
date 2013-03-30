@@ -26,15 +26,6 @@
         }
 
         [TestMethod]
-        public void GetValueFromDynamicObject()
-        {
-            DynamicObject dynobj = new DynamicObject(null);
-            dynobj.Set("FirstName", "Adam");
-
-            Assert.AreEqual("Adam", ObjectUtilities.GetValue(dynobj, "FirstName"));
-        }
-
-        [TestMethod]
         public void IsNumber()
         {
             Assert.IsTrue(ObjectUtilities.IsNumber((byte)1));
@@ -199,16 +190,6 @@
             ObjectUtilities.SetValue(person, "FirstName", "Adam");
 
             Assert.AreEqual("Adam", person.FirstName);
-        }
-
-        [TestMethod]
-        public void SetValueInDynamicObject()
-        {
-            DynamicObject obj = new DynamicObject(null);
-
-            ObjectUtilities.SetValue(obj, "FirstName", "Adam");
-
-            Assert.AreEqual("Adam", obj.Get("FirstName"));
         }
 
         [TestMethod]
