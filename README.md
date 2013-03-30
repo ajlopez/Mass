@@ -148,6 +148,68 @@ end
 nero = new Dog("Nero")
 ```
 
+line comments with `#`
+```
+# this is a comment
+a = 1 # a simple assignment
+```
+
+## Predefined functions
+
+print and println
+```
+println("Hello, world")
+println("Hello", "world") # output: two lines
+
+print("Hello, ")
+println("world")
+```
+
+### Require
+
+To import a module
+```
+mymodule = require("mymodule")
+```
+Variants
+```
+mymodule = require("mymodule.ms")
+mymodule = require("./mymodule")
+mymodule = require("/libs/mymodule")
+```
+
+A module is a `.ms` file, executed in its own context. The value returned by `require` function is the value
+returned by module code. If no explicit return, the value of the last command is returned
+
+Example:
+```
+define add(a, b)
+	a+b
+end
+
+{
+	one = 1,
+	two = 2,
+	three = 3,
+	foo = add
+}
+```
+
+The return value is an object containing `one`, `two`, `three` and `foo`, the last one pointing to internal 
+defined function `add`
+
+The lookup module algorithm:
+
+- If the name has an absolute path, search only in that path
+- Search in current file directory
+- If file exists with extensions `.ms`, that file is loaded
+- If directory exists named as the module, the file `init.ms` in that directory is loaded
+- If file does not exists, the same search is repeated in `modules` subdirectory in current file directory
+- If file does not exists, the search is repeated at `modules` subdirectory in parent directory, and so on, up to top directory
+- If file does not exists, the search is repeated in `node_modules` subdirectory in current file directory
+- If file does not exists, the search is repeated at `node_modules` subdirectory in parent directory, and so on, up to top directory
+- If the file is not found, search in current executing assembly directory instead of current file directory
+
 ## Samples
 
 Hello world
@@ -211,7 +273,7 @@ mass <file> [<file> ... ]
 - Object definition
 - Real numbers
 - Characters
-- `require(<modulename>)`
+- else in if
 - REPL
 
 ## Origin of Name
