@@ -35,7 +35,7 @@
             if (filename == null)
                 throw new InvalidOperationException(string.Format("cannot find module '{0}'", name));
 
-            return machine.ExecuteFile(filename);
+            return this.machine.ExecuteFile(filename);
         }
 
         private string GetFilename(string path, string name)

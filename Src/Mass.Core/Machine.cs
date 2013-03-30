@@ -2,11 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using Mass.Core.Compiler;
     using Mass.Core.Functions;
-    using System.IO;
 
     public class Machine
     {
