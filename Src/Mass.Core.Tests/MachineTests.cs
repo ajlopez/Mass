@@ -170,5 +170,28 @@
             Assert.AreEqual("Adam", result);
             Assert.AreEqual("Adam", a.GetValue("name"));
         }
+
+        [TestMethod]
+        public void ExecuteIfThen()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("if 1\ntwo=2\nend");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+            Assert.AreEqual(2, machine.RootContext.GetValue("two"));
+        }
+
+        [TestMethod]
+        public void ExecuteIfThenElse()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("if a\none=1\nelse\ntwo=2\nend");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+            Assert.AreEqual(2, machine.RootContext.GetValue("two"));
+            Assert.IsNull(machine.RootContext.GetValue("one"));
+        }
     }
 }

@@ -83,6 +83,10 @@ if
 if <expr>
 	<command>
 	...
+[else
+	<command>
+	...
+]
 end
 ```
 
@@ -273,7 +277,6 @@ mass <file> [<file> ... ]
 - Object definition
 - Real numbers
 - Characters
-- else in if
 - REPL
 
 ## Origin of Name

@@ -321,15 +321,6 @@
     <milliseconds>161</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>03/28/2013 16:34:00</timestamp>
-    <milliseconds>848</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="CallDotExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -395,9 +386,6 @@
       </violation>
     </violations>
   </sourcecode>
-  <project key="71648008">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="TypeUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -405,6 +393,18 @@
     </settings>
     <timestamp>03/28/2013 17:31:18</timestamp>
     <milliseconds>594</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="71648008">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>03/30/2013 19:15:01</timestamp>
+    <milliseconds>651</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

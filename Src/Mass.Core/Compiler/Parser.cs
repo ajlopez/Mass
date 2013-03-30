@@ -12,6 +12,8 @@
     public class Parser
     {
         private static string[][] binaryoperators = new string[][] { new string[] { "==", "!=", "<", ">", "<=", ">=" }, new string[] { "+", "-" }, new string[] { "*", "/" } };
+        private static string[] endnames = new string[] { "end" };
+        private static string[] ifendnames = new string[] { "end", "else" };
         private static ICommand breakcmd = new BreakCommand();
         private static ICommand continuecmd = new ContinueCommand();
 
@@ -136,8 +138,13 @@
         {
             IExpression condition = this.ParseExpression();
             this.ParseEndOfCommand();
-            ICommand thencommand = this.ParseCommandList();
-            return new IfCommand(condition, thencommand);
+            string endname;
+            ICommand thencommand = this.ParseCommandList(ifendnames, out endname);
+
+            if (endname != "else")
+                return new IfCommand(condition, thencommand);
+
+            return new IfCommand(condition, thencommand, this.ParseCommandList());
         }
 
         private ICommand ParseForCommand()
@@ -247,17 +254,23 @@
 
         private ICommand ParseCommandList()
         {
+            string endname;
+            return this.ParseCommandList(endnames, out endname);
+        }
+
+        private ICommand ParseCommandList(IList<string> endnames, out string endname)
+        {
             Token token;
             IList<ICommand> commands = new List<ICommand>();
 
-            for (token = this.lexer.NextToken(); token != null && (token.Type != TokenType.Name || token.Value != "end"); token = this.lexer.NextToken())
+            for (token = this.lexer.NextToken(); token != null && (token.Type != TokenType.Name || !endnames.Contains(token.Value)); token = this.lexer.NextToken())
             {
                 this.lexer.PushToken(token);
                 commands.Add(this.ParseCommand());
             }
 
             this.lexer.PushToken(token);
-            this.ParseName("end");
+            endname = this.ParseName();
             this.ParseEndOfCommand();
 
             if (commands.Count == 1)
