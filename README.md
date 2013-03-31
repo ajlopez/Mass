@@ -66,6 +66,36 @@ a/(1+b)
 ```
 The operators `+`, `-`, `*`, `/` are supported.
 
+## Variable scope
+
+A variable set in file, has file scope:
+```
+a = 1
+```
+
+A variable with file scope, can be accessed from functions defined in the same file
+```
+a = 1
+
+define foo()
+	a+1
+end
+
+foo() # returns 2
+```
+
+If a variable is set in a function, it will have function scope
+```
+a = 1
+
+define foo()
+	a = 2
+end
+
+foo() # returns 2
+a # it is still 1
+```
+
 ## Commands
 
 assignment
@@ -160,8 +190,7 @@ a = 1 # a simple assignment
 
 ## Predefined variables
 
-The `global` variable is special: it's the only variable that is not a local one. It points to root context
-
+The `global` variable is special: it's the only variable that is not a local one. It points to root context.
 ```
 # global variable
 global.a = 1
@@ -173,11 +202,18 @@ define foo()
 	# set global variable
 	global.a = 2
 	
-	# set local variable in function
+	# create and set local variable with function scope
+	# you cannot change a file variable value from function scope
 	a = 4
 end
 
-foo()
+define bar()
+	# get file local variable value
+	a
+end
+
+foo() # == 4
+bar() # == 3
 ```
 
 ## Predefined functions
