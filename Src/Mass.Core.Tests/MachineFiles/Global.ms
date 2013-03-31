@@ -1,9 +1,16 @@
 ﻿
+# global variable
 global.a = 1
-a = 3 # file local variable
+
+# file local variable
+a = 3
 
 define foo()
-	global.a = 2 # global variable
+	# set global variable
+	global.a = 2
+	
+	# set local variable in function
+	a = 4
 end
 
 foo()

@@ -105,7 +105,7 @@
             var a = this.machine.RootContext.Get("a");
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(4, result);
             Assert.IsNotNull(a);
             Assert.AreEqual(2, a);
             Assert.AreEqual(3, context.Get("a"));

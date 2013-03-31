@@ -12,15 +12,15 @@ Mass takes few key ideas from different languages.
 - No typed variables
 - Ruby syntax, but with explicit use of parentheses to call functions
 - 'define' for function definition
-- 'function' for anonymous functions
+- 'function' for anonymous functions (WIP)
 - End of line as command separation
 - Explicit 'end' to close block statements
 - Functions as first class citizens
 - require('module') a la Node.js
 - Dynamic objects, as in Javascript or Python. You can assign any property at any time
 - No ; to separate commands nor { } to group statements
-- No access to global variables inside a function (WIP)
-- Variable scope: the function (WIP)
+- Explicit access to global variables
+- Variable scope: the function
 - Access to underlying classes and objects (.NET class libraries)
 
 ## Expressions
@@ -156,6 +156,28 @@ line comments with `#`
 ```
 # this is a comment
 a = 1 # a simple assignment
+```
+
+## Predefined variables
+
+The `global` variable is special: it's the only variable that is not a local one. It points to root context
+
+```
+# global variable
+global.a = 1
+
+# file local variable
+a = 3
+
+define foo()
+	# set global variable
+	global.a = 2
+	
+	# set local variable in function
+	a = 4
+end
+
+foo()
 ```
 
 ## Predefined functions
