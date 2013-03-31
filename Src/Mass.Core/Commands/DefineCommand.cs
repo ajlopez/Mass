@@ -22,17 +22,12 @@
         public object Execute(Context context)
         {
             var dclass = context.Class;
+            var function = new DefinedFunction(this.command, parameters, context);
 
             if (dclass != null)
-            {
-                var result = new DefinedFunction(this.command, parameters, context);
-                dclass.SetInstanceMethod(this.name, (IFunction)result);
-            }
+                dclass.SetInstanceMethod(this.name, function);
             else
-            {
-                var result = new DefinedFunction(this.command, this.parameters, context);
-                context.Set(this.name, result);
-            }
+                context.Set(this.name, function);
 
             return null;
         }
