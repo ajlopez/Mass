@@ -9,6 +9,7 @@
     public class Context : IValues
     {
         private Context parent;
+        private bool parentisvisible;
         private DefinedClass @class;
         private IDictionary<string, object> values = new Dictionary<string, object>();
         private object returnvalue;
@@ -22,14 +23,15 @@
         }
 
         public Context(Context parent)
-            : this(parent, null)
+            : this(parent, false, null)
         {
         }
 
-        public Context(Context parent, DefinedClass @class)
+        public Context(Context parent, bool parentisvisible, DefinedClass @class)
         {
             this.parent = parent;
             this.@class = @class;
+            this.parentisvisible = parentisvisible;
         }
 
         public DefinedClass Class { get { return this.@class; } }
@@ -59,6 +61,9 @@
         {
             if (this.values.ContainsKey(name))
                 return this.values[name];
+
+            if (parent != null && this.parentisvisible)
+                return parent.Get(name);
 
             if (name == "global")
             {

@@ -32,7 +32,7 @@
 
             var dclass = (DefinedClass)value;
 
-            Context classcontext = new Context(context, dclass);
+            Context classcontext = new Context(context, false, dclass);
 
             this.command.Execute(classcontext);
 

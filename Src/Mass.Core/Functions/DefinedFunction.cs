@@ -22,7 +22,7 @@
 
         public object Apply(IList<object> values)
         {
-            Context newcontext = new Context(this.context);
+            Context newcontext = new Context(this.context, true, null);
 
             int k = 0;
             int cv = values.Count;

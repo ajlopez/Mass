@@ -60,6 +60,26 @@
         }
 
         [TestMethod]
+        public void GetValueAtParentAsNull()
+        {
+            Context parent = new Context();
+            Context context = new Context(parent);
+
+            parent.Set("one", 1);
+            Assert.IsNull(context.Get("one"));
+        }
+
+        [TestMethod]
+        public void GetValueAtParentIfVisible()
+        {
+            Context parent = new Context();
+            Context context = new Context(parent, true, null);
+
+            parent.Set("one", 1);
+            Assert.AreEqual(1, context.Get("one"));
+        }
+
+        [TestMethod]
         public void GetNames()
         {
             Context parent = new Context();
