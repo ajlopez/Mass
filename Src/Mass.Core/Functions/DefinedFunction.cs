@@ -23,11 +23,22 @@
         public object Apply(IList<object> values)
         {
             Context newcontext = new Context(this.context, true, null);
+            return this.DoApply(newcontext, values);
+        }
 
+        public object Apply(object self, IList<object> values)
+        {
+            Context newcontext = new Context(this.context, true, null);
+            newcontext.Set("self", self);
+            return this.DoApply(newcontext, values);
+        }
+
+        private object DoApply(Context newcontext, IList<object> values)
+        {
             int k = 0;
             int cv = values.Count;
 
-            foreach (var parameter in this.parameters) 
+            foreach (var parameter in this.parameters)
             {
                 newcontext.Set(parameter, values[k]);
                 k++;

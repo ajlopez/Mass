@@ -101,5 +101,10 @@
 
             return null;
         }
+
+        public object Apply(object self, IList<object> values)
+        {
+            return this.Apply(values);
+        }
     }
 }

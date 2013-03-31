@@ -25,9 +25,7 @@
 
             if (dclass != null)
             {
-                var selfparameters = new List<string>(this.parameters);
-                selfparameters.Insert(0, "self");
-                var result = new DefinedFunction(this.command, selfparameters, context);
+                var result = new DefinedFunction(this.command, parameters, context);
                 dclass.SetInstanceMethod(this.name, (IFunction)result);
             }
             else

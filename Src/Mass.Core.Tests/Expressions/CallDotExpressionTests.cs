@@ -26,7 +26,7 @@ using Mass.Core.Tests.Classes;
             Context context = new Context();
             context.Set("obj", obj);
 
-            obj.Set("area", new DefinedFunction(body, new string[] { "self" }, null));
+            obj.Set("area", new DefinedFunction(body, new string[] { }, null));
 
             CallDotExpression expr = new CallDotExpression(new DotExpression(new NameExpression("obj"), "area"), new IExpression[] { });
 

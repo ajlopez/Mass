@@ -31,10 +31,9 @@
 
             if (vals != null)
             {
-                values.Insert(0, vals);
                 var method = (IFunction)vals.Get(this.expression.Name);
 
-                return method.Apply(values);
+                return method.Apply(vals, values);
             }
 
             return ObjectUtilities.GetValue(obj, this.expression.Name, values);

@@ -38,10 +38,7 @@
             var initialize = obj.Get("initialize") as IFunction;
 
             if (initialize != null)
-            {
-                values.Insert(0, obj);
-                initialize.Apply(values);
-            }
+                initialize.Apply(obj, values);
 
             return obj;
         }
