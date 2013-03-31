@@ -22,9 +22,9 @@
 
         public object Execute(Context context)
         {
-            var obj = (DynamicObject)this.leftvalue.Expression.Evaluate(context);
+            var values = (IValues)this.leftvalue.Expression.Evaluate(context);
             object value = this.expression.Evaluate(context);
-            obj.Set(this.leftvalue.Name, value);
+            values.Set(this.leftvalue.Name, value);
             return value;
         }
 

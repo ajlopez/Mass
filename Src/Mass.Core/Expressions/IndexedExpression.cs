@@ -11,30 +11,27 @@
     public class IndexedExpression : IExpression
     {
         private IExpression expression;
-        private IList<IExpression> indexexpressions;
+        private IExpression indexexpression;
 
-        public IndexedExpression(IExpression expression, IList<IExpression> indexexpressions)
+        public IndexedExpression(IExpression expression, IExpression indexexpression)
         {
             this.expression = expression;
-            this.indexexpressions = indexexpressions;
+            this.indexexpression = indexexpression;
         }
 
         public IExpression Expression { get { return this.expression; } }
 
-        public IList<IExpression> IndexExpressions { get { return this.indexexpressions; } }
+        public IExpression IndexExpression { get { return this.indexexpression; } }
 
         public object Evaluate(Context context)
         {
             var obj = this.expression.Evaluate(context);
-            IList<object> indexes = new List<object>();
+            object index = this.indexexpression.Evaluate(context);
 
-            foreach (var indexexpression in this.indexexpressions)
-                indexes.Add(indexexpression.Evaluate(context));
+            if (obj is DynamicObject)
+                return ((DynamicObject)obj).Get(index.ToString());
 
-            if (obj is DynamicObject && indexes.Count == 1)
-                return ((DynamicObject)obj).Get(indexes[0].ToString());
-
-            return ObjectUtilities.GetIndexedValue(obj, indexes);
+            return ObjectUtilities.GetIndexedValue(obj, index);
         }
 
         public override bool Equals(object obj)
@@ -49,12 +46,8 @@
                 if (!this.expression.Equals(expr.expression))
                     return false;
 
-                if (this.indexexpressions.Count != expr.indexexpressions.Count)
+                if (!this.indexexpression.Equals(expr.indexexpression))
                     return false;
-
-                for (var k = 0; k < this.indexexpressions.Count; k++)
-                    if (!this.indexexpressions[k].Equals(expr.indexexpressions[k]))
-                        return false;
 
                 return true;
             }
@@ -64,12 +57,7 @@
 
         public override int GetHashCode()
         {
-            int result = this.expression.GetHashCode();
-
-            foreach (var indexexpression in this.indexexpressions)
-                result += indexexpression.GetHashCode();
-
-            return result;
+            return this.expression.GetHashCode() + this.indexexpression.GetHashCode();
         }
     }
 }

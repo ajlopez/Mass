@@ -15,7 +15,7 @@
         [TestMethod]
         public void AssignValueToDynamicObject()
         {
-            AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("age") }), new ConstantExpression(800));
+            AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new ConstantExpression("age")), new ConstantExpression(800));
             Context context = new Context();
             DynamicObject obj = new DynamicObject();
             context.Set("obj", obj);
@@ -30,7 +30,7 @@
         [TestMethod]
         public void AssignValueToNativeArray()
         {
-            AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("array"), new IExpression[] { new ConstantExpression(0) }), new ConstantExpression(1));
+            AssignIndexedCommand cmd = new AssignIndexedCommand(new IndexedExpression(new NameExpression("array"), new ConstantExpression(0)), new ConstantExpression(1));
             Context context = new Context();
             var array = new int[1];
             context.Set("array", array);
@@ -45,10 +45,10 @@
         [TestMethod]
         public void Equals()
         {
-            AssignIndexedCommand cmd1 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("age") }), new ConstantExpression(1));
-            AssignIndexedCommand cmd2 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("age") }), new ConstantExpression(2));
-            AssignIndexedCommand cmd3 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("name") }), new ConstantExpression(1));
-            AssignIndexedCommand cmd4 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new IExpression[] { new ConstantExpression("age") }), new ConstantExpression(1));
+            AssignIndexedCommand cmd1 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new ConstantExpression("age")), new ConstantExpression(1));
+            AssignIndexedCommand cmd2 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new ConstantExpression("age")), new ConstantExpression(2));
+            AssignIndexedCommand cmd3 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new ConstantExpression("name")), new ConstantExpression(1));
+            AssignIndexedCommand cmd4 = new AssignIndexedCommand(new IndexedExpression(new NameExpression("obj"), new ConstantExpression("age")), new ConstantExpression(1));
 
             Assert.IsTrue(cmd1.Equals(cmd4));
             Assert.IsTrue(cmd4.Equals(cmd1));

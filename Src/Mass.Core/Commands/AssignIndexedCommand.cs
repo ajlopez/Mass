@@ -24,13 +24,13 @@
         public object Execute(Context context)
         {
             var obj = this.leftvalue.Expression.Evaluate(context);
-            var index = this.leftvalue.IndexExpressions[0].Evaluate(context);
+            var index = this.leftvalue.IndexExpression.Evaluate(context);
             object value = this.expression.Evaluate(context);
 
-            if (obj is DynamicObject)
-                ((DynamicObject)obj).Set(index.ToString(), value);
+            if (obj is IValues)
+                ((IValues)obj).Set(index.ToString(), value);
             else
-                ObjectUtilities.SetIndexedValue(obj, new object[] { index }, value);
+                ObjectUtilities.SetIndexedValue(obj, index, value);
 
             return value;
         }

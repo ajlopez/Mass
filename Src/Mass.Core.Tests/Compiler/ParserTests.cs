@@ -737,7 +737,7 @@
         public void ParseIndexedExpression()
         {
             Parser parser = new Parser("a[b]");
-            IExpression expected = new IndexedExpression(new NameExpression("a"), new List<IExpression>() { new NameExpression("b") });
+            IExpression expected = new IndexedExpression(new NameExpression("a"), new NameExpression("b"));
 
             var result = parser.ParseExpression();
 
@@ -751,7 +751,7 @@
         public void ParseAssignIndexedCommand()
         {
             Parser parser = new Parser("a[b] = 1");
-            ICommand expected = new AssignIndexedCommand(new IndexedExpression(new NameExpression("a"), new IExpression[] { new NameExpression("b") }), new ConstantExpression(1));
+            ICommand expected = new AssignIndexedCommand(new IndexedExpression(new NameExpression("a"), new NameExpression("b")), new ConstantExpression(1));
 
             var result = parser.ParseCommand();
 

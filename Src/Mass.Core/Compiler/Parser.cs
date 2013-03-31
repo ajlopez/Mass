@@ -359,7 +359,7 @@
 
                 while (this.TryParseToken(TokenType.Separator, "["))
                 {
-                    expr = new IndexedExpression(expr, new IExpression[] { this.ParseExpression() });
+                    expr = new IndexedExpression(expr, this.ParseExpression());
                     this.ParseToken(TokenType.Separator, "]");
                 }
 

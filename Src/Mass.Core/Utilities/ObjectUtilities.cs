@@ -61,55 +61,46 @@
         }
 
         // TODO implement a method with only one index
-        public static object GetIndexedValue(object obj, IList<object> indexes)
+        public static object GetIndexedValue(object obj, object index)
         {
             if (obj is System.Array)
-                return GetIndexedValue((System.Array)obj, indexes);
+                return GetIndexedValue((System.Array)obj, index);
 
             if (obj is IList)
-                return GetIndexedValue((IList)obj, indexes);
+                return GetIndexedValue((IList)obj, index);
 
             if (obj is IDictionary)
-                return GetIndexedValue((IDictionary)obj, indexes);
+                return GetIndexedValue((IDictionary)obj, index);
 
-            if (obj is DynamicObject && indexes != null && indexes.Count == 1)
-                return ((DynamicObject)obj).Get((string)indexes[0]);
-
-            return GetValue(obj, string.Empty, indexes); 
+            return GetValue(obj, string.Empty, new object[] { index }); 
         }
 
         // TODO implement a method with only one index
-        public static void SetIndexedValue(object obj, IList<object> indexes, object value)
+        public static void SetIndexedValue(object obj, object index, object value)
         {
             if (obj is System.Array)
             {
-                SetIndexedValue((System.Array)obj, indexes, value);
+                SetIndexedValue((System.Array)obj, index, value);
                 return;
             }
 
             if (obj is IList)
             {
-                if (indexes.Count != 1)
-                    throw new InvalidOperationException("invalid number of subindices");
-
-                int index = (int)indexes[0];
+                int intindex = (int)index;
 
                 IList list = (IList)obj;
 
-                if (list.Count == index)
+                if (list.Count == intindex)
                     list.Add(value);
                 else
-                    list[index] = value;
+                    list[intindex] = value;
 
                 return;
             }
 
             if (obj is IDictionary)
             {
-                if (indexes.Count != 1)
-                    throw new InvalidOperationException("invalid number of subindices");
-
-                ((IDictionary)obj)[indexes[0]] = value;
+                ((IDictionary)obj)[index] = value;
 
                 return;
             }
@@ -118,53 +109,25 @@
             throw new InvalidOperationException(string.Format("not indexed value of type {0}", obj.GetType().ToString()));
         }
 
-        public static void SetIndexedValue(System.Array array, IList<object> indexes, object value)
+        public static void SetIndexedValue(System.Array array, object index, object value)
         {
-            switch (indexes.Count)
-            {
-                case 1:
-                    array.SetValue(value, (int)indexes[0]);
-                    return;
-                case 2:
-                    array.SetValue(value, (int)indexes[0], (int)indexes[1]);
-                    return;
-                case 3:
-                    array.SetValue(value, (int)indexes[0], (int)indexes[1], (int)indexes[2]);
-                    return;
-            }
-
-            throw new InvalidOperationException("invalid number of subindices");
+            array.SetValue(value, (int)index);
+            return;
         }
 
-        private static object GetIndexedValue(System.Array array, IList<object> indexes)
+        private static object GetIndexedValue(System.Array array, object index)
         {
-            switch (indexes.Count)
-            {
-                case 1:
-                    return array.GetValue((int)indexes[0]);
-                case 2:
-                    return array.GetValue((int)indexes[0], (int)indexes[1]);
-                case 3:
-                    return array.GetValue((int)indexes[0], (int)indexes[1], (int)indexes[2]);
-            }
-
-            throw new InvalidOperationException("invalid number of indexes");
+            return array.GetValue((int)index);
         }
 
-        private static object GetIndexedValue(IList list, IList<object> indexes)
+        private static object GetIndexedValue(IList list, object index)
         {
-            if (indexes.Count != 1)
-                throw new InvalidOperationException("invalid number of indexes");
-
-            return list[(int)indexes[0]];
+            return list[(int)index];
         }
 
-        private static object GetIndexedValue(IDictionary dictionary, IList<object> indexes)
+        private static object GetIndexedValue(IDictionary dictionary, object index)
         {
-            if (indexes.Count != 1)
-                throw new InvalidOperationException("invalid number of indexes");
-
-            return dictionary[indexes[0]];
+            return dictionary[index];
         }
     }
 }

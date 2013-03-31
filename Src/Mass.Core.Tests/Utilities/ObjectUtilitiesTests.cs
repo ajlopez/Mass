@@ -42,10 +42,9 @@
         }
 
         [TestMethod]
-        public void GetIndexedValuesFromArrays()
+        public void GetIndexedValuesFromArray()
         {
-            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(new int[] { 1, 2, 3 }, new object[] { 1 }));
-            Assert.AreEqual(3, ObjectUtilities.GetIndexedValue(new int[,] { { 1, 2 }, { 2, 3 } }, new object[] { 1, 1 }));
+            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(new int[] { 1, 2, 3 }, 1));
         }
 
         [TestMethod]
@@ -57,9 +56,9 @@
             list.Add(2);
             list.Add(3);
 
-            Assert.AreEqual(1, ObjectUtilities.GetIndexedValue(list, new object[] { 0 }));
-            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(list, new object[] { 1 }));
-            Assert.AreEqual(3, ObjectUtilities.GetIndexedValue(list, new object[] { 2 }));
+            Assert.AreEqual(1, ObjectUtilities.GetIndexedValue(list, 0));
+            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(list, 1));
+            Assert.AreEqual(3, ObjectUtilities.GetIndexedValue(list, 2));
         }
 
         [TestMethod]
@@ -71,74 +70,9 @@
             numbers["two"] = 2;
             numbers["three"] = 3;
 
-            Assert.AreEqual(1, ObjectUtilities.GetIndexedValue(numbers, new object[] { "one" }));
-            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(numbers, new object[] { "two" }));
-            Assert.AreEqual(3, ObjectUtilities.GetIndexedValue(numbers, new object[] { "three" }));
-        }
-
-        [TestMethod]
-        public void InvalidNumberOfIndexForDictionary()
-        {
-            Dictionary<string, int> numbers = new Dictionary<string, int>();
-
-            try
-            {
-                ObjectUtilities.GetIndexedValue(numbers, new object[] { "one", "two" });
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
-                Assert.AreEqual("invalid number of indexes", ex.Message);
-            }
-        }
-
-        [TestMethod]
-        public void InvalidNumberOfIndexForList()
-        {
-            IList<object> numbers = new List<object>() { 1, 2, 3 };
-
-            try
-            {
-                ObjectUtilities.GetIndexedValue(numbers, new object[] { "one", "two" });
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
-                Assert.AreEqual("invalid number of indexes", ex.Message);
-            }
-        }
-
-        [TestMethod]
-        public void InvalidNumberOfIndexForArray()
-        {
-            int[] numbers = new int[] { 1, 2, 3 };
-
-            try
-            {
-                ObjectUtilities.GetIndexedValue(numbers, new object[] { 1, 1, 1, 1 });
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.IsInstanceOfType(ex, typeof(InvalidOperationException));
-                Assert.AreEqual("invalid number of indexes", ex.Message);
-            }
-        }
-
-        [TestMethod]
-        public void GetIndexedValuesFromDynamicObject()
-        {
-            DynamicObject obj = new DynamicObject(null);
-            obj.Set("name", "Adam");
-            obj.Set("get_age", new DefinedFunction(null, new string[] { }, null));
-
-            Assert.AreEqual("Adam", ObjectUtilities.GetIndexedValue(obj, new object[] { "name" }));
-            
-            object f = ObjectUtilities.GetIndexedValue(obj, new object[] { "get_age" });
-            Assert.IsNotNull(f);
-            Assert.IsInstanceOfType(f, typeof(IFunction));
+            Assert.AreEqual(1, ObjectUtilities.GetIndexedValue(numbers, "one"));
+            Assert.AreEqual(2, ObjectUtilities.GetIndexedValue(numbers, "two"));
+            Assert.AreEqual(3, ObjectUtilities.GetIndexedValue(numbers, "three"));
         }
 
         [TestMethod]
@@ -146,8 +80,8 @@
         {
             int[] array = new int[2];
 
-            ObjectUtilities.SetIndexedValue(array, new object[] { 0 }, 1);
-            ObjectUtilities.SetIndexedValue(array, new object[] { 1 }, 2);
+            ObjectUtilities.SetIndexedValue(array, 0, 1);
+            ObjectUtilities.SetIndexedValue(array, 1, 2);
 
             Assert.AreEqual(1, array[0]);
             Assert.AreEqual(2, array[1]);
@@ -158,9 +92,9 @@
         {
             List<int> list = new List<int>();
 
-            ObjectUtilities.SetIndexedValue(list, new object[] { 0 }, 1);
-            ObjectUtilities.SetIndexedValue(list, new object[] { 1 }, 2);
-            ObjectUtilities.SetIndexedValue(list, new object[] { 2 }, 3);
+            ObjectUtilities.SetIndexedValue(list, 0, 1);
+            ObjectUtilities.SetIndexedValue(list, 1, 2);
+            ObjectUtilities.SetIndexedValue(list, 2, 3);
 
             Assert.AreEqual(3, list.Count);
             Assert.AreEqual(1, list[0]);
@@ -173,9 +107,9 @@
         {
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
-            ObjectUtilities.SetIndexedValue(dictionary, new object[] { "one" }, 1);
-            ObjectUtilities.SetIndexedValue(dictionary, new object[] { "two" }, 2);
-            ObjectUtilities.SetIndexedValue(dictionary, new object[] { "three" }, 3);
+            ObjectUtilities.SetIndexedValue(dictionary, "one", 1);
+            ObjectUtilities.SetIndexedValue(dictionary, "two", 2);
+            ObjectUtilities.SetIndexedValue(dictionary,  "three", 3);
 
             Assert.AreEqual(1, dictionary["one"]);
             Assert.AreEqual(2, dictionary["two"]);

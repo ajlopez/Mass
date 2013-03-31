@@ -84,6 +84,34 @@
         }
 
         [TestMethod]
+        public void ExecuteLocalFile()
+        {
+            var result = this.machine.ExecuteFile("MachineFiles\\Local.ms", this.machine.RootContext);
+
+            var a = this.machine.RootContext.Find("a");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+            Assert.IsNotNull(a);
+            Assert.AreEqual(1, a);
+        }
+
+        [TestMethod]
+        public void ExecuteGlobalFile()
+        {
+            Context context = new Context(this.machine.RootContext);
+            var result = this.machine.ExecuteFile("MachineFiles\\Global.ms", context);
+
+            var a = this.machine.RootContext.Get("a");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+            Assert.IsNotNull(a);
+            Assert.AreEqual(2, a);
+            Assert.AreEqual(3, context.Get("a"));
+        }
+
+        [TestMethod]
         public void ExecuteForFile()
         {
             this.machine.ExecuteFile("MachineFiles\\For.ms", this.machine.RootContext);

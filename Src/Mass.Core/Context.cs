@@ -60,6 +60,14 @@
             if (this.values.ContainsKey(name))
                 return this.values[name];
 
+            if (name == "global")
+            {
+                if (this.parent != null)
+                    return this.parent.Get(name);
+
+                return this;
+            }
+
             return null;
         }
 
