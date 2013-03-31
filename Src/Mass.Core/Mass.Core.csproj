@@ -77,6 +77,7 @@
     <Compile Include="Expressions\BinaryArithmeticExpression.cs" />
     <Compile Include="Expressions\CallDotExpression.cs" />
     <Compile Include="Expressions\ArrayExpression.cs" />
+    <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Expressions\IndexedExpression.cs" />
     <Compile Include="Expressions\QualifiedNameExpression.cs" />
     <Compile Include="Expressions\DynamicObjectExpression.cs" />
