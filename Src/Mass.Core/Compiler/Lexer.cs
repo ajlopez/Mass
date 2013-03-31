@@ -38,6 +38,11 @@
             return token;
         }
 
+        public void PushLastToken()
+        {
+            this.PushToken(this.lasttoken);
+        }
+
         public Token PeekToken()
         {
             var token = this.NextToken();

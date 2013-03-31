@@ -12,7 +12,7 @@ Mass takes few key ideas from different languages.
 - No typed variables
 - Ruby syntax, but with explicit use of parentheses to call functions
 - 'define' for function definition
-- 'function' for anonymous functions (WIP)
+- 'function' for anonymous functions
 - End of line as command separation
 - Explicit 'end' to close block statements
 - Functions as first class citizens
@@ -65,6 +65,13 @@ a/b
 a/(1+b)
 ```
 The operators `+`, `-`, `*`, `/` are supported.
+
+function expression
+```
+foo = function(a,b)
+	a+b
+end
+```
 
 ## Variable scope
 

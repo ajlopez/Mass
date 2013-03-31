@@ -788,5 +788,19 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ParseFunctionExpression()
+        {
+            Parser parser = new Parser("function (a,b)\na+b\nend");
+            IExpression expected = new FunctionExpression(new string[] { "a", "b" }, new ExpressionCommand(new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("b"), ArithmeticOperator.Add)));
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }

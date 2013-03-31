@@ -31,8 +31,13 @@
             if (token == null)
                 return null;
 
-            if (token.Type == TokenType.Name && token.Value == "new")
-                return this.ParseNewExpression();
+            if (token.Type == TokenType.Name)
+            {
+                if (token.Value == "new")
+                    return this.ParseNewExpression();
+                if (token.Value == "function")
+                    return this.ParseFunctionExpression();
+            }
 
             this.lexer.PushToken(token);
 
@@ -198,6 +203,15 @@
             this.ParseEndOfCommand();
             ICommand body = this.ParseCommandList();
             return new DefineCommand(name, parameters, body);
+        }
+
+        private FunctionExpression ParseFunctionExpression()
+        {
+            IList<string> parameters = this.ParseParameterList();
+            this.ParseEndOfCommand();
+            ICommand body = this.ParseCommandList();
+            this.lexer.PushLastToken();
+            return new FunctionExpression(parameters, body);
         }
 
         private ClassCommand ParseClassCommand()
