@@ -62,27 +62,8 @@
             if (this.values.ContainsKey(name))
                 return this.values[name];
 
-            if (parent != null && this.parentisvisible)
+            if (parent != null)
                 return parent.Get(name);
-
-            if (name == "global")
-            {
-                if (this.parent != null)
-                    return this.parent.Get(name);
-
-                return this;
-            }
-
-            return null;
-        }
-
-        public object Find(string name)
-        {
-            if (this.values.ContainsKey(name))
-                return this.values[name];
-
-            if (this.parent != null)
-                return this.parent.Find(name);
 
             return null;
         }

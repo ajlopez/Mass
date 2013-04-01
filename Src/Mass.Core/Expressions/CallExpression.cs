@@ -19,7 +19,7 @@
 
         public object Evaluate(Context context)
         {
-            IFunction function = (IFunction)context.Find(this.name);
+            IFunction function = (IFunction)context.Get(this.name);
 
             IList<object> values = new List<object>();
 

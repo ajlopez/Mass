@@ -20,19 +20,26 @@
         }
 
         [TestMethod]
+        public void RootContextIsGlobal()
+        {
+            Machine machine = new Machine();
+            Assert.AreSame(machine.RootContext, machine.RootContext.Get("global"));
+        }
+
+        [TestMethod]
         public void PredefinedFunctions()
         {
             Machine machine = new Machine();
 
-            var result = machine.RootContext.Find("println");
+            var result = machine.RootContext.Get("println");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
 
-            result = machine.RootContext.Find("print");
+            result = machine.RootContext.Get("print");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
 
-            result = machine.RootContext.Find("require");
+            result = machine.RootContext.Get("require");
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(IFunction));
         }
@@ -42,8 +49,8 @@
         {
             Machine machine = new Machine();
             Assert.AreEqual(2, machine.ExecuteText("a=1\nb=2"));
-            Assert.AreEqual(1, machine.RootContext.Find("a"));
-            Assert.AreEqual(2, machine.RootContext.Find("b"));
+            Assert.AreEqual(1, machine.RootContext.Get("a"));
+            Assert.AreEqual(2, machine.RootContext.Get("b"));
         }
 
         [TestMethod]
@@ -52,7 +59,7 @@
             Machine machine = new Machine();
             machine.ExecuteText("class Dog\nend");
 
-            var result = machine.RootContext.Find("Dog");
+            var result = machine.RootContext.Get("Dog");
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DefinedClass));
@@ -68,7 +75,7 @@
             Machine machine = new Machine();
             machine.ExecuteText("class Dog\ndefine foo()\nend\nend");
 
-            var result = machine.RootContext.Find("Dog");
+            var result = machine.RootContext.Get("Dog");
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DefinedClass));
@@ -179,7 +186,7 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);
-            Assert.AreEqual(2, machine.RootContext.Find("two"));
+            Assert.AreEqual(2, machine.RootContext.Get("two"));
         }
 
         [TestMethod]
@@ -190,8 +197,8 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);
-            Assert.AreEqual(2, machine.RootContext.Find("two"));
-            Assert.IsNull(machine.RootContext.Find("one"));
+            Assert.AreEqual(2, machine.RootContext.Get("two"));
+            Assert.IsNull(machine.RootContext.Get("one"));
         }
     }
 }

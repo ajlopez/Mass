@@ -25,15 +25,15 @@
         public void ExecuteSimpleAssignFile()
         {
             Assert.AreEqual(1, this.machine.ExecuteFile("MachineFiles\\SimpleAssign.ms", this.machine.RootContext));
-            Assert.AreEqual(1, this.machine.RootContext.Find("a"));
+            Assert.AreEqual(1, this.machine.RootContext.Get("a"));
         }
 
         [TestMethod]
         public void ExecuteSimpleAssignsFile()
         {
             Assert.AreEqual(2, this.machine.ExecuteFile("MachineFiles\\SimpleAssigns.ms", this.machine.RootContext));
-            Assert.AreEqual(1, this.machine.RootContext.Find("a"));
-            Assert.AreEqual(2, this.machine.RootContext.Find("b"));
+            Assert.AreEqual(1, this.machine.RootContext.Get("a"));
+            Assert.AreEqual(2, this.machine.RootContext.Get("b"));
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@
         {
             this.machine.ExecuteFile("MachineFiles\\Rectangle.ms", this.machine.RootContext);
 
-            var rect = this.machine.RootContext.Find("rect");
+            var rect = this.machine.RootContext.Get("rect");
 
             Assert.IsNotNull(rect);
             Assert.IsInstanceOfType(rect, typeof(DynamicObject));
@@ -79,8 +79,8 @@
             Assert.AreEqual("Rectangle", dobj.Class.Name);
             Assert.AreEqual(4, dobj.Get("width"));
             Assert.AreEqual(6, dobj.Get("height"));
-            Assert.AreEqual(6, this.machine.RootContext.Find("area"));
-            Assert.AreEqual(24, this.machine.RootContext.Find("area2"));
+            Assert.AreEqual(6, this.machine.RootContext.Get("area"));
+            Assert.AreEqual(24, this.machine.RootContext.Get("area2"));
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@
         {
             var result = this.machine.ExecuteFile("MachineFiles\\Local.ms", this.machine.RootContext);
 
-            var a = this.machine.RootContext.Find("a");
+            var a = this.machine.RootContext.Get("a");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result);
@@ -129,7 +129,7 @@
         {
             this.machine.ExecuteFile("MachineFiles\\For.ms", this.machine.RootContext);
 
-            var result = this.machine.RootContext.Find("total");
+            var result = this.machine.RootContext.Get("total");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
@@ -140,7 +140,7 @@
         {
             this.machine.ExecuteFile("MachineFiles\\ForIf.ms", this.machine.RootContext);
 
-            var result = this.machine.RootContext.Find("total");
+            var result = this.machine.RootContext.Get("total");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(4, result);
@@ -151,7 +151,7 @@
         {
             this.machine.ExecuteFile("MachineFiles\\ForEach.ms", this.machine.RootContext);
 
-            var result = this.machine.RootContext.Find("total");
+            var result = this.machine.RootContext.Get("total");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(6, result);
@@ -162,17 +162,17 @@
         {
             this.machine.ExecuteFile("MachineFiles\\Continue.ms", this.machine.RootContext);
 
-            var result = this.machine.RootContext.Find("total");
+            var result = this.machine.RootContext.Get("total");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(4, result);
 
-            var result2 = this.machine.RootContext.Find("total2");
+            var result2 = this.machine.RootContext.Get("total2");
 
             Assert.IsNotNull(result2);
             Assert.AreEqual(4, result2);
 
-            var result3 = this.machine.RootContext.Find("total3");
+            var result3 = this.machine.RootContext.Get("total3");
 
             Assert.IsNotNull(result3);
             Assert.AreEqual(4, result3);
@@ -183,17 +183,17 @@
         {
             this.machine.ExecuteFile("MachineFiles\\Break.ms", this.machine.RootContext);
 
-            var result = this.machine.RootContext.Find("total");
+            var result = this.machine.RootContext.Get("total");
 
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result);
 
-            var result2 = this.machine.RootContext.Find("total2");
+            var result2 = this.machine.RootContext.Get("total2");
 
             Assert.IsNotNull(result2);
             Assert.AreEqual(1, result2);
 
-            var result3 = this.machine.RootContext.Find("total3");
+            var result3 = this.machine.RootContext.Get("total3");
 
             Assert.IsNotNull(result3);
             Assert.AreEqual(1, result3);
@@ -206,7 +206,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\Require.ms", context);
 
-            var result = context.Find("module");
+            var result = context.Get("module");
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(DynamicObject));
@@ -232,7 +232,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule1.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]
@@ -242,7 +242,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule2.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]
@@ -252,7 +252,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule3.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule4.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]
@@ -272,7 +272,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule5.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]
@@ -282,7 +282,7 @@
             context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             this.machine.ExecuteFile("MachineFiles\\RequireModule6.ms", context);
 
-            AssertModule(context.Find("module"));
+            AssertModule(context.Get("module"));
         }
 
         [TestMethod]

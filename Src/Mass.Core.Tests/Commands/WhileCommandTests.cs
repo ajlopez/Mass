@@ -27,7 +27,7 @@
 
             Assert.IsNull(cmd.Execute(context));
 
-            Assert.AreEqual(6, context.Find("a"));
+            Assert.AreEqual(6, context.Get("a"));
         }
 
         [TestMethod]

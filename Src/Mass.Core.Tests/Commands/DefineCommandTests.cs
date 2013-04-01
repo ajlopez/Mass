@@ -22,7 +22,7 @@
 
             Assert.IsNull(result);
 
-            var value = context.Find("foo");
+            var value = context.Get("foo");
             Assert.IsInstanceOfType(value, typeof(DefinedFunction));
         }
 

@@ -27,7 +27,7 @@
 
             Assert.IsNull(result);
 
-            var value = context.Find("Dog");
+            var value = context.Get("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
             Assert.AreEqual("123\r\n", writer.ToString());
         }
@@ -43,7 +43,7 @@
 
             Assert.IsNull(result);
 
-            var value = context.Find("Dog");
+            var value = context.Get("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
 
             var dclass = (DefinedClass)value;
@@ -61,15 +61,15 @@
 
             cmd.Execute(context);
 
-            var initial = context.Find("Dog");
+            var initial = context.Get("Dog");
 
             var result = cmd.Execute(context);
 
             Assert.IsNull(result);
 
-            var value = context.Find("Dog");
+            var value = context.Get("Dog");
             Assert.IsInstanceOfType(value, typeof(DefinedClass));
-            Assert.AreEqual(value, context.Find("Dog"));
+            Assert.AreEqual(value, context.Get("Dog"));
             Assert.AreSame(initial, value);
             Assert.AreEqual("123\r\n123\r\n", writer.ToString());
         }

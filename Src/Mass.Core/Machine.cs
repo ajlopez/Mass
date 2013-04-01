@@ -15,6 +15,7 @@
 
         public Machine()
         {
+            this.rootcontext.Set("global", this.rootcontext);
             this.rootcontext.Set("print", new PrintFunction(System.Console.Out));
             this.rootcontext.Set("println", new PrintlnFunction(System.Console.Out));
             this.rootcontext.Set("require", new RequireFunction(this));

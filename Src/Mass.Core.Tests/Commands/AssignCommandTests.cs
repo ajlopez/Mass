@@ -20,7 +20,7 @@
             var result = cmd.Execute(context);
 
             Assert.AreEqual(1, result);
-            Assert.AreEqual(1, context.Find("one"));
+            Assert.AreEqual(1, context.Get("one"));
         }
 
         [TestMethod]

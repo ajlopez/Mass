@@ -21,7 +21,7 @@
 
         public object Execute(Context context)
         {
-            var value = context.Find(this.name);
+            var value = context.Get(this.name);
 
             if (value == null || !(value is DefinedClass))
             {

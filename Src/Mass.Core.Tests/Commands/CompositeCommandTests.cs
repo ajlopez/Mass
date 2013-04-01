@@ -22,8 +22,8 @@
             var result = cmd.Execute(context);
 
             Assert.AreEqual(2, result);
-            Assert.AreEqual(1, context.Find("one"));
-            Assert.AreEqual(2, context.Find("two"));
+            Assert.AreEqual(1, context.Get("one"));
+            Assert.AreEqual(2, context.Get("two"));
         }
 
         [TestMethod]

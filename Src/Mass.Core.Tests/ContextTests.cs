@@ -27,46 +27,23 @@
         }
 
         [TestMethod]
-        public void GetGlobal()
-        {
-            Context context = new Context();
-
-            var result = context.Get("global");
-
-            Assert.IsNotNull(result);
-            Assert.AreSame(context, result);
-        }
-
-        [TestMethod]
-        public void GetParentAsGlobal()
-        {
-            Context parent = new Context();
-            Context context = new Context(parent);
-
-            var result = context.Get("global");
-
-            Assert.IsNotNull(result);
-            Assert.AreSame(parent, result);
-        }
-
-        [TestMethod]
         public void FindValueAtParent()
         {
             Context parent = new Context();
             Context context = new Context(parent);
 
             parent.Set("one", 1);
-            Assert.AreEqual(1, context.Find("one"));
+            Assert.AreEqual(1, context.Get("one"));
         }
 
         [TestMethod]
-        public void GetValueAtParentAsNull()
+        public void GetValueAtParent()
         {
             Context parent = new Context();
             Context context = new Context(parent);
 
             parent.Set("one", 1);
-            Assert.IsNull(context.Get("one"));
+            Assert.AreEqual(1, context.Get("one"));
         }
 
         [TestMethod]
