@@ -4,9 +4,10 @@
     {
         Name = 1,
         Integer = 2,
-        String = 3,
-        Operator = 4,
-        Separator = 5,
-        EndOfLine = 6
+        Real = 3,
+        String = 4,
+        Operator = 5,
+        Separator = 6,
+        EndOfLine = 7
     }
 }

@@ -417,5 +417,18 @@
             Assert.AreEqual(TokenType.Name, result.Type);
             Assert.AreEqual("two", result.Value);
         }
+
+        [TestMethod]
+        public void GetReal()
+        {
+            Lexer lexer = new Lexer("123.45");
+            var result = lexer.NextToken();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("123.45", result.Value);
+            Assert.AreEqual(TokenType.Real, result.Type);
+
+            Assert.IsNull(lexer.NextToken());
+        }
     }
 }
