@@ -74,7 +74,7 @@
         public void GetValueAtParentIfVisible()
         {
             Context parent = new Context();
-            Context context = new Context(parent, true, null);
+            Context context = new Context(parent, null);
 
             parent.Set("one", 1);
             Assert.AreEqual(1, context.Get("one"));

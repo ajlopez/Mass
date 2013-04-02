@@ -22,13 +22,13 @@
 
         public object Apply(IList<object> values)
         {
-            Context newcontext = new Context(this.context, true, null);
+            Context newcontext = new Context(this.context, null);
             return this.DoApply(newcontext, values);
         }
 
         public object Apply(object self, IList<object> values)
         {
-            Context newcontext = new Context(this.context, true, null);
+            Context newcontext = new Context(this.context, null);
             newcontext.Set("self", self);
             return this.DoApply(newcontext, values);
         }

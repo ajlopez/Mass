@@ -9,7 +9,6 @@
     public class Context : IValues
     {
         private Context parent;
-        private bool parentisvisible;
         private DefinedClass @class;
         private IDictionary<string, object> values = new Dictionary<string, object>();
         private object returnvalue;
@@ -23,15 +22,14 @@
         }
 
         public Context(Context parent)
-            : this(parent, false, null)
+            : this(parent, null)
         {
         }
 
-        public Context(Context parent, bool parentisvisible, DefinedClass @class)
+        public Context(Context parent, DefinedClass @class)
         {
             this.parent = parent;
             this.@class = @class;
-            this.parentisvisible = parentisvisible;
             this.values["context"] = this;
             this.values["outer"] = parent;
         }
