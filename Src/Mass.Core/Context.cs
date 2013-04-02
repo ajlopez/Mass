@@ -32,6 +32,8 @@
             this.parent = parent;
             this.@class = @class;
             this.parentisvisible = parentisvisible;
+            this.values["context"] = this;
+            this.values["outer"] = parent;
         }
 
         public DefinedClass Class { get { return this.@class; } }

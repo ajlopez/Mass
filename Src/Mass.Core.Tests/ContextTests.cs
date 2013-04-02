@@ -18,12 +18,36 @@
         }
 
         [TestMethod]
+        public void HasContext()
+        {
+            Context context = new Context();
+
+            Assert.AreSame(context, context.Get("context"));
+        }
+
+        [TestMethod]
+        public void RootContextHasNullOuter()
+        {
+            Context context = new Context();
+
+            Assert.IsNull(context.Get("outer"));
+        }
+
+        [TestMethod]
         public void SetAndGetValue()
         {
             Context context = new Context();
 
             context.Set("one", 1);
             Assert.AreEqual(1, context.Get("one"));
+        }
+
+        [TestMethod]
+        public void ParentIsOuter()
+        {
+            Context parent = new Context();
+            Context context = new Context(parent);
+            Assert.AreSame(parent, context.Get("outer"));
         }
 
         [TestMethod]
@@ -69,9 +93,11 @@
             var result = context.GetNames();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(4, result.Count);
             Assert.IsTrue(result.Contains("two"));
             Assert.IsTrue(result.Contains("three"));
+            Assert.IsTrue(result.Contains("context"));
+            Assert.IsTrue(result.Contains("outer"));
         }
 
         [TestMethod]
