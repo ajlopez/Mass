@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using Mass.Core.Commands;
@@ -393,6 +394,9 @@
 
             if (token.Type == TokenType.Integer)
                 return new ConstantExpression(int.Parse(token.Value));
+
+            if (token.Type == TokenType.Real)
+                return new ConstantExpression(double.Parse(token.Value, CultureInfo.InvariantCulture));
 
             if (token.Type == TokenType.String)
                 return new ConstantExpression(token.Value);

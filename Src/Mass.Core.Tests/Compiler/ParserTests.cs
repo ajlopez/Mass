@@ -802,5 +802,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseReal()
+        {
+            Parser parser = new Parser("123.45");
+            IExpression expected = new ConstantExpression(123.45);
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
