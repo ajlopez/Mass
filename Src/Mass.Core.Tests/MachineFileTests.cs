@@ -120,7 +120,7 @@
             var a = this.machine.RootContext.Get("a");
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(4, result);
             Assert.IsNull(a);
         }
 
