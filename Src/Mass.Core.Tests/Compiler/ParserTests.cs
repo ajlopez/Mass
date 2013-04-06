@@ -496,6 +496,20 @@
         }
 
         [TestMethod]
+        public void ParseClassWithExtend()
+        {
+            Parser parser = new Parser("class Dog extends Animal\nend");
+            ICommand expected = new ClassCommand("Dog", "Animal", new CompositeCommand(new ICommand[] { }));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
+
+        [TestMethod]
         public void ParseNewObjectWithQualifiedName()
         {
             Parser parser = new Parser("new System.IO.DirectoryInfo(\".\")");

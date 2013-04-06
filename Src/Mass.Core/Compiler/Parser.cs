@@ -218,9 +218,14 @@
         private ClassCommand ParseClassCommand()
         {
             string name = this.ParseName();
+            string super = null;
+
+            if (this.TryParseToken(TokenType.Name, "extends"))
+                super = this.ParseName();
+
             this.ParseEndOfCommand();
             ICommand body = this.ParseCommandList();
-            return new ClassCommand(name, body);
+            return new ClassCommand(name, super, body);
         }
 
         private IList<string> ParseParameterList()
