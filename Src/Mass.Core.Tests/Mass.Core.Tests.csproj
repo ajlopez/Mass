@@ -65,6 +65,7 @@
     <Compile Include="Expressions\ConstantExpressionTests.cs" />
     <Compile Include="Expressions\CallDotExpressionTests.cs" />
     <Compile Include="Expressions\ArrayExpressionTests.cs" />
+    <Compile Include="Expressions\SuperCallExpressionTests.cs" />
     <Compile Include="Expressions\FunctionExpressionTests.cs" />
     <Compile Include="Expressions\IndexedExpressionTests.cs" />
     <Compile Include="Expressions\QualifiedNameExpressionTests.cs" />
