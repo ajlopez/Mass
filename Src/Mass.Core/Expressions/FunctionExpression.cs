@@ -53,7 +53,7 @@
             int result = this.body.GetHashCode();
 
             foreach (var argument in this.parameters)
-                result += parameters.GetHashCode();
+                result += this.parameters.GetHashCode();
 
             return result;
         }

@@ -7,8 +7,8 @@
     using Mass.Core.Commands;
     using Mass.Core.Expressions;
     using Mass.Core.Functions;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Mass.Core.Language;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class IndexedExpressionTests

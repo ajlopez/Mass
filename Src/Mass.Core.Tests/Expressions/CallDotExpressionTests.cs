@@ -10,8 +10,8 @@
     using Mass.Core.Expressions;
     using Mass.Core.Functions;
     using Mass.Core.Language;
+    using Mass.Core.Tests.Classes;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mass.Core.Tests.Classes;
 
     [TestClass]
     public class CallDotExpressionTests

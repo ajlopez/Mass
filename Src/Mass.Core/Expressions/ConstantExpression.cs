@@ -7,6 +7,8 @@
 
     public class ConstantExpression : IExpression
     {
+        private static int hashcode = typeof(ConstantExpression).GetHashCode();
+
         private object value;
 
         public ConstantExpression(object value)
@@ -44,7 +46,7 @@
             if (this.value == null)
                 return 0;
 
-            return this.value.GetHashCode();
+            return this.value.GetHashCode() + hashcode;
         }
     }
 }

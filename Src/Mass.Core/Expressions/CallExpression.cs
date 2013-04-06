@@ -8,6 +8,8 @@
 
     public class CallExpression : IExpression
     {
+        private static int hashcode = typeof(CallExpression).GetHashCode();
+
         private string name;
         private IList<IExpression> arguments;
 
@@ -56,7 +58,7 @@
 
         public override int GetHashCode()
         {
-            int result = this.name.GetHashCode();
+            int result = this.name.GetHashCode() + hashcode;
 
             foreach (var argument in this.arguments)
                 result += argument.GetHashCode();

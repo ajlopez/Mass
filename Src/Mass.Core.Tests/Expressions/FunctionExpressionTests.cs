@@ -1,14 +1,14 @@
 ﻿namespace Mass.Core.Tests.Expressions
 {
     using System;
-    using System.Text;
     using System.Collections.Generic;
     using System.Linq;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Mass.Core.Expressions;
-    using Mass.Core.Compiler;
-    using Mass.Core.Functions;
+    using System.Text;
     using Mass.Core.Commands;
+    using Mass.Core.Compiler;
+    using Mass.Core.Expressions;
+    using Mass.Core.Functions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class FunctionExpressionTests

@@ -139,7 +139,7 @@
                 value += (char)ich;
 
             if (ich == '.')
-                return NextReal(value + ".");
+                return this.NextReal(value + ".");
 
             if (ich >= 0)
                 this.BackChar();

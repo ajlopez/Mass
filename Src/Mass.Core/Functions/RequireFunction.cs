@@ -38,6 +38,11 @@
             return this.machine.ExecuteFile(filename, true);
         }
 
+        public object Apply(object self, IList<object> values)
+        {
+            return this.Apply(values);
+        }
+
         private string GetFilename(string path, string name)
         {
             string filename = name;
@@ -51,7 +56,7 @@
 
             if (File.Exists(filename))
                 return filename;
-            
+
             if (Path.IsPathRooted(name) || name[0] == '.')
                 return null;
 
@@ -100,11 +105,6 @@
             }
 
             return null;
-        }
-
-        public object Apply(object self, IList<object> values)
-        {
-            return this.Apply(values);
         }
     }
 }

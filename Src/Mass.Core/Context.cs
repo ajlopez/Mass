@@ -62,8 +62,8 @@
             if (this.values.ContainsKey(name))
                 return this.values[name];
 
-            if (parent != null)
-                return parent.Get(name);
+            if (this.parent != null)
+                return this.parent.Get(name);
 
             return null;
         }
