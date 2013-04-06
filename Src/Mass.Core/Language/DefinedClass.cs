@@ -9,12 +9,19 @@
     public class DefinedClass : DynamicObject
     {
         private string name;
+        private DefinedClass super;
         private IDictionary<string, IFunction> methods = new Dictionary<string, IFunction>();
 
         public DefinedClass(string name)
+            : this(name, null)
+        {
+        }
+
+        public DefinedClass(string name, DefinedClass super)
             : base(null)
         {
             this.name = name;
+            this.super = super;
         }
 
         public string Name { get { return this.name; } }
@@ -28,6 +35,9 @@
         {
             if (this.methods.ContainsKey(name))
                 return this.methods[name];
+
+            if (this.super != null)
+                return this.super.GetInstanceMethod(name);
 
             return null;
         }

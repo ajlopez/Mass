@@ -42,5 +42,20 @@
             Assert.AreSame(dclass, result.Class);
             Assert.AreSame(foo, result.Get("foo"));
         }
+
+        [TestMethod]
+        public void CreateInstanceWithSuperclass()
+        {
+            DefinedClass dsuper = new DefinedClass("Animal");
+            DefinedClass dclass = new DefinedClass("Dog", dsuper);
+            IFunction foo = new DefinedFunction(null, null, null);
+            dsuper.SetInstanceMethod("foo", foo);
+
+            var result = dclass.CreateInstance();
+
+            Assert.IsNotNull(result);
+            Assert.AreSame(dclass, result.Class);
+            Assert.AreSame(foo, result.Get("foo"));
+        }
     }
 }
