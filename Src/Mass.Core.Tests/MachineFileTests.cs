@@ -286,6 +286,16 @@
         }
 
         [TestMethod]
+        public void ExecuteRequireModule7File()
+        {
+            Context context = new Context(this.machine.RootContext);
+            context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
+            this.machine.ExecuteFile("MachineFiles\\RequireModule7.ms", context);
+
+            AssertModule(context.Get("module"));
+        }
+
+        [TestMethod]
         public void ExecuteRequireModuleFileUsingCache()
         {
             Context context = new Context(this.machine.RootContext);

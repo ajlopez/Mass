@@ -83,7 +83,13 @@
             if (Directory.Exists(filename))
                 filename = Path.Combine(filename, "init.ms");
             else if (string.IsNullOrEmpty(fileinfo.Extension))
-                filename += ".ms";
+            {
+                string filename2 = Path.Combine(directoryname, "mass-" + name);
+                if (Directory.Exists(filename2))
+                    filename = Path.Combine(filename2, "init.ms");
+                else
+                    filename += ".ms";
+            }
 
             if (File.Exists(filename))
                 return filename;
