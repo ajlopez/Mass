@@ -311,11 +311,20 @@
         public void ExecuteFunctionFile()
         {
             Context context = new Context(this.machine.RootContext);
-            context.Set("require", new RequireFunction(this.machine, "MachineFiles"));
             var result = this.machine.ExecuteFile("MachineFiles\\Function.ms", context);
 
             Assert.IsNotNull(result);
             Assert.AreEqual(3, result);
+        }
+
+        [TestMethod]
+        public void ExecuteClassSubclassFile()
+        {
+            Context context = new Context(this.machine.RootContext);
+            var result = this.machine.ExecuteFile("MachineFiles\\ClassSubclass.ms", context);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(100, result);
         }
 
         private static void AssertModule(object result)
