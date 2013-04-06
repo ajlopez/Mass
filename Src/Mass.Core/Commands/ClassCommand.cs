@@ -11,11 +11,18 @@
     {
         private static int hashcode = typeof(ClassCommand).GetHashCode();
         private string name;
+        private string super;
         private ICommand command;
 
         public ClassCommand(string name, ICommand command)
+            : this(name, null, command)
+        {
+        }
+
+        public ClassCommand(string name, string super, ICommand command)
         {
             this.name = name;
+            this.super = super;
             this.command = command;
         }
 
@@ -25,7 +32,12 @@
 
             if (value == null || !(value is DefinedClass))
             {
-                var newclass = new DefinedClass(this.name);
+                DefinedClass superclass = null;
+
+                if (this.super != null)
+                    superclass = (DefinedClass)context.Get(this.super);
+                
+                var newclass = new DefinedClass(this.name, superclass);
                 context.Set(this.name, newclass);
                 value = newclass;
             }
@@ -48,6 +60,14 @@
             {
                 var cmd = (ClassCommand)obj;
 
+                if (this.super == null)
+                {
+                    if (cmd.super != null)
+                        return false;
+                }
+                else if (!this.super.Equals(cmd.super))
+                    return false;
+
                 return this.name == cmd.name && this.command.Equals(cmd.command);
             }
 
@@ -56,7 +76,12 @@
 
         public override int GetHashCode()
         {
-            return this.name.GetHashCode() + this.command.GetHashCode() + hashcode;
+            var result = this.name.GetHashCode() + this.command.GetHashCode() + hashcode;
+
+            if (this.super != null)
+                result += this.super.GetHashCode();
+
+            return result;
         }
     }
 }

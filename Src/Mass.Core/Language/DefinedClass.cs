@@ -26,6 +26,8 @@
 
         public string Name { get { return this.name; } }
 
+        public DefinedClass Superclass { get { return this.super; } }
+
         public void SetInstanceMethod(string name, IFunction method)
         {
             this.methods[name] = method;
