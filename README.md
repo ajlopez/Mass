@@ -189,6 +189,27 @@ end
 nero = new Dog("Nero")
 ```
 
+subclass and call super initialize
+```
+class Rectangle
+	define initialize(width, height)
+		self.width = width
+		self.height = height
+	end
+	
+	define area()
+		self.width * self.height
+	end
+end
+
+class Square extends Rectangle
+	define initialize(side)
+		super(side, side)
+	end
+end
+```
+
+
 line comments with `#`
 ```
 # this is a comment
@@ -338,7 +359,6 @@ mass <file> [<file> ... ]
 ## To be done
 
 - Exceptions with try/catch
-- Class inheritance
 - Object definition
 - Real numbers
 - Characters
