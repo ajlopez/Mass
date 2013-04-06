@@ -23,6 +23,16 @@
 
         [TestMethod]
         [DeploymentItem("MachineFiles\\SimpleModule.ms")]
+        public void RequireLocalFileWithNullSelf()
+        {
+            Machine machine = new Machine();
+            RequireFunction require = new RequireFunction(machine);
+
+            AssertModule(require.Apply(null, new object[] { "SimpleModule.ms" }));
+        }
+
+        [TestMethod]
+        [DeploymentItem("MachineFiles\\SimpleModule.ms")]
         public void RequireLocalFileTwice()
         {
             Machine machine = new Machine();

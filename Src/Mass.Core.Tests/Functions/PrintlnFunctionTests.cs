@@ -23,6 +23,17 @@
         }
 
         [TestMethod]
+        public void PrintlnIntegerWithNullSelf()
+        {
+            StringWriter writer = new StringWriter();
+            PrintlnFunction function = new PrintlnFunction(writer);
+
+            Assert.IsNull(function.Apply(null, new object[] { 123 }));
+
+            Assert.AreEqual("123\r\n", writer.ToString());
+        }
+
+        [TestMethod]
         public void PrintlnTwoIntegers()
         {
             StringWriter writer = new StringWriter();
