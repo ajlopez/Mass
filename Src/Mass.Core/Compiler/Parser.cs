@@ -369,7 +369,14 @@
                 var original = expr;
 
                 if (expr is NameExpression && this.PeekToken(TokenType.Separator, "("))
-                    expr = new CallExpression(((NameExpression)expr).Name, this.ParseExpressionList());
+                {
+                    string name = ((NameExpression)expr).Name;
+
+                    if (name == "super")
+                        return new SuperCallExpression(this.ParseExpressionList());
+
+                    expr = new CallExpression(name, this.ParseExpressionList());
+                }
 
                 if (expr is DotExpression && this.PeekToken(TokenType.Separator, "("))
                     expr = new CallDotExpression((DotExpression)expr, this.ParseExpressionList());

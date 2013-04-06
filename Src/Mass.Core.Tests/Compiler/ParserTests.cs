@@ -830,5 +830,19 @@
 
             Assert.IsNull(parser.ParseExpression());
         }
+
+        [TestMethod]
+        public void ParseSuperCall()
+        {
+            Parser parser = new Parser("super(1, 2)");
+            IExpression expected = new SuperCallExpression(new IExpression[] { new ConstantExpression(1), new ConstantExpression(2) });
+
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
     }
 }
