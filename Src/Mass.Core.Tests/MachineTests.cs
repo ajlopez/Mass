@@ -130,6 +130,26 @@
         }
 
         [TestMethod]
+        public void EvaluateInteger()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("2");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void EvaluateReal()
+        {
+            Machine machine = new Machine();
+            var result = machine.ExecuteText("2.5");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2.5, result);
+        }
+
+        [TestMethod]
         public void EvaluateDynamicObject()
         {
             Machine machine = new Machine();
