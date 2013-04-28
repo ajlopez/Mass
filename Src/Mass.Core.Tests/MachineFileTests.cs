@@ -154,6 +154,15 @@
         }
 
         [TestMethod]
+        public void ExecuteWhileWithReturnFile()
+        {
+            var result = this.machine.ExecuteFile("MachineFiles\\WhileWithReturn.ms", this.machine.RootContext);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
         public void ExecuteForIfFile()
         {
             this.machine.ExecuteFile("MachineFiles\\ForIf.ms", this.machine.RootContext);

@@ -24,6 +24,8 @@
             for (object value = this.condition.Evaluate(context); value != null && !false.Equals(value); value = this.condition.Evaluate(context))
             {
                 this.command.Execute(context);
+                if (context.HasReturnValue())
+                    return context.GetReturnValue();
                 if (context.HasContinue())
                     context.ClearContinue();
                 if (context.HasBreak())
