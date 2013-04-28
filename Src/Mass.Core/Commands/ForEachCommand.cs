@@ -30,6 +30,8 @@
             {
                 context.Set(this.name, value);
                 this.command.Execute(context);
+                if (context.HasReturnValue())
+                    return context.GetReturnValue();
                 if (context.HasContinue())
                     context.ClearContinue();
                 if (context.HasBreak())
