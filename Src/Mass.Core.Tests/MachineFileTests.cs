@@ -136,6 +136,15 @@
         }
 
         [TestMethod]
+        public void ExecuteForWithReturnFile()
+        {
+            var result = this.machine.ExecuteFile("MachineFiles\\ForWithReturn.ms", this.machine.RootContext);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
         public void ExecuteForIfFile()
         {
             this.machine.ExecuteFile("MachineFiles\\ForIf.ms", this.machine.RootContext);
