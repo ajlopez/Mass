@@ -4,7 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Microsoft.VisualBasic.CompilerServices;
+    using Obops;
+    using System.Globalization;
 
     public class BinaryArithmeticExpression : BinaryExpression
     {
@@ -29,6 +30,11 @@
 
         public override object Apply(object leftvalue, object rightvalue)
         {
+            if (leftvalue == null)
+                leftvalue = 0;
+            if (rightvalue == null)
+                rightvalue = 0;
+
             return this.function(leftvalue, rightvalue);
         }
 
@@ -47,6 +53,11 @@
 
         private static object Divide(object left, object right)
         {
+            if (left is IConvertible)
+                left = ((IConvertible)left).ToDouble(CultureInfo.InvariantCulture);
+            if (right is IConvertible)
+                right = ((IConvertible)right).ToDouble(CultureInfo.InvariantCulture);
+
             var result = Operators.DivideObject(left, right);
 
             if (result is double) 

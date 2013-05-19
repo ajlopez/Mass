@@ -104,6 +104,14 @@
         }
 
         [TestMethod]
+        public void AddIntegerToNull()
+        {
+            BinaryArithmeticExpression expr = new BinaryArithmeticExpression(new ConstantExpression(3), new ConstantExpression(null), ArithmeticOperator.Add);
+
+            Assert.AreEqual(3, expr.Evaluate(null));
+        }
+
+        [TestMethod]
         public void DivideTwoIntegersAsReal()
         {
             BinaryArithmeticExpression expr = new BinaryArithmeticExpression(new ConstantExpression(5), new ConstantExpression(2), ArithmeticOperator.Divide);
