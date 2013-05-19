@@ -23,6 +23,15 @@ Mass takes few key ideas from different languages.
 - Variable scope: the function
 - Access to underlying classes and objects (.NET class libraries)
 
+## Development
+
+```
+git clone git://github.com/ajlopez/Mass.git
+cd Mass
+git submodule init
+git submodule update
+```
+
 ## Expressions
 
 Constants
