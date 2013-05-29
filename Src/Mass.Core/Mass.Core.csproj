@@ -53,6 +53,7 @@
     <Compile Include="Commands\AssignIndexedCommand.cs" />
     <Compile Include="Commands\BreakCommand.cs" />
     <Compile Include="Commands\ContinueCommand.cs" />
+    <Compile Include="Commands\TryCommand.cs" />
     <Compile Include="Commands\ForCommand.cs" />
     <Compile Include="Commands\ForEachCommand.cs" />
     <Compile Include="Commands\ReturnCommand.cs" />
