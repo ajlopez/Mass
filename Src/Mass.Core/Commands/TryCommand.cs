@@ -11,18 +11,27 @@
         private static int hashcode = typeof(TryCommand).GetHashCode();
 
         private ICommand command;
+        private ICommand catchcmd;
 
-        public TryCommand(ICommand command)
+        public TryCommand(ICommand command, ICommand catchcmd)
         {
             this.command = command;
+            this.catchcmd = catchcmd;
         }
 
         public object Execute(Context context)
         {
-            this.command.Execute(context);
+            try
+            {
+                this.command.Execute(context);
 
-            if (context.HasReturnValue())
-                return context.GetReturnValue();
+                if (context.HasReturnValue())
+                    return context.GetReturnValue();
+            }
+            catch
+            {
+                this.catchcmd.Execute(context);
+            }
 
             return null;
         }
@@ -36,7 +45,7 @@
             {
                 var cmd = (TryCommand)obj;
 
-                return this.command.Equals(cmd.command);
+                return this.command.Equals(cmd.command) && this.catchcmd.Equals(cmd.catchcmd);
             }
 
             return false;
@@ -44,7 +53,7 @@
 
         public override int GetHashCode()
         {
-            return this.command.GetHashCode() + hashcode;
+            return this.command.GetHashCode() + this.catchcmd.GetHashCode() + hashcode;
         }
     }
 }
