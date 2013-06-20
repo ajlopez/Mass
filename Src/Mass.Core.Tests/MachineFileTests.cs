@@ -113,19 +113,6 @@
         }
 
         [TestMethod]
-        public void ExecuteScopeFile()
-        {
-            Context context = new Context(this.machine.RootContext);
-            var result = this.machine.ExecuteFile("MachineFiles\\Scope.ms", context);
-
-            var a = this.machine.RootContext.Get("a");
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(4, result);
-            Assert.IsNull(a);
-        }
-
-        [TestMethod]
         public void ExecuteForFile()
         {
             this.machine.ExecuteFile("MachineFiles\\For.ms", this.machine.RootContext);

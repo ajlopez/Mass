@@ -65,7 +65,6 @@
             if (usecache && this.filecache.ContainsKey(fullname))
                 return this.filecache[fullname];
 
-            context.Set("module", context);
             object value = this.ExecuteText(System.IO.File.ReadAllText(filename), context);
 
             this.filecache[fullname] = value;
