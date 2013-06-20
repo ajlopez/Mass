@@ -78,6 +78,9 @@
                 if (token.Value == "var")
                     return this.ParseVarCommand();
 
+                if (token.Value == "throw")
+                    return this.ParseThrowCommand();
+
                 if (token.Value == "break")
                 {
                     this.ParseEndOfCommand();
@@ -190,6 +193,13 @@
             string name = this.ParseName();
             this.ParseEndOfCommand();
             return new VarCommand(name);
+        }
+
+        private ICommand ParseThrowCommand()
+        {
+            IExpression expression = this.ParseExpression();
+            this.ParseEndOfCommand();
+            return new ThrowCommand(expression);
         }
 
         private ReturnCommand ParseReturnCommand()

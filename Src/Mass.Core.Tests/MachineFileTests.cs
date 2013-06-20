@@ -11,6 +11,7 @@
 
     [TestClass]
     [DeploymentItem("MachineFiles", "MachineFiles")]
+    [DeploymentItem("modules", "modules")]
     public class MachineFileTests
     {
         private Machine machine;
@@ -352,6 +353,13 @@
 
             Assert.IsNotNull(result);
             Assert.AreEqual(100, result);
+        }
+
+        [TestMethod]
+        public void ExecuteAssertFile()
+        {
+            Context context = new Context(this.machine.RootContext);
+            this.machine.ExecuteFile("MachineFiles\\Assert.ms", context);
         }
 
         private static void AssertModule(object result)

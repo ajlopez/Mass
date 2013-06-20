@@ -858,5 +858,19 @@
 
             Assert.IsNull(parser.ParseCommand());
         }
+
+        [TestMethod]
+        public void ParseThrowCommand()
+        {
+            Parser parser = new Parser("throw \"Error\"");
+            ICommand expected = new ThrowCommand(new ConstantExpression("Error"));
+
+            var result = parser.ParseCommand();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseCommand());
+        }
     }
 }
