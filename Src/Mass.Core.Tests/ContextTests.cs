@@ -58,6 +58,21 @@
 
             parent.Set("one", 1);
             Assert.AreEqual(1, context.Get("one"));
+
+            Assert.IsTrue(context.HasValue("one", false));
+            Assert.IsFalse(context.HasValue("one", true));
+        }
+
+        [TestMethod]
+        public void SetValueAtParent()
+        {
+            Context parent = new Context();
+            Context context = new Context(parent);
+
+            parent.Set("one", 1);
+            context.Set("one", 2);
+            Assert.AreEqual(2, context.Get("one"));
+            Assert.AreEqual(2, parent.Get("one"));
         }
 
         [TestMethod]

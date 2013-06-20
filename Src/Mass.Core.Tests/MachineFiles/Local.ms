@@ -1,8 +1,12 @@
 ﻿
+
+# file variable
+var a
 a = 1
 
 define foo()
-	a = 2 # local variable
+	var a # local variable
+	a = 2 
 end
 
 foo()

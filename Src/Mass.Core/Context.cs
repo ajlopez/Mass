@@ -54,6 +54,22 @@
 
         public void Set(string name, object value)
         {
+            this.Set(name, value, false);
+        }
+
+        public void Set(string name, object value, bool local)
+        {
+            if (!local)
+            {
+                var context = this.GetContextWithValue(name);
+
+                if (context != null)
+                {
+                    context.Set(name, value, true);
+                    return;
+                }
+            }
+
             this.values[name] = value;
         }
 
@@ -66,6 +82,14 @@
                 return this.parent.Get(name);
 
             return null;
+        }
+
+        public bool HasValue(string name, bool local)
+        {
+            if (local)
+                return this.values.ContainsKey(name);
+
+            return this.GetContextWithValue(name) != null;
         }
 
         public IList<string> GetNames()
@@ -101,6 +125,15 @@
         public void SetContinue()
         {
             this.hascontinue = true;
+        }
+
+        private Context GetContextWithValue(string name)
+        {
+            for (var context = this; context != null; context = context.parent)
+                if (context.values.ContainsKey(name))
+                    return context;
+
+            return null;
         }
     }
 }
