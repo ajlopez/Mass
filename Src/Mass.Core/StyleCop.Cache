@@ -54,24 +54,6 @@
     <milliseconds>617</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="BinaryExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>03/23/2013 16:10:02</timestamp>
-    <milliseconds>430</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="CompareExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>03/23/2013 16:10:02</timestamp>
-    <milliseconds>46</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="CompareOperator.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -88,15 +70,6 @@
     </settings>
     <timestamp>03/23/2013 16:10:39</timestamp>
     <milliseconds>192</milliseconds>
-    <violations />
-  </sourcecode>
-  <sourcecode name="ReturnCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>03/27/2013 09:01:34</timestamp>
-    <milliseconds>646</milliseconds>
     <violations />
   </sourcecode>
   <sourcecode name="ArrayExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
@@ -339,15 +312,6 @@
     <milliseconds>490</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="Machine.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>04/04/2013 07:15:45</timestamp>
-    <milliseconds>768</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ObjectUtilities.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -456,27 +420,6 @@
     <milliseconds>955</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="BinaryArithmeticExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>05/25/2013 08:10:29</timestamp>
-    <milliseconds>738</milliseconds>
-    <violations />
-  </sourcecode>
-  <project key="71648008">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
-  <sourcecode name="TryCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>05/30/2013 07:07:48</timestamp>
-    <milliseconds>630</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="VarCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -495,13 +438,79 @@
     <milliseconds>831</milliseconds>
     <violations />
   </sourcecode>
+  <project key="71648008">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="ReturnCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 18:00:16</timestamp>
+    <milliseconds>936</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ThrowCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 17:39:28</timestamp>
+    <milliseconds>92</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="TryCommand.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 17:36:33</timestamp>
+    <milliseconds>323</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="Parser.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
       <milliseconds>741</milliseconds>
     </settings>
-    <timestamp>06/20/2013 07:17:21</timestamp>
-    <milliseconds>515</milliseconds>
+    <timestamp>06/20/2013 18:24:17</timestamp>
+    <milliseconds>482</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BinaryArithmeticExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 17:19:08</timestamp>
+    <milliseconds>766</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BinaryExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 17:17:38</timestamp>
+    <milliseconds>56</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="CompareExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 17:21:03</timestamp>
+    <milliseconds>745</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="Machine.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 18:08:19</timestamp>
+    <milliseconds>882</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>
