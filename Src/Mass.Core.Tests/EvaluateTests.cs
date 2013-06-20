@@ -19,6 +19,18 @@
         }
 
         [TestMethod]
+        public void AddAndSubtractNumbers()
+        {
+            Assert.AreEqual(1 + 2 - 5, Evaluate("1 + 2 - 5"));
+        }
+
+        [TestMethod]
+        public void AddAndDivideNumbers()
+        {
+            Assert.AreEqual(1 + 2 / 5, Evaluate("1 + 2 / 5"));
+        }
+
+        [TestMethod]
         public void AddNullAndNumber()
         {
             Assert.AreEqual(2, Evaluate("null + 2"));

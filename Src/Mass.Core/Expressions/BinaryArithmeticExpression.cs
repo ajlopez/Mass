@@ -17,7 +17,7 @@
             functions[ArithmeticOperator.Add] = Add;
             functions[ArithmeticOperator.Subtract] = (left, right) => Operators.SubtractObject(left, right);
             functions[ArithmeticOperator.Multiply] = (left, right) => Operators.MultiplyObject(left, right);
-            functions[ArithmeticOperator.Divide] = Divide;
+            functions[ArithmeticOperator.Divide] = (left, right) => Operators.DivideObject(left, right);
         }
 
         public BinaryArithmeticExpression(IExpression left, IExpression right, ArithmeticOperator @operator)
@@ -70,26 +70,6 @@
                     return left.ToString() + (string)right;
 
             return Operators.AddObject(left, right);
-        }
-
-        private static object Divide(object left, object right)
-        {
-            if (left is IConvertible)
-                left = ((IConvertible)left).ToDouble(CultureInfo.InvariantCulture);
-            if (right is IConvertible)
-                right = ((IConvertible)right).ToDouble(CultureInfo.InvariantCulture);
-
-            var result = Operators.DivideObject(left, right);
-
-            if (result is double) 
-            {
-                double value = (double)result;
-                double floor = Math.Floor(value);
-                if (floor == value)
-                    return (int)value;
-            }
-
-            return result;
         }
     }
 }

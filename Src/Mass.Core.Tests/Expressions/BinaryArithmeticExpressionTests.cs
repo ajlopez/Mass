@@ -112,11 +112,11 @@
         }
 
         [TestMethod]
-        public void DivideTwoIntegersAsReal()
+        public void DivideTwoIntegersAsInteger()
         {
             BinaryArithmeticExpression expr = new BinaryArithmeticExpression(new ConstantExpression(5), new ConstantExpression(2), ArithmeticOperator.Divide);
 
-            Assert.AreEqual(2.5, expr.Evaluate(null));
+            Assert.AreEqual(2, expr.Evaluate(null));
         }
 
         [TestMethod]
