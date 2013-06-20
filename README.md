@@ -10,6 +10,7 @@ Mass takes few key ideas from different languages.
 
 - Interpreted Language
 - No typed variables
+- Local variable declaration
 - Ruby syntax, but with explicit use of parentheses to call functions
 - 'define' for function definition
 - 'function' for anonymous functions
@@ -19,8 +20,6 @@ Mass takes few key ideas from different languages.
 - require('module') a la Node.js
 - Dynamic objects, as in Javascript or Python. You can assign any property at any time
 - No ; to separate commands nor { } to group statements
-- Explicit access to global variables
-- Variable scope: the function
 - Access to underlying classes and objects (.NET class libraries)
 
 ## Development
@@ -100,11 +99,23 @@ end
 foo() # returns 2
 ```
 
-If a variable is set in a function, it will have function scope
+If a variable is declared  in a function, it will have function scope
 ```
 a = 1
 
 define foo()
+	a = 2
+end
+
+foo() # returns 2
+a # it is 2
+```
+Instead
+```
+a = 1
+
+define foo()
+    var a
 	a = 2
 end
 
@@ -241,6 +252,7 @@ define foo()
 	
 	# create and set local variable with function scope
 	# you cannot change a file variable value from function scope
+    var a
 	a = 4
 end
 
