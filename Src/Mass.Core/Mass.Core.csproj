@@ -52,6 +52,7 @@
     <Compile Include="Commands\AssignIndexedCommand.cs" />
     <Compile Include="Commands\BreakCommand.cs" />
     <Compile Include="Commands\ContinueCommand.cs" />
+    <Compile Include="Commands\ThrowCommand.cs" />
     <Compile Include="Commands\VarCommand.cs" />
     <Compile Include="Commands\TryCommand.cs" />
     <Compile Include="Commands\ForCommand.cs" />
@@ -102,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Compiler\Compiler.cd" />
+    <Content Include="modules\assert.ms">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Obops\Src\Obops\Obops.csproj">
