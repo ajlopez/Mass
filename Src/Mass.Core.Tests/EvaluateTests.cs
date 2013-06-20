@@ -27,7 +27,13 @@
         [TestMethod]
         public void AddAndDivideNumbers()
         {
-            Assert.AreEqual(1 + 2 / 5, Evaluate("1 + 2 / 5"));
+            Assert.AreEqual(1 + (2 / 5), Evaluate("1 + 2 / 5"));
+        }
+
+        [TestMethod]
+        public void AddAndDivideNumbersUsingParentheses()
+        {
+            Assert.AreEqual((1 + 2) / 2, Evaluate("(1 + 2) / 2"));
         }
 
         [TestMethod]
