@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Microsoft.VisualBasic.CompilerServices;
 
     public class CompareExpression : BinaryExpression
     {
@@ -13,12 +12,12 @@
 
         static CompareExpression()
         {
-            functions[CompareOperator.Equal] = (left, right) => Operators.CompareObjectEqual(left, right, false);
-            functions[CompareOperator.NotEqual] = (left, right) => Operators.CompareObjectNotEqual(left, right, false);
-            functions[CompareOperator.Less] = (left, right) => Operators.CompareObjectLess(left, right, false);
-            functions[CompareOperator.Greater] = (left, right) => Operators.CompareObjectGreater(left, right, false);
-            functions[CompareOperator.LessOrEqual] = (left, right) => Operators.CompareObjectLessEqual(left, right, false);
-            functions[CompareOperator.GreaterOrEqual] = (left, right) => Operators.CompareObjectGreaterEqual(left, right, false);
+            functions[CompareOperator.Equal] = (left, right) => Operators.EqualObject(left, right);
+            functions[CompareOperator.NotEqual] = (left, right) => Operators.NotEqualObject(left, right);
+            functions[CompareOperator.Less] = (left, right) => Operators.LessObject(left, right);
+            functions[CompareOperator.Greater] = (left, right) => Operators.GreaterObject(left, right);
+            functions[CompareOperator.LessOrEqual] = (left, right) => Operators.LessEqualObject(left, right);
+            functions[CompareOperator.GreaterOrEqual] = (left, right) => Operators.GreaterEqualObject(left, right);
         }
 
         public CompareExpression(IExpression left, IExpression right, CompareOperator @operator)

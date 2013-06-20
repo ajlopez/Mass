@@ -5,20 +5,18 @@
     using System.Globalization;
     using System.Linq;
     using System.Text;
-    using Obops;
 
     public class BinaryArithmeticExpression : BinaryExpression
     {
-        private static Operators operators = new Operators();
         private static IDictionary<ArithmeticOperator, Func<object, object, object>> functions = new Dictionary<ArithmeticOperator, Func<object, object, object>>();
         private ArithmeticOperator @operator;
         private Func<object, object, object> function;
 
         static BinaryArithmeticExpression()
         {
-            functions[ArithmeticOperator.Add] = (left, right) => operators.AddObject(left, right);
-            functions[ArithmeticOperator.Subtract] = (left, right) => operators.SubtractObject(left, right);
-            functions[ArithmeticOperator.Multiply] = (left, right) => operators.MultiplyObject(left, right);
+            functions[ArithmeticOperator.Add] = (left, right) => Operators.AddObject(left, right);
+            functions[ArithmeticOperator.Subtract] = (left, right) => Operators.SubtractObject(left, right);
+            functions[ArithmeticOperator.Multiply] = (left, right) => Operators.MultiplyObject(left, right);
             functions[ArithmeticOperator.Divide] = Divide;
         }
 
@@ -59,7 +57,7 @@
             if (right is IConvertible)
                 right = ((IConvertible)right).ToDouble(CultureInfo.InvariantCulture);
 
-            var result = operators.DivideObject(left, right);
+            var result = Operators.DivideObject(left, right);
 
             if (result is double) 
             {
