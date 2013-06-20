@@ -38,6 +38,12 @@
                     return this.ParseNewExpression();
                 if (token.Value == "function")
                     return this.ParseFunctionExpression();
+                if (token.Value == "null")
+                    return new ConstantExpression(null);
+                if (token.Value == "true")
+                    return new ConstantExpression(true);
+                if (token.Value == "false")
+                    return new ConstantExpression(false);
             }
 
             this.lexer.PushToken(token);

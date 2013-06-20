@@ -54,6 +54,45 @@
         }
 
         [TestMethod]
+        public void ParseNull()
+        {
+            Parser parser = new Parser("null");
+            var expected = new ConstantExpression(null);
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseTrue()
+        {
+            Parser parser = new Parser("true");
+            var expected = new ConstantExpression(true);
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
+        public void ParseFalse()
+        {
+            Parser parser = new Parser("false");
+            var expected = new ConstantExpression(false);
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseAddTwoIntegers()
         {
             Parser parser = new Parser("1+2");
