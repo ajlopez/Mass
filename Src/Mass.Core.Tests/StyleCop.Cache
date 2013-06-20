@@ -162,15 +162,6 @@
     <milliseconds>970</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ContextTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/25/2013 07:50:11</timestamp>
-      <milliseconds>883</milliseconds>
-    </settings>
-    <timestamp>04/02/2013 08:16:03</timestamp>
-    <milliseconds>892</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ArrayExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -351,15 +342,6 @@
     <milliseconds>855</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="ParserTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/25/2013 07:50:11</timestamp>
-      <milliseconds>883</milliseconds>
-    </settings>
-    <timestamp>04/06/2013 19:01:23</timestamp>
-    <milliseconds>100</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="DefinedClassTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -387,9 +369,6 @@
     <milliseconds>427</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-139072994">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="SuperCallExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -397,6 +376,45 @@
     </settings>
     <timestamp>05/19/2013 17:31:48</timestamp>
     <milliseconds>948</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-139072994">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="TryCommandTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/25/2013 07:50:11</timestamp>
+      <milliseconds>883</milliseconds>
+    </settings>
+    <timestamp>05/30/2013 07:05:42</timestamp>
+    <milliseconds>599</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="VarCommandTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/25/2013 07:50:11</timestamp>
+      <milliseconds>883</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 07:14:42</timestamp>
+    <milliseconds>108</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ContextTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/25/2013 07:50:11</timestamp>
+      <milliseconds>883</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 07:13:05</timestamp>
+    <milliseconds>867</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="ParserTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/25/2013 07:50:11</timestamp>
+      <milliseconds>883</milliseconds>
+    </settings>
+    <timestamp>06/20/2013 07:16:04</timestamp>
+    <milliseconds>525</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>
