@@ -14,7 +14,7 @@
 
         static BinaryArithmeticExpression()
         {
-            functions[ArithmeticOperator.Add] = (left, right) => Operators.AddObject(left, right);
+            functions[ArithmeticOperator.Add] = Add;
             functions[ArithmeticOperator.Subtract] = (left, right) => Operators.SubtractObject(left, right);
             functions[ArithmeticOperator.Multiply] = (left, right) => Operators.MultiplyObject(left, right);
             functions[ArithmeticOperator.Divide] = Divide;
@@ -30,9 +30,11 @@
         public override object Apply(object leftvalue, object rightvalue)
         {
             if (leftvalue == null)
-                leftvalue = 0;
+                if (this.@operator != ArithmeticOperator.Add || (rightvalue != null && !(rightvalue is string)))
+                    leftvalue = 0;
             if (rightvalue == null)
-                rightvalue = 0;
+                if (this.@operator != ArithmeticOperator.Add || (leftvalue != null && !(leftvalue is string)))
+                    rightvalue = 0;
 
             return this.function(leftvalue, rightvalue);
         }
@@ -48,6 +50,26 @@
         public override int GetHashCode()
         {
             return base.GetHashCode() + (int)this.@operator;
+        }
+
+        private static object Add(object left, object right)
+        {
+            if (left == null && right == null)
+                return string.Empty;
+
+            if (left is string)
+                if (right == null)
+                    return left;
+                else
+                    return (string)left + right.ToString();
+
+            if (right is string)
+                if (left == null)
+                    return right;
+                else
+                    return left.ToString() + (string)right;
+
+            return Operators.AddObject(left, right);
         }
 
         private static object Divide(object left, object right)
