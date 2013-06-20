@@ -19,6 +19,12 @@
 
         public object Execute(Context context)
         {
+            if (this.expression == null)
+            {
+                context.SetReturnValue(null);
+                return null;
+            }
+
             object value = this.expression.Evaluate(context);
             context.SetReturnValue(value);
             return value;
@@ -33,6 +39,9 @@
             {
                 var expr = (ReturnCommand)obj;
 
+                if (this.expression == null)
+                    return expr.expression == null;
+
                 return this.expression.Equals(expr.expression);
             }
 
@@ -41,6 +50,9 @@
 
         public override int GetHashCode()
         {
+            if (this.expression == null)
+                return hashcode;
+
             return this.expression.GetHashCode() + hashcode;
         }
     }
