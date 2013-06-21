@@ -1,3 +1,6 @@
 
 - Negative expression, numbers
 - Refactor ICompositeCommand constructors
+- Try with finally
+- All is a value? Review composite commands returns
+- Review/tests for Equals/GetHashCode CompositeCommand

@@ -50,6 +50,87 @@
         }
 
         [TestMethod]
+        public void CreateTryWithoutVariables()
+        {
+            TryCommand cmd = new TryCommand(new AssignCommand("one", new ConstantExpression(1)), null);
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(0, varnames.Count);
+        }
+
+        [TestMethod]
+        public void CreateTryWithVariableAtTry()
+        {
+            TryCommand cmd = new TryCommand(new VarCommand("one"), null);
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(1, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+        }
+
+        [TestMethod]
+        public void CreateTryWithVariablesAtTryAndCatch()
+        {
+            TryCommand cmd = new TryCommand(new VarCommand("one"), new VarCommand("two"));
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
+        public void CreateTryWithTwoVariablesAtTry()
+        {
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+            TryCommand ifcmd = new TryCommand(cmd, null);
+
+            var varnames = ifcmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
+        public void CreateTryWithTwoVariablesAtCatch()
+        {
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+            TryCommand ifcmd = new TryCommand(new AssignCommand("a", new ConstantExpression(1)), cmd);
+
+            var varnames = ifcmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
+        public void CreateTryWithTwoVariablesRepeteadAtTryAndCatch()
+        {
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+            TryCommand ifcmd = new TryCommand(cmd, cmd);
+
+            var varnames = ifcmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
         public void Equals()
         {
             TryCommand cmd1 = new TryCommand(new AssignCommand("one", new ConstantExpression(1)), new AssignCommand("one", new ConstantExpression(2)));

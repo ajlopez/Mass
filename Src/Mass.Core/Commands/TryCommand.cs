@@ -11,13 +11,42 @@
         private static int hashcode = typeof(TryCommand).GetHashCode();
 
         private ICommand command;
-        private ICommand catchcmd;
+        private ICommand catchcommand;
+        private IList<string> varnames;
 
-        public TryCommand(ICommand command, ICommand catchcmd)
+        public TryCommand(ICommand command, ICommand catchcommand)
         {
             this.command = command;
-            this.catchcmd = catchcmd;
+            this.catchcommand = catchcommand;
+
+            if (command is VarCommand)
+                this.varnames = new List<string> { ((VarCommand)command).Name };
+            else if (command is ICompositeCommand)
+                this.varnames = ((ICompositeCommand)command).VarNames;
+            else
+                this.varnames = new List<string>();
+
+            if (catchcommand != null)
+            {
+                if (catchcommand is VarCommand)
+                {
+                    var varcommand = (VarCommand)catchcommand;
+
+                    if (!this.varnames.Contains(varcommand.Name))
+                        this.varnames.Add(varcommand.Name);
+                }
+                else if (catchcommand is ICompositeCommand)
+                {
+                    var newvarnames = ((ICompositeCommand)catchcommand).VarNames;
+
+                    foreach (var newvarname in newvarnames)
+                        if (!this.varnames.Contains(newvarname))
+                            this.varnames.Add(newvarname);
+                }
+            }
         }
+
+        public IList<string> VarNames { get { return this.varnames; } }
 
         public object Execute(Context context)
         {
@@ -30,7 +59,7 @@
             }
             catch
             {
-                this.catchcmd.Execute(context);
+                this.catchcommand.Execute(context);
             }
 
             return null;
@@ -45,7 +74,7 @@
             {
                 var cmd = (TryCommand)obj;
 
-                return this.command.Equals(cmd.command) && this.catchcmd.Equals(cmd.catchcmd);
+                return this.command.Equals(cmd.command) && this.catchcommand.Equals(cmd.catchcommand);
             }
 
             return false;
@@ -53,7 +82,7 @@
 
         public override int GetHashCode()
         {
-            return this.command.GetHashCode() + this.catchcmd.GetHashCode() + hashcode;
+            return this.command.GetHashCode() + this.catchcommand.GetHashCode() + hashcode;
         }
     }
 }
