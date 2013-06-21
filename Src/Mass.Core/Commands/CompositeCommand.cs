@@ -7,16 +7,42 @@
 
     public class CompositeCommand : ICommand
     {
-        private IList<ICommand> commands;
+        private IList<ICommand> commands = new List<ICommand>();
+        private IList<string> varnames = new List<string>();
+        private IList<ICommand> defines = new List<ICommand>();
 
         public CompositeCommand(IList<ICommand> commands)
         {
-            this.commands = commands;
+            if (commands == null)
+                return;
+
+            foreach (var command in commands)
+            {
+                if (command is DefineCommand) 
+                {
+                    defines.Add(command);
+                    continue;
+                }
+
+                if (command is VarCommand)
+                {
+                    varnames.Add(((VarCommand)command).Name);
+                    continue;
+                }
+
+                this.commands.Add(command);
+            }
         }
 
         public object Execute(Context context)
         {
             object result = null;
+
+            foreach (var varname in this.varnames)
+                context.Set(varname, null, true);
+
+            foreach (var define in this.defines)
+                result = define.Execute(context);
 
             foreach (var command in this.commands)
             {

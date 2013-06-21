@@ -98,6 +98,19 @@
         }
 
         [TestMethod]
+        public void ExecuteHoistedLocalFile()
+        {
+            var result = this.machine.ExecuteFile("MachineFiles\\HoistedLocal.ms", this.machine.RootContext);
+
+            var a = this.machine.RootContext.Get("a");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result);
+            Assert.IsNotNull(a);
+            Assert.AreEqual(1, a);
+        }
+
+        [TestMethod]
         public void ExecuteGlobalFile()
         {
             Context context = new Context(this.machine.RootContext);

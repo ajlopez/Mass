@@ -1,5 +1,4 @@
 ﻿
-
 # file variable
 var a
 a = 1
