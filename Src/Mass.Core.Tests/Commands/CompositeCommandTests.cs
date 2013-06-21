@@ -42,6 +42,37 @@
         }
 
         [TestMethod]
+        public void GetTwoVarNames()
+        {
+            Context context = new Context();
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+
+            var result = cmd.VarNames;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("one", result[0]);
+            Assert.AreEqual("two", result[1]);
+        }
+
+        [TestMethod]
+        public void GetTwoDuplicatedVarNames()
+        {
+            Context context = new Context();
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("one");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+
+            var result = cmd.VarNames;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("one", result[0]);
+        }
+
+        [TestMethod]
         public void Equals()
         {
             AssignCommand acmd1 = new AssignCommand("one", new ConstantExpression(1));

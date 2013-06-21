@@ -26,7 +26,11 @@
 
                 if (command is VarCommand)
                 {
-                    varnames.Add(((VarCommand)command).Name);
+                    var varcommand = (VarCommand)command;
+
+                    if (!varnames.Contains(varcommand.Name))
+                        varnames.Add(varcommand.Name);
+
                     continue;
                 }
 
