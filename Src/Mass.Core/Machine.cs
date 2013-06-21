@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using Mass.Core.Commands;
     using Mass.Core.Compiler;
     using Mass.Core.Functions;
 
@@ -31,12 +32,12 @@
         public object ExecuteText(string text, Context context)
         {
             Parser parser = new Parser(text);
-            object result = null;
+            IList<ICommand> commands = new List<ICommand>();
 
             for (var command = parser.ParseCommand(); command != null; command = parser.ParseCommand())
-                result = command.Execute(context);
+                commands.Add(command);
 
-            return result;
+            return (new CompositeCommand(commands)).Execute(context);
         }
 
         public object ExecuteFile(string filename)
