@@ -52,6 +52,7 @@
     <Compile Include="Commands\AssignIndexedCommand.cs" />
     <Compile Include="Commands\BreakCommand.cs" />
     <Compile Include="Commands\ContinueCommand.cs" />
+    <Compile Include="Commands\ICompositeCommand.cs" />
     <Compile Include="Commands\ThrowCommand.cs" />
     <Compile Include="Commands\VarCommand.cs" />
     <Compile Include="Commands\TryCommand.cs" />

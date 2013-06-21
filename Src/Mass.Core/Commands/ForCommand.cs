@@ -7,7 +7,7 @@
     using System.Text;
     using Mass.Core.Expressions;
 
-    public class ForCommand : ICommand
+    public class ForCommand : ICompositeCommand
     {
         private static int hashcode = typeof(ForEachCommand).GetHashCode();
 
@@ -16,6 +16,7 @@
         private IExpression toexpression;
         private IExpression stepexpression;
         private ICommand command;
+        private IList<string> varnames = new List<string>();
 
         public ForCommand(string name, IExpression fromexpression, IExpression toexpression, IExpression stepexpression, ICommand command)
         {
@@ -24,7 +25,16 @@
             this.toexpression = toexpression;
             this.stepexpression = stepexpression;
             this.command = command;
+
+            if (command is VarCommand)
+                varnames = new List<String> { ((VarCommand)command).Name };
+            else if (command is ICompositeCommand)
+                varnames = ((ICompositeCommand)command).VarNames;
+            else
+                varnames = new List<string>();
         }
+
+        public IList<string> VarNames { get { return this.varnames; } }
 
         public object Execute(Context context)
         {

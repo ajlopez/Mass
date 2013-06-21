@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class CompositeCommand : ICommand
+    public class CompositeCommand : ICompositeCommand
     {
         private IList<ICommand> commands = new List<ICommand>();
         private IList<string> varnames = new List<string>();
