@@ -34,6 +34,8 @@
             }
         }
 
+        public IList<string> VarNames { get { return this.varnames; } }
+
         public object Execute(Context context)
         {
             object result = null;

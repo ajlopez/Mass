@@ -27,6 +27,21 @@
         }
 
         [TestMethod]
+        public void GetVarNames()
+        {
+            Context context = new Context();
+            AssignCommand cmd1 = new AssignCommand("one", new ConstantExpression(1));
+            VarCommand cmd2 = new VarCommand("one");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+
+            var result = cmd.VarNames;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("one", result[0]);
+        }
+
+        [TestMethod]
         public void Equals()
         {
             AssignCommand acmd1 = new AssignCommand("one", new ConstantExpression(1));
