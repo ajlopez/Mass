@@ -16,7 +16,7 @@
         private IExpression toexpression;
         private IExpression stepexpression;
         private ICommand command;
-        private IList<string> varnames = new List<string>();
+        private IList<string> varnames;
 
         public ForCommand(string name, IExpression fromexpression, IExpression toexpression, IExpression stepexpression, ICommand command)
         {
@@ -27,11 +27,11 @@
             this.command = command;
 
             if (command is VarCommand)
-                varnames = new List<String> { ((VarCommand)command).Name };
+                this.varnames = new List<string> { ((VarCommand)command).Name };
             else if (command is ICompositeCommand)
-                varnames = ((ICompositeCommand)command).VarNames;
+                this.varnames = ((ICompositeCommand)command).VarNames;
             else
-                varnames = new List<string>();
+                this.varnames = new List<string>();
         }
 
         public IList<string> VarNames { get { return this.varnames; } }

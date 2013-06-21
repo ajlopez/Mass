@@ -13,14 +13,11 @@
 
         public CompositeCommand(IList<ICommand> commands)
         {
-            if (commands == null)
-                return;
-
             foreach (var command in commands)
             {
                 if (command is DefineCommand) 
                 {
-                    defines.Add(command);
+                    this.defines.Add(command);
                     continue;
                 }
 
@@ -28,8 +25,8 @@
                 {
                     var varcommand = (VarCommand)command;
 
-                    if (!varnames.Contains(varcommand.Name))
-                        varnames.Add(varcommand.Name);
+                    if (!this.varnames.Contains(varcommand.Name))
+                        this.varnames.Add(varcommand.Name);
 
                     continue;
                 }

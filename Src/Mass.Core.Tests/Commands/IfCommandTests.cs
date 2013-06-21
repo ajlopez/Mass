@@ -58,6 +58,71 @@
         }
 
         [TestMethod]
+        public void CreateIfWithoutVariables()
+        {
+            IfCommand cmd = new IfCommand(new ConstantExpression(0), new AssignCommand("one", new ConstantExpression(1)));
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(0, varnames.Count);
+        }
+
+        [TestMethod]
+        public void CreateIfWithVariableAtThen()
+        {
+            IfCommand cmd = new IfCommand(new ConstantExpression(0), new VarCommand("one"));
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(1, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+        }
+
+        [TestMethod]
+        public void CreateIfWithVariablesAtThenAndElse()
+        {
+            IfCommand cmd = new IfCommand(new ConstantExpression(0), new VarCommand("one"), new VarCommand("two"));
+            var varnames = cmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
+        public void CreateIfWithTwoVariablesAtThen()
+        {
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+            IfCommand ifcmd = new IfCommand(new ConstantExpression(0), cmd);
+
+            var varnames = ifcmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
+        public void CreateIfWithTwoVariablesAtElse()
+        {
+            VarCommand cmd1 = new VarCommand("one");
+            VarCommand cmd2 = new VarCommand("two");
+            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
+            IfCommand ifcmd = new IfCommand(new ConstantExpression(0), new AssignCommand("a", new ConstantExpression(1)), cmd);
+
+            var varnames = ifcmd.VarNames;
+
+            Assert.IsNotNull(varnames);
+            Assert.AreEqual(2, varnames.Count);
+            Assert.AreEqual("one", varnames[0]);
+            Assert.AreEqual("two", varnames[1]);
+        }
+
+        [TestMethod]
         public void Equals()
         {
             IfCommand cmd1 = new IfCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)));
