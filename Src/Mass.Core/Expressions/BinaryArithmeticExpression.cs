@@ -71,5 +71,18 @@
 
             return Operators.AddObject(left, right);
         }
+
+        private abstract class BinaryExpressionBuilder<T1, T2>
+        {
+            public Func<object, object, object> BuildExpression()
+            {
+                var x = System.Linq.Expressions.Expression.Parameter(typeof(T1), "x");
+                var y = System.Linq.Expressions.Expression.Parameter(typeof(T2), "y");
+                var add = System.Linq.Expressions.Expression.Add(System.Linq.Expressions.Expression.Unbox(x, typeof(T2)), System.Linq.Expressions.Expression.Unbox(y, typeof(T2)));
+                var body = System.Linq.Expressions.Expression.TypeAs(add, typeof(object));
+                var lambda = System.Linq.Expressions.Expression.Lambda<Func<object, object, object>>(body, x, y).Compile();
+                return lambda;
+            }
+        }
     }
 }
