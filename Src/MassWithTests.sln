@@ -1,16 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Core", "Mass.Core\Mass.Core.csproj", "{81B44886-01D4-4847-B538-F4D1C58B8A00}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Core.Tests", "Mass.Core.Tests\Mass.Core.Tests.csproj", "{A25B7A35-AAB4-463C-B980-89D43F75A996}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE3EE2F1-3576-41B3-B6E8-5D26960397F8}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		Mass.vsmdi = Mass.vsmdi
 		ToDo.txt = ToDo.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Core", "Mass.Core\Mass.Core.csproj", "{81B44886-01D4-4847-B538-F4D1C58B8A00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Core.Tests", "Mass.Core.Tests\Mass.Core.Tests.csproj", "{A25B7A35-AAB4-463C-B980-89D43F75A996}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mass.Console", "Mass.Console\Mass.Console.csproj", "{0662A464-A23C-46E8-9B28-ABFD8BA7976E}"
 EndProject

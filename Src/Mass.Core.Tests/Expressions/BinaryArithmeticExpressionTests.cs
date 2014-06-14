@@ -11,6 +11,44 @@
     public class BinaryArithmeticExpressionTests
     {
         [TestMethod]
+        public void AddTwoConstantsUsingLambdaExpression()
+        {
+            var lambda = System.Linq.Expressions.Expression.Lambda(System.Linq.Expressions.Expression.Add(System.Linq.Expressions.Expression.Constant(1), System.Linq.Expressions.Expression.Constant(2))).Compile();
+            Assert.AreEqual(3, lambda.DynamicInvoke());
+        }
+
+        [TestMethod]
+        public void AddTwoConstantsUsingTypedLambdaExpression()
+        {
+            var add = System.Linq.Expressions.Expression.Add(System.Linq.Expressions.Expression.Constant(1), System.Linq.Expressions.Expression.Constant(2));
+            var body = System.Linq.Expressions.Expression.TypeAs(add, typeof(object));
+            var lambda = System.Linq.Expressions.Expression.Lambda<Func<object>>(body).Compile();
+            Assert.AreEqual(3, lambda());
+        }
+
+        [TestMethod]
+        public void AddTwoParametersUsingTypedLambdaExpression()
+        {
+            var x = System.Linq.Expressions.Expression.Parameter(typeof(int), "x");
+            var y = System.Linq.Expressions.Expression.Parameter(typeof(int), "y");
+            var add = System.Linq.Expressions.Expression.Add(x, y);
+            var body = System.Linq.Expressions.Expression.TypeAs(add, typeof(object));
+            var lambda = System.Linq.Expressions.Expression.Lambda<Func<int, int, object>>(body, x, y).Compile();
+            Assert.AreEqual(3, lambda(1, 2));
+        }
+
+        [TestMethod]
+        public void AddTwoParametersUsingTypedLambdaExpressionWithBoxedArguments()
+        {
+            var x = System.Linq.Expressions.Expression.Parameter(typeof(object), "x");
+            var y = System.Linq.Expressions.Expression.Parameter(typeof(object), "y");
+            var add = System.Linq.Expressions.Expression.Add(System.Linq.Expressions.Expression.Unbox(x, typeof(int)), System.Linq.Expressions.Expression.Unbox(y, typeof(int)));
+            var body = System.Linq.Expressions.Expression.TypeAs(add, typeof(object));
+            var lambda = System.Linq.Expressions.Expression.Lambda<Func<object, object, object>>(body, x, y).Compile();
+            Assert.AreEqual(3, lambda(1, 2));
+        }
+
+        [TestMethod]
         public void AddTwoIntegers()
         {
             BinaryArithmeticExpression expr = new BinaryArithmeticExpression(new ConstantExpression(1), new ConstantExpression(2), ArithmeticOperator.Add);
