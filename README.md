@@ -385,6 +385,12 @@ mass <file> [<file> ... ]
 - Characters
 - REPL
 
+## References
+
+- [Expression as a Compiler](http://www.infoq.com/articles/expression-compiler)
+- [Dynamic LINQ (Part 1: Using the LINQ Dynamic Query Library)](http://weblogs.asp.net/scottgu/dynamic-linq-part-1-using-the-linq-dynamic-query-library)
+- [The binary operator Multiply is not defined for the types 'System.Int32' and 'System.Double'.](http://stackoverflow.com/questions/6884141/the-binary-operator-multiply-is-not-defined-for-the-types-system-int32-and-sy)
+
 ## Origin of Name
 
 Mass language is dedicated to [@MArtinSaliaS](http://twitter.com/martinsalias)
