@@ -5,10 +5,9 @@
     using System.Linq;
     using System.Text;
 
-    public class CompositeCommand : ICompositeCommand
+    public class CompositeCommand : ICommand
     {
         private IList<ICommand> commands = new List<ICommand>();
-        private IList<string> varnames = new List<string>();
         private IList<ICommand> defines = new List<ICommand>();
 
         public CompositeCommand(IList<ICommand> commands)
@@ -21,28 +20,13 @@
                     continue;
                 }
 
-                if (command is VarCommand)
-                {
-                    var varcommand = (VarCommand)command;
-
-                    if (!this.varnames.Contains(varcommand.Name))
-                        this.varnames.Add(varcommand.Name);
-
-                    continue;
-                }
-
                 this.commands.Add(command);
             }
         }
 
-        public IList<string> VarNames { get { return this.varnames; } }
-
         public object Execute(Context context)
         {
             object result = null;
-
-            foreach (var varname in this.varnames)
-                context.Set(varname, null, true);
 
             foreach (var define in this.defines)
                 result = define.Execute(context);

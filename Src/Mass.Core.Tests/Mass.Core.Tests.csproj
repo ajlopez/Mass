@@ -72,7 +72,6 @@
     <Compile Include="Commands\AssignIndexedCommandTests.cs" />
     <Compile Include="Commands\ContinueCommandTests.cs" />
     <Compile Include="Commands\ThrowCommandTests.cs" />
-    <Compile Include="Commands\VarCommandTests.cs" />
     <Compile Include="Commands\TryCommandTests.cs" />
     <Compile Include="Commands\ForCommandTests.cs" />
     <Compile Include="Commands\ForEachCommandTests.cs" />

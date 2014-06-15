@@ -72,7 +72,7 @@
             parent.Set("one", 1);
             context.Set("one", 2);
             Assert.AreEqual(2, context.Get("one"));
-            Assert.AreEqual(2, parent.Get("one"));
+            Assert.AreEqual(1, parent.Get("one"));
         }
 
         [TestMethod]

@@ -12,41 +12,6 @@
     public class ForCommandTests
     {
         [TestMethod]
-        public void CreateForWithoutVariables()
-        {
-            ForCommand cmd = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(3), new ConstantExpression(1), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));
-            var varnames = cmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(0, varnames.Count);
-        }
-
-        [TestMethod]
-        public void CreateForWithOnlyOneVar()
-        {
-            ForCommand cmd = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(3), new ConstantExpression(1), new VarCommand("a"));
-            var varnames = cmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(1, varnames.Count);
-            Assert.AreEqual("a", varnames[0]);
-        }
-
-        [TestMethod]
-        public void CreateForWithVar()
-        {
-            AssignCommand cmd1 = new AssignCommand("one", new ConstantExpression(1));
-            VarCommand cmd2 = new VarCommand("one");
-            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
-            ForCommand forcmd = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(3), new ConstantExpression(1), cmd);
-            var varnames = forcmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(1, varnames.Count);
-            Assert.AreEqual("one", varnames[0]);
-        }
-
-        [TestMethod]
         public void ExecuteSimpleFor()
         {
             ForCommand cmd = new ForCommand("k", new ConstantExpression(1), new ConstantExpression(3), new ConstantExpression(1), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));

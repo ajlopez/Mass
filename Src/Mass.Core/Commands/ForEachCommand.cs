@@ -7,30 +7,20 @@
     using System.Text;
     using Mass.Core.Expressions;
 
-    public class ForEachCommand : ICompositeCommand
+    public class ForEachCommand : ICommand
     {
         private static int hashcode = typeof(ForEachCommand).GetHashCode();
 
         private string name;
         private IExpression expression;
         private ICommand command;
-        private IList<string> varnames;
 
         public ForEachCommand(string name, IExpression expression, ICommand command)
         {
             this.name = name;
             this.expression = expression;
             this.command = command;
-
-            if (command is VarCommand)
-                this.varnames = new List<string> { ((VarCommand)command).Name };
-            else if (command is ICompositeCommand)
-                this.varnames = ((ICompositeCommand)command).VarNames;
-            else
-                this.varnames = new List<string>();
         }
-
-        public IList<string> VarNames { get { return this.varnames; } }
 
         public object Execute(Context context)
         {

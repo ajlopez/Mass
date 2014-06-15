@@ -31,41 +31,6 @@
         }
 
         [TestMethod]
-        public void CreateWhileWithoutVariables()
-        {
-            WhileCommand cmd = new WhileCommand(new ConstantExpression(1), new AssignCommand("a", new BinaryArithmeticExpression(new NameExpression("a"), new NameExpression("k"), ArithmeticOperator.Add)));
-            var varnames = cmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(0, varnames.Count);
-        }
-
-        [TestMethod]
-        public void CreateWhileWithOnlyOneVar()
-        {
-            WhileCommand cmd = new WhileCommand(new ConstantExpression(1), new VarCommand("a"));
-            var varnames = cmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(1, varnames.Count);
-            Assert.AreEqual("a", varnames[0]);
-        }
-
-        [TestMethod]
-        public void CreateWhileWithVar()
-        {
-            AssignCommand cmd1 = new AssignCommand("one", new ConstantExpression(1));
-            VarCommand cmd2 = new VarCommand("one");
-            CompositeCommand cmd = new CompositeCommand(new ICommand[] { cmd1, cmd2 });
-            WhileCommand whilecmd = new WhileCommand(new ConstantExpression(1), cmd);
-            var varnames = whilecmd.VarNames;
-
-            Assert.IsNotNull(varnames);
-            Assert.AreEqual(1, varnames.Count);
-            Assert.AreEqual("one", varnames[0]);
-        }
-
-        [TestMethod]
         public void Equals()
         {
             WhileCommand cmd1 = new WhileCommand(new ConstantExpression(1), new AssignCommand("one", new ConstantExpression(1)));

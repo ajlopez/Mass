@@ -6,28 +6,18 @@
     using System.Text;
     using Mass.Core.Expressions;
 
-    public class WhileCommand : ICompositeCommand
+    public class WhileCommand : ICommand
     {
         private static int hashcode = typeof(WhileCommand).GetHashCode();
 
         private IExpression condition;
         private ICommand command;
-        private IList<string> varnames;
 
         public WhileCommand(IExpression condition, ICommand command)
         {
             this.condition = condition;
             this.command = command;
-
-            if (command is VarCommand)
-                this.varnames = new List<string> { ((VarCommand)command).Name };
-            else if (command is ICompositeCommand)
-                this.varnames = ((ICompositeCommand)command).VarNames;
-            else
-                this.varnames = new List<string>();
         }
-
-        public IList<string> VarNames { get { return this.varnames; } }
 
         public object Execute(Context context)
         {

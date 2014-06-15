@@ -885,20 +885,6 @@
         }
 
         [TestMethod]
-        public void ParseVarCommand()
-        {
-            Parser parser = new Parser("var x");
-            ICommand expected = new VarCommand("x");
-
-            var result = parser.ParseCommand();
-
-            Assert.IsNotNull(result);
-            Assert.AreEqual(expected, result);
-
-            Assert.IsNull(parser.ParseCommand());
-        }
-
-        [TestMethod]
         public void ParseThrowCommand()
         {
             Parser parser = new Parser("throw \"Error\"");

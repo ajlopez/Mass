@@ -6,14 +6,13 @@
     using System.Text;
     using Mass.Core.Expressions;
 
-    public class IfCommand : ICompositeCommand
+    public class IfCommand : ICommand
     {
         private static int hashcode = typeof(IfCommand).GetHashCode();
 
         private IExpression condition;
         private ICommand thencommand;
         private ICommand elsecommand;
-        private IList<string> varnames;
 
         public IfCommand(IExpression condition, ICommand thencommand)
             : this(condition, thencommand, null)
@@ -25,35 +24,7 @@
             this.condition = condition;
             this.thencommand = thencommand;
             this.elsecommand = elsecommand;
-
-            if (thencommand is VarCommand)
-                this.varnames = new List<string> { ((VarCommand)thencommand).Name };
-            else if (thencommand is ICompositeCommand)
-                this.varnames = ((ICompositeCommand)thencommand).VarNames;
-            else
-                this.varnames = new List<string>();
-
-            if (elsecommand != null)
-            {
-                if (elsecommand is VarCommand)
-                {
-                    var varcommand = (VarCommand)elsecommand;
-
-                    if (!this.varnames.Contains(varcommand.Name))
-                        this.varnames.Add(varcommand.Name);
-                }
-                else if (elsecommand is ICompositeCommand)
-                {
-                    var newvarnames = ((ICompositeCommand)elsecommand).VarNames;
-
-                    foreach (var newvarname in newvarnames)
-                        if (!this.varnames.Contains(newvarname))
-                            this.varnames.Add(newvarname);
-                }
-            }
         }
-
-        public IList<string> VarNames { get { return this.varnames; } }
 
         public object Execute(Context context)
         {

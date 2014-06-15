@@ -75,9 +75,6 @@
                 if (token.Value == "for")
                     return this.ParseForCommand();
 
-                if (token.Value == "var")
-                    return this.ParseVarCommand();
-
                 if (token.Value == "throw")
                     return this.ParseThrowCommand();
 
@@ -186,13 +183,6 @@
             this.ParseEndOfCommand();
             command = this.ParseCommandList();
             return new ForEachCommand(name, expression, command);
-        }
-
-        private ICommand ParseVarCommand()
-        {
-            string name = this.ParseName();
-            this.ParseEndOfCommand();
-            return new VarCommand(name);
         }
 
         private ICommand ParseThrowCommand()

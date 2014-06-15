@@ -54,11 +54,8 @@
             this.tleft = tl;
             this.tright = tr;
 
-            if (this.@operator == ArithmeticOperator.Add)
-            {
-                if (tl == typeof(string) || tr == typeof(string))
-                    this.function = Add;
-            }
+            if (this.@operator == ArithmeticOperator.Add && (tl == typeof(string) || tr == typeof(string)))
+                this.function = Add;
             else
                 this.function = funcs[this.@operator][new TypePair(tl, tr)];
 

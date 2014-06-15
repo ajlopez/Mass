@@ -54,22 +54,6 @@
 
         public void Set(string name, object value)
         {
-            this.Set(name, value, false);
-        }
-
-        public void Set(string name, object value, bool local)
-        {
-            if (!local)
-            {
-                var context = this.GetContextWithValue(name);
-
-                if (context != null)
-                {
-                    context.Set(name, value, true);
-                    return;
-                }
-            }
-
             this.values[name] = value;
         }
 
