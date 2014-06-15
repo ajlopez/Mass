@@ -98,6 +98,19 @@
         }
 
         [TestMethod]
+        public void ExecuteScopeFile()
+        {
+            var result = this.machine.ExecuteFile("MachineFiles\\Scope.ms", this.machine.RootContext);
+
+            var a = this.machine.RootContext.Get("a");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result);
+            Assert.IsNotNull(a);
+            Assert.AreEqual(1, a);
+        }
+
+        [TestMethod]
         public void ExecuteHoistedLocalFile()
         {
             var result = this.machine.ExecuteFile("MachineFiles\\HoistedLocal.ms", this.machine.RootContext);
