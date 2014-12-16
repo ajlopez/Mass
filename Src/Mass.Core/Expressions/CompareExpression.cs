@@ -12,8 +12,8 @@
 
         static CompareExpression()
         {
-            functions[CompareOperator.Equal] = (left, right) => Operators.EqualObject(left, right);
-            functions[CompareOperator.NotEqual] = (left, right) => Operators.NotEqualObject(left, right);
+            functions[CompareOperator.Equal] = CompareEqual;
+            functions[CompareOperator.NotEqual] = CompareNotEqual;
             functions[CompareOperator.Less] = (left, right) => Operators.LessObject(left, right);
             functions[CompareOperator.Greater] = (left, right) => Operators.GreaterObject(left, right);
             functions[CompareOperator.LessOrEqual] = (left, right) => Operators.LessEqualObject(left, right);
@@ -42,6 +42,22 @@
         public override int GetHashCode()
         {
             return base.GetHashCode() + (int)this.@operator;
+        }
+
+        private static object CompareEqual(object left, object right)
+        {
+            if (left == null)
+                return right == null;
+
+            return left.Equals(right);
+        }
+
+        private static object CompareNotEqual(object left, object right)
+        {
+            if (left == null)
+                return right != null;
+
+            return !left.Equals(right);
         }
     }
 }

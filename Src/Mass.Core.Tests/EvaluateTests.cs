@@ -79,6 +79,13 @@
         }
 
         [TestMethod]
+        public void NullCompareNull()
+        {
+            Assert.AreEqual(true, Evaluate("null == null"));
+            Assert.AreEqual(false, Evaluate("null != null"));
+        }
+
+        [TestMethod]
         public void ConcatenateNullAndNull()
         {
             Assert.AreEqual(string.Empty, Evaluate("null + null"));
