@@ -164,18 +164,5 @@
                 return this.left.GetHashCode() + (this.right.GetHashCode() * 17);
             }
         }
-
-        private abstract class BinaryExpressionBuilder<T1, T2>
-        {
-            public Func<object, object, object> BuildExpression()
-            {
-                var x = Expression.Parameter(typeof(T1), "x");
-                var y = Expression.Parameter(typeof(T2), "y");
-                var add = Expression.Add(Expression.Unbox(x, typeof(T2)), Expression.Unbox(y, typeof(T2)));
-                var body = Expression.TypeAs(add, typeof(object));
-                var lambda = Expression.Lambda<Func<object, object, object>>(body, x, y).Compile();
-                return lambda;
-            }
-        }
     }
 }
