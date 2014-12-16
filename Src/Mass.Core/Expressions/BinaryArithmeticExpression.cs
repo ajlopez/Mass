@@ -161,7 +161,7 @@
 
             public override int GetHashCode()
             {
-                return this.left.GetHashCode() + this.right.GetHashCode() * 17;
+                return this.left.GetHashCode() + (this.right.GetHashCode() * 17);
             }
         }
 

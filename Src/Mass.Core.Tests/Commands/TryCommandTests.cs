@@ -49,7 +49,6 @@
             Assert.AreEqual(2, context.Get("b"));
         }
 
-
         [TestMethod]
         public void Equals()
         {
