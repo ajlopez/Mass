@@ -14,10 +14,10 @@
         {
             functions[CompareOperator.Equal] = CompareEqual;
             functions[CompareOperator.NotEqual] = CompareNotEqual;
-            functions[CompareOperator.Less] = (left, right) => Operators.LessObject(left, right);
-            functions[CompareOperator.Greater] = (left, right) => Operators.GreaterObject(left, right);
-            functions[CompareOperator.LessOrEqual] = (left, right) => Operators.LessEqualObject(left, right);
-            functions[CompareOperator.GreaterOrEqual] = (left, right) => Operators.GreaterEqualObject(left, right);
+            functions[CompareOperator.Less] = (left, right) => Compare(left, right) < 0;
+            functions[CompareOperator.Greater] = (left, right) => Compare(left, right) > 0;
+            functions[CompareOperator.LessOrEqual] = (left, right) => Compare(left, right) <= 0;
+            functions[CompareOperator.GreaterOrEqual] = (left, right) => Compare(left, right) >= 0;
         }
 
         public CompareExpression(IExpression left, IExpression right, CompareOperator @operator)
@@ -42,6 +42,12 @@
         public override int GetHashCode()
         {
             return base.GetHashCode() + (int)this.@operator;
+        }
+
+        private static int Compare(object left, object right)
+        {
+            var cleft = (IComparable)left;
+            return cleft.CompareTo(right);
         }
 
         private static object CompareEqual(object left, object right)
