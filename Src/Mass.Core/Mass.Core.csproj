@@ -129,12 +129,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Obops\Src\Obops\Obops.csproj">
-      <Project>{207AD4AF-0B42-4AD1-85F0-D846FD3F3713}</Project>
-      <Name>Obops</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
