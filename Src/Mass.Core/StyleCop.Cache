@@ -267,15 +267,6 @@
     <milliseconds>675</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="BinaryExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>06/20/2013 17:17:38</timestamp>
-    <milliseconds>56</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="CallDotExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -501,9 +492,6 @@
     <milliseconds>913</milliseconds>
     <violations />
   </sourcecode>
-  <project key="71648008">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="CompareExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -513,13 +501,25 @@
     <milliseconds>645</milliseconds>
     <violations />
   </sourcecode>
+  <project key="71648008">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
   <sourcecode name="BinaryArithmeticExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
       <milliseconds>741</milliseconds>
     </settings>
-    <timestamp>12/16/2014 05:04:03</timestamp>
-    <milliseconds>835</milliseconds>
+    <timestamp>12/17/2014 05:28:40</timestamp>
+    <milliseconds>313</milliseconds>
+    <violations />
+  </sourcecode>
+  <sourcecode name="BinaryExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>12/17/2014 05:29:42</timestamp>
+    <milliseconds>639</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>
