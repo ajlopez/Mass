@@ -4,12 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Obops;
 
     public abstract class BinaryExpression : IExpression
     {
-        private static Operators operators = new Operators();
-
         private IExpression left;
         private IExpression right;
 
@@ -18,8 +15,6 @@
             this.left = left;
             this.right = right;
         }
-
-        public static Operators Operators { get { return operators; } }
 
         public IExpression LeftExpression { get { return this.left; } }
 

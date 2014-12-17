@@ -312,15 +312,6 @@
     <milliseconds>89</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="CompareExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/23/2013 16:00:09</timestamp>
-      <milliseconds>741</milliseconds>
-    </settings>
-    <timestamp>06/20/2013 17:21:03</timestamp>
-    <milliseconds>745</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="DotExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -513,13 +504,22 @@
   <project key="71648008">
     <configuration>DEBUG;TRACE</configuration>
   </project>
+  <sourcecode name="CompareExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/23/2013 16:00:09</timestamp>
+      <milliseconds>741</milliseconds>
+    </settings>
+    <timestamp>12/17/2014 05:20:50</timestamp>
+    <milliseconds>645</milliseconds>
+    <violations />
+  </sourcecode>
   <sourcecode name="BinaryArithmeticExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
       <milliseconds>741</milliseconds>
     </settings>
-    <timestamp>12/16/2014 04:55:52</timestamp>
-    <milliseconds>425</milliseconds>
+    <timestamp>12/16/2014 05:04:03</timestamp>
+    <milliseconds>835</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>

@@ -37,13 +37,13 @@
                 if (this.@operator != ArithmeticOperator.Add || (rightvalue != null && !(rightvalue is string)))
                     leftvalue = 0;
                 else
-                    return Add(leftvalue, rightvalue);
+                    return this.Add(leftvalue, rightvalue);
 
             if (rightvalue == null)
                 if (this.@operator != ArithmeticOperator.Add || (leftvalue != null && !(leftvalue is string)))
                     rightvalue = 0;
                 else
-                    return Add(leftvalue, rightvalue);
+                    return this.Add(leftvalue, rightvalue);
 
             var tl = leftvalue.GetType();
             var tr = rightvalue.GetType();
@@ -55,7 +55,7 @@
             this.tright = tr;
 
             if (this.@operator == ArithmeticOperator.Add && (tl == typeof(string) || tr == typeof(string)))
-                this.function = Add;
+                this.function = this.Add;
             else
                 this.function = funcs[this.@operator][new TypePair(tl, tr)];
 
@@ -73,26 +73,6 @@
         public override int GetHashCode()
         {
             return base.GetHashCode() + (int)this.@operator;
-        }
-
-        private static object Add(object left, object right)
-        {
-            if (left == null && right == null)
-                return string.Empty;
-
-            if (left is string)
-                if (right == null)
-                    return left;
-                else
-                    return (string)left + right.ToString();
-
-            if (right is string)
-                if (left == null)
-                    return right;
-                else
-                    return left.ToString() + (string)right;
-
-            return Operators.AddObject(left, right);
         }
 
         private static Func<object, object, object> BuildExpression(Type t1, Type t2, Func<Expression, Expression, System.Linq.Expressions.BinaryExpression> oper)
@@ -132,6 +112,37 @@
                 right = Expression.Convert(right, left.Type);
             else
                 left = Expression.Convert(left, right.Type);
+        }
+
+        private object Add(object left, object right)
+        {
+            if (left == null && right == null)
+                return string.Empty;
+
+            if (left is string)
+                if (right == null)
+                    return left;
+                else
+                    return (string)left + right.ToString();
+
+            if (right is string)
+                if (left == null)
+                    return right;
+                else
+                    return left.ToString() + (string)right;
+
+            var tl = left.GetType();
+            var tr = right.GetType();
+
+            if (tl == this.tleft && tr == this.tright && this.function != null)
+                return this.function(left, right);
+
+            this.tleft = tl;
+            this.tright = tr;
+
+            this.function = funcs[this.@operator][new TypePair(tl, tr)];
+
+            return this.function(left, right);
         }
 
         private class TypePair

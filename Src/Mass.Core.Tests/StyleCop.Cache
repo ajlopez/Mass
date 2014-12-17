@@ -189,15 +189,6 @@
     <milliseconds>529</milliseconds>
     <violations />
   </sourcecode>
-  <sourcecode name="EvaluateTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
-    <settings>
-      <timestamp>03/25/2013 07:50:11</timestamp>
-      <milliseconds>883</milliseconds>
-    </settings>
-    <timestamp>06/20/2013 20:24:01</timestamp>
-    <milliseconds>47</milliseconds>
-    <violations />
-  </sourcecode>
   <sourcecode name="ArrayExpressionTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -423,9 +414,6 @@
     <milliseconds>245</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-139072994">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="TryCommandTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -433,6 +421,18 @@
     </settings>
     <timestamp>12/16/2014 04:57:09</timestamp>
     <milliseconds>690</milliseconds>
+    <violations />
+  </sourcecode>
+  <project key="-139072994">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
+  <sourcecode name="EvaluateTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
+    <settings>
+      <timestamp>03/25/2013 07:50:11</timestamp>
+      <milliseconds>883</milliseconds>
+    </settings>
+    <timestamp>12/16/2014 05:09:04</timestamp>
+    <milliseconds>834</milliseconds>
     <violations />
   </sourcecode>
 </stylecopresultscache>
