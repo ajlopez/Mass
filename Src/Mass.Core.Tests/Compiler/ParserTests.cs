@@ -242,7 +242,7 @@
         public void ParseCallExpressionSimplePrint()
         {
             Parser parser = new Parser("print(123)");
-            var expected = new CallExpression("print", new IExpression[] { new ConstantExpression(123) });
+            var expected = new CallExpression(new NameExpression("print"), new IExpression[] { new ConstantExpression(123) });
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);
@@ -255,7 +255,7 @@
         public void ParseCallExpressionPrintWithTwoArguments()
         {
             Parser parser = new Parser("print(1,2)");
-            var expected = new CallExpression("print", new IExpression[] { new ConstantExpression(1), new ConstantExpression(2) });
+            var expected = new CallExpression(new NameExpression("print"), new IExpression[] { new ConstantExpression(1), new ConstantExpression(2) });
             var result = parser.ParseExpression();
 
             Assert.IsNotNull(result);

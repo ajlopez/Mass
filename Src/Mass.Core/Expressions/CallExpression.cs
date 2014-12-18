@@ -10,18 +10,18 @@
     {
         private static int hashcode = typeof(CallExpression).GetHashCode();
 
-        private string name;
+        private IExpression expression;
         private IList<IExpression> arguments;
 
-        public CallExpression(string name, IList<IExpression> arguments)
+        public CallExpression(IExpression expression, IList<IExpression> arguments)
         {
-            this.name = name;
+            this.expression = expression;
             this.arguments = arguments;
         }
 
         public object Evaluate(Context context)
         {
-            IFunction function = (IFunction)context.Get(this.name);
+            IFunction function = (IFunction)this.expression.Evaluate(context);
 
             IList<object> values = new List<object>();
 
@@ -40,7 +40,7 @@
             {
                 var expr = (CallExpression)obj;
 
-                if (this.name != expr.name)
+                if (!this.expression.Equals(expr.expression))
                     return false;
 
                 if (this.arguments.Count != expr.arguments.Count)
@@ -58,7 +58,7 @@
 
         public override int GetHashCode()
         {
-            int result = this.name.GetHashCode() + hashcode;
+            int result = this.expression.GetHashCode() + hashcode;
 
             foreach (var argument in this.arguments)
                 result += argument.GetHashCode();

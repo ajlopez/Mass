@@ -21,7 +21,7 @@
             Context context = new Context();
             StringWriter writer = new StringWriter();
             context.Set("println", new PrintlnFunction(writer));
-            ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression("println", new IExpression[] { new ConstantExpression(123) })));
+            ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(123) })));
 
             var result = cmd.Execute(context);
 
@@ -78,7 +78,7 @@
             Context context = new Context();
             StringWriter writer = new StringWriter();
             context.Set("println", new PrintlnFunction(writer));
-            ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression("println", new IExpression[] { new ConstantExpression(123) })));
+            ClassCommand cmd = new ClassCommand("Dog", new ExpressionCommand(new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(123) })));
 
             cmd.Execute(context);
 

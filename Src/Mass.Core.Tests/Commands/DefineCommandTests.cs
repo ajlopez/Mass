@@ -16,7 +16,7 @@
         public void DefineSimpleFunction()
         {
             Context context = new Context();
-            DefineCommand cmd = new DefineCommand("foo", new string[0], new ExpressionCommand(new CallExpression("puts", new IExpression[] { new ConstantExpression(123) })));
+            DefineCommand cmd = new DefineCommand("foo", new string[0], new ExpressionCommand(new CallExpression(new NameExpression("puts"), new IExpression[] { new ConstantExpression(123) })));
 
             var result = cmd.Execute(context);
 

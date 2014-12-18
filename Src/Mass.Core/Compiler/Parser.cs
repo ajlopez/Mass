@@ -385,7 +385,7 @@
                     if (name == "super")
                         return new SuperCallExpression(this.ParseExpressionList());
 
-                    expr = new CallExpression(name, this.ParseExpressionList());
+                    expr = new CallExpression(expr, this.ParseExpressionList());
                 }
 
                 if (expr is DotExpression && this.PeekToken(TokenType.Separator, "("))

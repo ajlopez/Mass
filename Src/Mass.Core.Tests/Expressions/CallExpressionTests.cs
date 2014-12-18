@@ -16,7 +16,7 @@
         public void CallPrintlnInteger()
         {
             StringWriter writer = new StringWriter();
-            CallExpression expr = new CallExpression("puts", new IExpression[] { new ConstantExpression(123) });
+            CallExpression expr = new CallExpression(new NameExpression("puts"), new IExpression[] { new ConstantExpression(123) });
             Machine machine = new Machine();
             PrintlnFunction puts = new PrintlnFunction(writer);
             machine.RootContext.Set("puts", puts);
@@ -28,11 +28,11 @@
         [TestMethod]
         public void Equals()
         {
-            CallExpression expr1 = new CallExpression("println", new IExpression[] { new ConstantExpression(1) });
-            CallExpression expr2 = new CallExpression("print", new IExpression[] { new ConstantExpression(1) });
-            CallExpression expr3 = new CallExpression("println", new IExpression[] { new ConstantExpression(2) });
-            CallExpression expr4 = new CallExpression("println", new IExpression[] { new ConstantExpression(2), new ConstantExpression(3) });
-            CallExpression expr5 = new CallExpression("println", new IExpression[] { new ConstantExpression(1) });
+            CallExpression expr1 = new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(1) });
+            CallExpression expr2 = new CallExpression(new NameExpression("print"), new IExpression[] { new ConstantExpression(1) });
+            CallExpression expr3 = new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(2) });
+            CallExpression expr4 = new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(2), new ConstantExpression(3) });
+            CallExpression expr5 = new CallExpression(new NameExpression("println"), new IExpression[] { new ConstantExpression(1) });
 
             Assert.IsTrue(expr1.Equals(expr5));
             Assert.IsTrue(expr5.Equals(expr1));

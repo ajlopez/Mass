@@ -423,9 +423,6 @@
     <milliseconds>690</milliseconds>
     <violations />
   </sourcecode>
-  <project key="-139072994">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="EvaluateTests.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/25/2013 07:50:11</timestamp>
@@ -435,4 +432,7 @@
     <milliseconds>834</milliseconds>
     <violations />
   </sourcecode>
+  <project key="-139072994">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>

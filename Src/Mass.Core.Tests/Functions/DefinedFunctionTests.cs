@@ -21,7 +21,7 @@
             PrintlnFunction puts = new PrintlnFunction(writer);
             machine.RootContext.Set("puts", puts);
 
-            DefinedFunction function = new DefinedFunction(new ExpressionCommand(new CallExpression("puts", new IExpression[] { new ConstantExpression(123) })), new string[] { }, machine.RootContext);
+            DefinedFunction function = new DefinedFunction(new ExpressionCommand(new CallExpression(new NameExpression("puts"), new IExpression[] { new ConstantExpression(123) })), new string[] { }, machine.RootContext);
 
             Assert.IsNull(function.Apply(new object[] { }));
             Assert.AreEqual("123\r\n", writer.ToString());

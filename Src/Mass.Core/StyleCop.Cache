@@ -501,9 +501,6 @@
     <milliseconds>645</milliseconds>
     <violations />
   </sourcecode>
-  <project key="71648008">
-    <configuration>DEBUG;TRACE</configuration>
-  </project>
   <sourcecode name="BinaryArithmeticExpression.cs" parser="Microsoft.StyleCop.CSharp.CsParser">
     <settings>
       <timestamp>03/23/2013 16:00:09</timestamp>
@@ -522,4 +519,7 @@
     <milliseconds>639</milliseconds>
     <violations />
   </sourcecode>
+  <project key="71648008">
+    <configuration>DEBUG;TRACE</configuration>
+  </project>
 </stylecopresultscache>
