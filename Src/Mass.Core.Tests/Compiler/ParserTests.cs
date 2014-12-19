@@ -265,6 +265,19 @@
         }
 
         [TestMethod]
+        public void ParseCallExpressionAfterCallExpression()
+        {
+            Parser parser = new Parser("foo()(1,2)");
+            var expected = new CallExpression(new CallExpression(new NameExpression("foo"), new IExpression[] { }), new IExpression[] { new ConstantExpression(1), new ConstantExpression(2) });
+            var result = parser.ParseExpression();
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expected, result);
+
+            Assert.IsNull(parser.ParseExpression());
+        }
+
+        [TestMethod]
         public void ParseSimpleAssignCommand()
         {
             Parser parser = new Parser("a=2");

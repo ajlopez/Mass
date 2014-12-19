@@ -388,8 +388,11 @@
                     expr = new CallExpression(expr, this.ParseExpressionList());
                 }
 
-                if (expr is DotExpression && this.PeekToken(TokenType.Separator, "("))
-                    expr = new CallDotExpression((DotExpression)expr, this.ParseExpressionList());
+                while (this.PeekToken(TokenType.Separator, "("))
+                    if (expr is DotExpression)
+                        expr = new CallDotExpression((DotExpression)expr, this.ParseExpressionList());
+                    else
+                        expr = new CallExpression(expr, this.ParseExpressionList());
 
                 while (this.TryParseToken(TokenType.Separator, "."))
                     expr = new DotExpression(expr, this.ParseName());
