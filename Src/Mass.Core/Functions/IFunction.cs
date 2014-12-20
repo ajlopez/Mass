@@ -8,8 +8,6 @@
 
     public interface IFunction
     {
-        object Apply(IList<object> values);
-
         object Apply(object self, IList<object> values);
     }
 }

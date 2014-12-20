@@ -23,7 +23,7 @@
             this.path = path;
         }
 
-        public object Apply(IList<object> values)
+        public object Apply(object self, IList<object> values)
         {
             string name = (string)values[0];
 
@@ -36,11 +36,6 @@
                 throw new InvalidOperationException(string.Format("cannot find module '{0}'", name));
 
             return this.machine.ExecuteFile(filename, true);
-        }
-
-        public object Apply(object self, IList<object> values)
-        {
-            return this.Apply(values);
         }
 
         private string GetFilename(string path, string name)

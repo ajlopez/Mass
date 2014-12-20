@@ -17,7 +17,7 @@
             StringWriter writer = new StringWriter();
             PrintlnFunction function = new PrintlnFunction(writer);
 
-            Assert.IsNull(function.Apply(new object[] { 123 }));
+            Assert.IsNull(function.Apply(null, new object[] { 123 }));
 
             Assert.AreEqual("123\r\n", writer.ToString());
         }
@@ -39,7 +39,7 @@
             StringWriter writer = new StringWriter();
             PrintlnFunction function = new PrintlnFunction(writer);
 
-            Assert.IsNull(function.Apply(new object[] { 123, 456 }));
+            Assert.IsNull(function.Apply(null, new object[] { 123, 456 }));
 
             Assert.AreEqual("123\r\n456\r\n", writer.ToString());
         }

@@ -18,7 +18,7 @@
             Machine machine = new Machine();
             RequireFunction require = new RequireFunction(machine);
 
-            AssertModule(require.Apply(new object[] { "SimpleModule.ms" }));
+            AssertModule(require.Apply(null, new object[] { "SimpleModule.ms" }));
         }
 
         [TestMethod]
@@ -38,8 +38,8 @@
             Machine machine = new Machine();
             RequireFunction require = new RequireFunction(machine);
 
-            var original = require.Apply(new object[] { "SimpleModule" });
-            var result = require.Apply(new object[] { "SimpleModule" });
+            var original = require.Apply(null, new object[] { "SimpleModule" });
+            var result = require.Apply(null, new object[] { "SimpleModule" });
 
             AssertModule(result);
             Assert.AreSame(original, result);
@@ -52,7 +52,7 @@
             Machine machine = new Machine();
             RequireFunction require = new RequireFunction(machine);
 
-            AssertModule(require.Apply(new object[] { "SimpleModule.ms" }));
+            AssertModule(require.Apply(null, new object[] { "SimpleModule.ms" }));
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@
             Machine machine = new Machine();
             RequireFunction require = new RequireFunction(machine);
 
-            AssertModule(require.Apply(new object[] { "./SimpleModule" }));
+            AssertModule(require.Apply(null, new object[] { "./SimpleModule" }));
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@
 
             try
             {
-                require.Apply(new object[] { "unknown" });
+                require.Apply(null, new object[] { "unknown" });
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -91,7 +91,7 @@
 
             try
             {
-                require.Apply(new object[] { "./unknown" });
+                require.Apply(null, new object[] { "./unknown" });
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -109,7 +109,7 @@
 
             try
             {
-                require.Apply(new object[] { "/unknown" });
+                require.Apply(null, new object[] { "/unknown" });
                 Assert.Fail();
             }
             catch (Exception ex)

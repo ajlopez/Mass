@@ -28,7 +28,7 @@
             foreach (var argument in this.arguments)
                 values.Add(argument.Evaluate(context));
 
-            return function.Apply(values);
+            return function.Apply(null, values);
         }
 
         public override bool Equals(object obj)

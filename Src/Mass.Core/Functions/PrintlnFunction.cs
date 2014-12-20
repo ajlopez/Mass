@@ -16,17 +16,12 @@
             this.writer = writer;
         }
 
-        public object Apply(IList<object> values)
+        public object Apply(object self, IList<object> values)
         {
             foreach (var value in values)
                 this.writer.WriteLine(value);
 
             return null;
-        }
-
-        public object Apply(object self, IList<object> values)
-        {
-            return this.Apply(values);
         }
     }
 }

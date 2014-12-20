@@ -26,7 +26,7 @@
 
             var function = (IFunction)result;
 
-            Assert.AreEqual(3, function.Apply(new object[] { 1, 2 }));
+            Assert.AreEqual(3, function.Apply(null, new object[] { 1, 2 }));
         }
 
         [TestMethod]

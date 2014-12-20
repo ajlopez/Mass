@@ -20,12 +20,6 @@
             this.parameters = parameters;
         }
 
-        public object Apply(IList<object> values)
-        {
-            Context newcontext = new Context(this.context, null);
-            return this.DoApply(newcontext, values);
-        }
-
         public object Apply(object self, IList<object> values)
         {
             Context newcontext = new Context(this.context, null);
